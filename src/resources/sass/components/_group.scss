@@ -1,0 +1,61 @@
+.selectgroup {
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    transition: transform 0.2s;
+}
+.selectgroup-item {
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    position: relative;
+    font-weight: 400 !important;
+}
+
+.selectgroup-button {
+    display: block;
+    color: darken($secondary, 25%);
+    border-bottom: 4px solid $secondary;
+    background-color: rgba($secondary, 0.25);
+    text-align: center;
+    padding: 0.3rem 0.4rem;
+    position: relative;
+    cursor: pointer;
+    border-radius: $base-size;
+    user-select: none;
+    font-size: 0.9rem;
+    line-height: 1.5rem;
+    min-width: 2.375rem;
+}
+
+@include color-mode(dark) {
+    .selectgroup-button {
+        color: lighten($secondary, 50%);
+    }
+}
+
+.selectgroup-input {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    &:checked,
+    &:focus,
+    &:hover {
+        & + .selectgroup-button {
+            z-index: 2;
+            color: $white;
+            background-color: $secondary;
+            box-shadow: 0 0 0 3px rgba($secondary, 0.5);
+        }
+    }
+}
+
+.selectgroup-pills {
+    flex-wrap: wrap;
+    align-items: flex-start;
+    .selectgroup-item {
+        margin-right: 0.5rem;
+        flex-grow: 0;
+    }
+}
+

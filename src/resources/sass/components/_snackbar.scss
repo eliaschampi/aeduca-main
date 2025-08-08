@@ -1,0 +1,68 @@
+$snackbar-animation-duration: 0.3s;
+$snackbar-animation-delay: 0.1s;
+
+$themes: (
+    "default": $info,
+    "danger": $danger,
+    "success": $success,
+    "warning": $warning,
+);
+
+.snackbar {
+    position: fixed;
+    right: 1.5%;
+    bottom: 3%;
+    padding: $base-size;
+    border-radius: $base-size;
+    font-weight: bold;
+    opacity: 0;
+    visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5000;
+    backdrop-filter: saturate(200%) blur(25px);
+    transition: opacity $snackbar-animation-duration ease-in-out, visibility $snackbar-animation-duration ease-in-out;
+}
+
+.snackbar.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.snackbar_icon {
+    span {
+        font-size: $base-size * 2;
+    }
+}
+
+.snackbar__text {
+    flex-grow: 1;
+    @extend .text-truncate;
+    max-width: 16rem;
+}
+
+@each $theme, $color in $themes {
+    .snackbar-#{$theme} {
+        background-color: rgba($color, 0.4);
+        border-bottom: 4px solid rgba($color, 1);
+        color: darken($color, 15%);
+    }
+}
+
+@include color-mode(dark) {
+    .snackbar_icon,
+    .times,
+    .snackbar__text {
+        color: $white;
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    .snackbar {
+        border-radius: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+    }
+}

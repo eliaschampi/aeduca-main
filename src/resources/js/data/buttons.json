@@ -1,0 +1,54 @@
+{
+    "A": {
+        "b1": {
+            "name": "Resumen anual",
+            "route": "main_cycle"
+        },
+        "b2": {
+            "name": "Ver docentes",
+            "route": "main_teacher"
+        },
+        "b3": {
+            "name": "Monitoreo",
+            "route": "tracking"
+        }
+    },
+    "S": {
+        "b1": {
+            "name": "Agregar ingreso",
+            "route": "invoice"
+        },
+        "b2": {
+            "name": "Agregar gasto",
+            "route": "new_expense"
+        },
+        "b3": {
+            "name": "Caja",
+            "route": "cash"
+        }
+    },
+    "P": {
+        "b2": {
+            "name": "Buscar apoderado",
+            "route": "family_profile"
+        },
+        "b3": {
+            "name": "Asistencia",
+            "route": "main_attendance"
+        }
+    },
+    "N": {
+        "b1": {
+            "name": "Crear Incidencia",
+            "route": "new_incidence"
+        },
+        "b2": {
+            "name": "Resumen anual",
+            "route": "sumary"
+        },
+        "b3": {
+            "name": "Ver estudiante",
+            "route": "student_profile"
+        }
+    }
+}

@@ -1,0 +1,161 @@
+@page {
+  margin: 0;
+  size: 210mm 297mm;
+}
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  background-image: url("../default/pdf.png");
+  background-size: 100%;
+}
+
+main {
+  margin: 1.3cm;
+}
+
+.listingContainer {
+  page-break-inside: avoid;
+}
+
+a {
+  color: #0747a6;
+  text-decoration: none;
+}
+
+hr {
+  color: #f2f2f2;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-small {
+  font-size: 11px;
+}
+
+.text-primary {
+  color: #0747a6;
+}
+
+.text-accent {
+  color: #ff7300;
+}
+
+.mt-1 {
+  margin-top: 20px;
+}
+
+.text-muted {
+  color: #6e7275;
+}
+
+.mt-10 {
+  margin-top: 10%;
+}
+
+.mt-5 {
+  margin-top: 5%;
+}
+
+.w-40 {
+  width: 40%;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.title {
+  margin-top: 3cm;
+  text-align: center;
+}
+
+/* table */
+table.printable {
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.text-table-title {
+  font-weight: 700;
+  color: #0747a6;
+}
+
+.bg-primary {
+  background-color: #0747a6;
+  color: white;
+}
+
+table.printable th,
+table.printable td {
+  border: 2px dotted #0747a67d;
+}
+
+table.printable tr {
+  padding: 0.40em;
+}
+
+table.printable th,
+table.printable td {
+  padding: 0.70em;
+  text-align: left;
+}
+
+table.printable th {
+  font-size: 0.85em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+table.printable tr:nth-child(even) {
+  background-color: #f1f8fe;
+}
+
+.scorebox {
+  width: 20px;
+  height: 50px;
+  display: inline-table;
+}
+
+.scorebox .head {
+  background: #07a63485;
+}
+
+.scorebox .head,
+.scorebox .sub {
+  padding: 1px 5px;
+}
+
+table.smalltable {
+  width: 100%;
+}
+
+table.smalltable tr {
+  padding: 0.25em;
+}
+
+table.smalltable th {
+  background: #a64f0785;
+}
+
+table.smalltable th,
+table.smalltable td {
+  padding: 0.50em;
+  text-align: left;
+}

@@ -1,0 +1,56 @@
+services:
+  app:
+    build: .
+    container_name: aeduca-app
+    ports:
+      - "9000:9000"
+      - "5173:5173"
+    volumes:
+      - ./src:/var/www/html
+      - ./.env.docker:/var/www/html/.env
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  nginx:
+    image: nginx:alpine
+    container_name: aeduca-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./src:/var/www/html:ro
+    depends_on:
+      - app
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: aeduca-postgres
+    environment:
+      - POSTGRES_DB=aeduca
+      - POSTGRES_USER=elias
+      - POSTGRES_PASSWORD=7532
+      - POSTGRES_INITDB_ARGS=--encoding=UTF-8 --lc-collate=es_PE.utf8 --lc-ctype=es_PE.utf8
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./src/database/init:/docker-entrypoint-initdb.d:ro
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U elias -d aeduca"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 10s
+
+  redis:
+    image: redis:alpine
+    container_name: aeduca-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+volumes:
+  postgres_data:
+  redis_data:

@@ -1,0 +1,14 @@
+{
+    "student": {
+        "label": "Estudiante",
+        "route": "student_profile"
+    },
+    "teacher": {
+        "label": "Docente",
+        "route": "teacher_profile"
+    },
+    "family": {
+        "label": "Apoderado",
+        "route": "family_profile"
+    }
+}

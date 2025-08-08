@@ -1,0 +1,47 @@
+{
+    "name": "aeducaadmin",
+    "version": "7",
+    "license": "GPL-3.0",
+    "author": {
+        "name": "Elias Champi",
+        "email": "eliaschampi@protonmail.com"
+    },
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "lint": "eslint --config eslint.config.mjs --fix resources/js"
+    },
+    "dependencies": {
+        "@tiptap/extension-highlight": "^2.6.6",
+        "@tiptap/extension-text-align": "^2.6.6",
+        "@tiptap/pm": "^2.6.6",
+        "@tiptap/starter-kit": "^2.6.6",
+        "@tiptap/vue-3": "^2.6.6",
+        "@vitejs/plugin-vue": "^5.1.2",
+        "axios": "^1.7.2",
+        "chart.js": "^4.4.3",
+        "dayjs": "^1.11.13",
+        "mitt": "^3.0.1",
+        "nprogress": "^0.2.0",
+        "pinia": "^2.2.2",
+        "qr-scanner": "^1.4.2",
+        "vee-validate": "^4.13.2",
+        "vue": "^3.4.38",
+        "vue-chartjs": "^5.3.1",
+        "vue-router": "^4.4.3",
+        "bootstrap": "^5.3.3",
+        "sass": "^1.77.6",
+        "vite": "^5.3.5",
+        "laravel-vite-plugin": "^1.0.5"
+    },
+    "devDependencies": {
+        "autoprefixer": "10.4.19",
+        "eslint": "^9.9.1",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-prettier": "^5.2.1",
+        "eslint-plugin-vue": "^9.27.0",
+        "prettier": "^3.3.3"
+    }
+}

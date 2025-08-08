@@ -1,0 +1,77 @@
+@keyframes dropdownAnimation {
+    from {
+        opacity: 0;
+        transform: translate3d(0, -30px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+        transform: translate3d(0, 0px, 0);
+    }
+}
+
+.dropdownAnimation {
+    animation-name: dropdownAnimation;
+    animation-duration: 0.25s;
+    animation-fill-mode: both;
+}
+
+.infinite-spin {
+    animation-name: spin;
+    animation-duration: 0.2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+}
+
+@mixin transition($settings) {
+    -webkit-transition: $settings;
+    -moz-transition: $settings;
+    -ms-transition: $settings;
+    -o-transition: $settings;
+    transition: $settings;
+}
+
+// general transform
+@mixin transform($transforms) {
+    -moz-transform: $transforms;
+    -o-transform: $transforms;
+    -ms-transform: $transforms;
+    -webkit-transform: $transforms;
+    transform: $transforms;
+}
+
+// rotate
+@mixin rotate($deg) {
+    @include transform(rotate(#{$deg}deg));
+}
+
+// scale
+@mixin scale($scale) {
+    @include transform(scale($scale));
+}
+// translate
+@mixin translate($x, $y) {
+    @include transform(translate($x, $y));
+}
+// skew
+@mixin skew($x, $y) {
+    @include transform(skew(#{$x}deg, #{$y}deg));
+}
+//transform origin
+@mixin transform-origin($origin) {
+    moz-transform-origin: $origin;
+    -o-transform-origin: $origin;
+    -ms-transform-origin: $origin;
+    -webkit-transform-origin: $origin;
+    transform-origin: $origin;
+}

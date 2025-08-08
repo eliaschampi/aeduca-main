@@ -1,0 +1,44 @@
+*.http
+# Environment files (never commit real .env files)
+# Docker environment (only .env-example should be committed)
+.env.docker
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Laravel specific
+src/vendor/
+src/node_modules/
+src/database/init
+src/public/hot
+src/public/default
+src/public/build
+src/storage/framework/views/*.php
+src/storage/*.key
+src/storage/framework/cache/data
+src/storage/framework/sessions
+src/storage/app/public
+src/bootstrap/cache/*.php
+src/.env
+src/.env.backup
+src/.phpunit.result.cache
+src/Homestead.json
+src/Homestead.yaml
+src/npm-debug.log
+src/yarn-error.log
+
+
+# Log files
+src/storage/logs/*.log

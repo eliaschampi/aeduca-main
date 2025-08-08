@@ -1,0 +1,18 @@
+{
+    "a": {
+        "badge": "bg-success",
+        "text": "activo"
+    },
+    "i": {
+        "badge": "bg-danger",
+        "text": "inactivo"
+    },
+    "f": {
+        "badge": "bg-secondary",
+        "text": "finalizo"
+    },
+    "p": {
+        "badge": "bg-warning",
+        "text": "pendiente"
+    }
+}

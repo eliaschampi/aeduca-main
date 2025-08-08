@@ -1,0 +1,19 @@
+:root {
+    --disabled: rgba(var(--bs-dark-border-subtle), 0.4);
+}
+
+[data-bs-theme="light"] {
+    --bs-card: #fff;
+    --bs-title: #054a74;
+    --bs-absolute: #f2f4f8;
+    --bs-sidebar-color: #0747a6;
+    --shadow: 0 5px 20px -3px rgba(30, 30, 45, 0.1);
+}
+
+[data-bs-theme="dark"] {
+    --bs-card: #1e2229;
+    --bs-title: #fec99e;
+    --bs-absolute: #060b11;
+    --bs-sidebar-color:  #003e86;
+    --shadow: 0 5px 20px -3px rgba(0, 0, 0, 0.8)
+}

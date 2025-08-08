@@ -1,0 +1,9 @@
+{
+    "entry_time": "07:40:00",
+    "tolerance": 3,
+    "st_att_left": ["6"],
+    "abs_enabled": true,
+    "abs1": ["2023SE12"],
+    "abs2": [],
+    "pgnt": 50
+}
