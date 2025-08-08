@@ -20,4 +20,11 @@ export default defineConfig({
             host: "localhost",
         },
     },
+    css: {
+        preprocessorOptions: {
+            scss: {
+                silenceDeprecations: ['mixed-decls', 'color-functions', 'global-builtin', 'import']
+            },
+        }
+    },
 });
