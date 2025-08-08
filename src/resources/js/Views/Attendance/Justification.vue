@@ -25,20 +25,13 @@ watchEffect(() => {
 <template>
     <section id="JustificationID">
         <alert class="mb-4">
-            Los permisos y las justificaciónes son enviados desde la plataforma por el usuario, aunque también pueden
-            ser generados por los administradores. Revisa y gestiona las justificaciones aqui
+            Los permisos y las justificaciónes son enviados desde la plataforma por el usuario,
+            aunque también pueden ser generados por los administradores. Revisa y gestiona las
+            justificaciones aqui
         </alert>
-        <m-table
-            :columns="columns"
-            :is-loading="isLoading"
-            :head="false"
-            :data="justifications"
-        >
+        <m-table :columns="columns" :is-loading="isLoading" :head="false" :data="justifications">
             <template #data="{ rows }">
-                <tr
-                    v-for="item in rows"
-                    :key="item.code"
-                >
+                <tr v-for="item in rows" :key="item.code">
                     <td>{{ item.attendance_code }}</td>
                     <td>{{ formatedDate(item.created_at) }}</td>
                     <td>{{ formatedDate(item.attendance.created_at) }}</td>
@@ -57,16 +50,19 @@ watchEffect(() => {
                             color="info"
                             icon="eye"
                             tool="Ver Detalles"
-                            @action="jusRef.handleShowModal(item.attendance_code, item.attendance.state, item)"
+                            @action="
+                                jusRef.handleShowModal(
+                                    item.attendance_code,
+                                    item.attendance.state,
+                                    item,
+                                )
+                            "
                         />
                     </td>
                 </tr>
             </template>
         </m-table>
 
-        <Justification
-            ref="jusRef"
-            @done="fetchData"
-        />
+        <Justification ref="jusRef" @done="fetchData" />
     </section>
 </template>

@@ -79,17 +79,9 @@ function handleCancel() {
                     icon="icon ion-md-add"
                 />
             </template>
-            <m-table
-                :columns="columns"
-                :data="courses"
-                :fetch="fetchData"
-                :head="false"
-            >
+            <m-table :columns="columns" :data="courses" :fetch="fetchData" :head="false">
                 <template #data="{ rows }">
-                    <tr
-                        v-for="item in rows"
-                        :key="item.code"
-                    >
+                    <tr v-for="item in rows" :key="item.code">
                         <td>{{ item.code }}</td>
                         <td>{{ item.name }}</td>
                         <td class="space">

@@ -150,11 +150,7 @@ const schema = {
     >
         <div class="row gx-2">
             <div class="col-md-6 space-b-1 mb-4 mb-md-0">
-                <m-input
-                    v-model="incidence.title"
-                    name="title"
-                    label="Motivo (100 Caracteres)"
-                />
+                <m-input v-model="incidence.title" name="title" label="Motivo (100 Caracteres)" />
                 <Editor
                     v-model="incidence.description"
                     name="description"
@@ -163,10 +159,7 @@ const schema = {
                     Desarrollo
                 </Editor>
                 <template v-if="incidence.type !== 'pe'">
-                    <m-textarea
-                        v-model="incidence.agreement"
-                        name="agreement"
-                    >
+                    <m-textarea v-model="incidence.agreement" name="agreement">
                         Conclusión y acuerdos
                         <i class="text-small"> {{ agreementLabel }} </i>
                     </m-textarea>
@@ -184,14 +177,7 @@ const schema = {
                         label="¿Por cuantos dias se registra el permiso?"
                         :disabled="!!incidenceCode"
                     >
-                        <option
-                            :value="undefined"
-                            disabled
-                            selected
-                            hidden
-                        >
-                            Dias
-                        </option>
+                        <option :value="undefined" disabled selected hidden>Dias</option>
                         <option value="1">1 día</option>
                         <option value="2">2 días</option>
                         <option value="3">3 días</option>
@@ -199,7 +185,8 @@ const schema = {
                         <option value="5">Una semana</option>
                     </m-select>
                     <alert class="font-italic">
-                        Si se aprueba el permiso, su asistencia durante esos dias será actualizada automáticamente
+                        Si se aprueba el permiso, su asistencia durante esos dias será actualizada
+                        automáticamente
                     </alert>
                 </template>
             </div>
@@ -225,7 +212,7 @@ const schema = {
                 </m-select>
                 <template v-if="!incidenceCode">
                     <File v-model="attached" />
-                    <hr>
+                    <hr />
                     <h6 class="fw-medium">Agregar Involucrados</h6>
                     <m-button
                         size="btn-sm"
@@ -255,7 +242,7 @@ const schema = {
                         class="text-secondary fw-bold pointer"
                         @click="handleDownloadClick"
                     >
-                        <i class="icon ion-md-cloud-download icon-sm text-primary" />
+                        <i class="icon ion-md-cloud-download icon-sm text-primary"></i>
                         Hay un archivo adjunto aquí.
                     </p>
                     <h6>Involucrados</h6>
@@ -269,10 +256,7 @@ const schema = {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr
-                            v-for="(item, index) in incidence.persons"
-                            :key="index"
-                        >
+                        <tr v-for="(item, index) in incidence.persons" :key="index">
                             <th>{{ ptypes[item.entity_type] }}</th>
                             <th>
                                 <span class="fw-medium">
@@ -299,7 +283,7 @@ const schema = {
                                     class="text-danger pointer"
                                     @click="removeStudent(item)"
                                 >
-                                    <i class="icon ion-md-remove-circle icon-md" />
+                                    <i class="icon ion-md-remove-circle icon-md"></i>
                                 </span>
                             </th>
                         </tr>

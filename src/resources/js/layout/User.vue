@@ -11,14 +11,12 @@ function imgUploaded(image) {
 }
 </script>
 <template>
-    <MainWrapper
-        :pid="user.code"
-        has-profile
-        @img-uploaded="imgUploaded"
-    >
+    <MainWrapper :pid="user.code" has-profile @img-uploaded="imgUploaded">
         <template #profile-info>
             <div class="d-flex flex-column align-items-center space-b">
-                <div class="badge bg-success-subtle text-success-emphasis border border-success border-1">
+                <div
+                    class="badge bg-success-subtle text-success-emphasis border border-success border-1"
+                >
                     {{ user.rol.name }}
                 </div>
             </div>
@@ -31,44 +29,26 @@ function imgUploaded(image) {
         <template #room>
             <panel>
                 <div class="list-group list-group-flush">
-                    <RouterLink
-                        class="list-group-item"
-                        :to="{ name: 'user_profile' }"
-                    >
+                    <RouterLink class="list-group-item" :to="{ name: 'user_profile' }">
                         Mi perfil
                     </RouterLink>
-                    <RouterLink
-                        class="list-group-item"
-                        :to="{ name: 'user_password' }"
-                    >
+                    <RouterLink class="list-group-item" :to="{ name: 'user_password' }">
                         Seguridad
                     </RouterLink>
-                    <RouterLink
-                        class="list-group-item"
-                        :to="{ name: 'user_branch' }"
-                    >
+                    <RouterLink class="list-group-item" :to="{ name: 'user_branch' }">
                         Cambiar de sede
                     </RouterLink>
-                    <RouterLink
-                        class="list-group-item"
-                        :to="{ name: 'user_year' }"
-                    >
+                    <RouterLink class="list-group-item" :to="{ name: 'user_year' }">
                         Año académico
                     </RouterLink>
-                    <RouterLink
-                        class="list-group-item"
-                        :to="{ name: 'user_sign' }"
-                    >
+                    <RouterLink class="list-group-item" :to="{ name: 'user_sign' }">
                         Inicios de sesión
                     </RouterLink>
                 </div>
             </panel>
         </template>
         <RouterView v-slot="{ Component }">
-            <Transition
-                name="fade"
-                mode="out-in"
-            >
+            <Transition name="fade" mode="out-in">
                 <component :is="Component" />
             </Transition>
         </RouterView>

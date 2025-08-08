@@ -1,9 +1,11 @@
 <script setup>
 import { computed, onBeforeUnmount, toRef } from "vue";
-import { useEditor, EditorContent, BubbleMenu, FloatingMenu } from "@tiptap/vue-3";
+import { useEditor, EditorContent } from "@tiptap/vue-3";
 import StarterKit from "@tiptap/starter-kit";
 import Highlight from "@tiptap/extension-highlight";
 import TextAlign from "@tiptap/extension-text-align";
+import BubbleMenu from "@tiptap/extension-bubble-menu";
+import FloatingMenu from "@tiptap/extension-floating-menu";
 import { useField } from "vee-validate";
 
 const props = defineProps({
@@ -62,15 +64,8 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-    <div
-        v-if="editor"
-        class="editor"
-    >
-        <BubbleMenu
-            class="bubble-menu"
-            :tippy-options="{ duration: 100 }"
-            :editor="editor"
-        >
+    <div v-if="editor" class="editor">
+        <BubbleMenu class="bubble-menu" :tippy-options="{ duration: 100 }" :editor="editor">
             <div class="dropdown">
                 <a
                     id="edDropdown"
@@ -78,12 +73,9 @@ onBeforeUnmount(() => {
                     data-bs-toggle="dropdown"
                     href="javascript:void(0)"
                 >
-                    <i class="icon ion-md-brush" />
+                    <i class="icon ion-md-brush"></i>
                 </a>
-                <div
-                    class="dropdown-menu dropdown-menu-end"
-                    aria-labelledby="edDropdown"
-                >
+                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="edDropdown">
                     <a
                         href="javascript:void(0)"
                         class="dropdown-item"
@@ -127,11 +119,7 @@ onBeforeUnmount(() => {
                 </div>
             </div>
         </BubbleMenu>
-        <FloatingMenu
-            class="floating-menu"
-            :tippy-options="{ duration: 100 }"
-            :editor="editor"
-        >
+        <FloatingMenu class="floating-menu" :tippy-options="{ duration: 100 }" :editor="editor">
             <div class="dropdown">
                 <a
                     id="ed2Dropdown"
@@ -139,12 +127,9 @@ onBeforeUnmount(() => {
                     data-bs-toggle="dropdown"
                     href="javascript:void(0)"
                 >
-                    <i class="icon ion-md-color-wand" />
+                    <i class="icon ion-md-color-wand"></i>
                 </a>
-                <div
-                    class="dropdown-menu dropdown-menu-end"
-                    aria-labelledby="ed2Dropdown"
-                >
+                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="ed2Dropdown">
                     <a
                         href="javascript:void(0)"
                         class="dropdown-item"
@@ -180,19 +165,12 @@ onBeforeUnmount(() => {
                 </div>
             </div>
         </FloatingMenu>
-        <label
-            class="fw-medium mb-2"
-            for="mEditor"
-        >
-            <slot />
+        <label class="fw-medium mb-2" for="mEditor">
+            <slot></slot>
         </label>
         <div :class="editorClass">
             <span class="opacity-50">{{ props.label }}</span>
-            <EditorContent
-                id="mEditor"
-                class="editor__content mt-2"
-                :editor="editor"
-            />
+            <EditorContent id="mEditor" class="editor__content mt-2" :editor="editor" />
         </div>
     </div>
 </template>

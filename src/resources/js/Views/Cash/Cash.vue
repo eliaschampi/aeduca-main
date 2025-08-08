@@ -136,54 +136,35 @@ onUnmounted(() => {
         <panel :title="'Caja de ' + title">
             <div class="d-flex space align-items-center overflow-scroll">
                 <Datepick @fetch="refreshAll" />
-                <span
-                    v-if="store.isToday"
-                    class="pointer"
-                    @click="openReAuth"
-                >
-                    <i :class="cash_icon" />
+                <span v-if="store.isToday" class="pointer" @click="openReAuth">
+                    <i :class="cash_icon"></i>
                 </span>
                 <div class="ms-auto">
                     <Casher @changed="fetchData" />
                 </div>
             </div>
         </panel>
-        <Transition
-            name="fade"
-            mode="out-in"
-        >
+        <Transition name="fade" mode="out-in">
             <template v-if="!cash_closed">
                 <div class="row mt-4">
                     <div class="col-md-6">
                         <card title="Saldo">
                             <div class="d-flex flex-column">
                                 <h1>
-                                    <i class="icon ion-ios-wallet text-success" />
+                                    <i class="icon ion-ios-wallet text-success"></i>
                                     {{ $currency(cash.cash) }}
                                 </h1>
-                                <alert
-                                    type="alert-success"
-                                    class="my-3"
-                                >
+                                <alert type="alert-success" class="my-3">
                                     <i class="fw-medium">Actualizado por última vez: {{ $ago(cash.updated_at) }}</i>
                                 </alert>
-                                <m-plain
-                                    label="Código"
-                                    :value="cash.code"
-                                />
-                                <m-plain
-                                    label="Saldo Inicial"
-                                    :value="$currency(initial)"
-                                />
+                                <m-plain label="Código" :value="cash.code" />
+                                <m-plain label="Saldo Inicial" :value="$currency(initial)" />
                                 <m-plain
                                     label="Total Acumulado"
                                     :value="$currency(initial + Number(cash.isum))"
                                 />
-                                <m-plain
-                                    label="Total Egreso"
-                                    :value="$currency(expense)"
-                                />
-                                <hr>
+                                <m-plain label="Total Egreso" :value="$currency(expense)" />
+                                <hr />
                                 <template v-if="hasSur">
                                     <m-plain
                                         label="Monto Rendido"
@@ -193,17 +174,9 @@ onUnmounted(() => {
                                         label="Responsable de recepción"
                                         :value="cash.surrendered.recipient"
                                     />
-                                    <m-plain
-                                        label="Medio"
-                                        :value="cash.surrendered.reason"
-                                    />
+                                    <m-plain label="Medio" :value="cash.surrendered.reason" />
                                 </template>
-                                <p
-                                    v-else
-                                    class="text-center opacity-50"
-                                >
-                                    No ha sido rendido
-                                </p>
+                                <p v-else class="text-center opacity-50">No ha sido rendido</p>
                             </div>
                             <template #foot>
                                 <div class="space">
@@ -216,10 +189,7 @@ onUnmounted(() => {
                                     >
                                         Rendir
                                     </m-button>
-                                    <m-router
-                                        size="btn-sm"
-                                        :to="{ name: 'cashes' }"
-                                    >
+                                    <m-router size="btn-sm" :to="{ name: 'cashes' }">
                                         Reporte Mensual
                                     </m-router>
                                 </div>
@@ -248,16 +218,10 @@ onUnmounted(() => {
                             />
                         </div>
                     </div>
-                    <Surrender
-                        :cash="cash"
-                        :fetch-data="fetchData"
-                    />
+                    <Surrender :cash="cash" :fetch-data="fetchData" />
                 </div>
             </template>
         </Transition>
-        <NewCash
-            :last-cash="lastCash"
-            @ok="handleOpenCash"
-        />
+        <NewCash :last-cash="lastCash" @ok="handleOpenCash" />
     </section>
 </template>

@@ -9,7 +9,17 @@ import { useRegisterStore } from "../../pinia/register";
 import { useSectionStore } from "../../pinia/section";
 const { fetchBySection } = useRegisterStore();
 const isLoading = computed(() => useRegisterStore().isLoading);
-const columns = ["#", "DNI", "Código", "Nombre y Apellidos", "Estado", "Turno", "Pago/Mens.", "Celular", "Últ. vez"];
+const columns = [
+    "#",
+    "DNI",
+    "Código",
+    "Nombre y Apellidos",
+    "Estado",
+    "Turno",
+    "Pago/Mens.",
+    "Celular",
+    "Últ. vez",
+];
 const prdecorated = {
     0: "Multiple",
     1: "Mañana",
@@ -20,7 +30,9 @@ const prdecorated = {
 const sterm = ref("");
 const showInactives = ref(false);
 const isPrinting = ref(false);
-const desactivateDw = computed(() => showInactives.value || isPrinting.value || !filtered.value.length);
+const desactivateDw = computed(
+    () => showInactives.value || isPrinting.value || !filtered.value.length,
+);
 const filtered = computed(() => {
     const { registers } = useRegisterStore();
     const rex = RegExp(sterm.value.toLowerCase(), "i");
@@ -71,31 +83,22 @@ async function exportToExcel() {
                 />
             </div>
             <template #data="{ rows }">
-                <tr
-                    v-for="item in rows"
-                    :key="item.code"
-                >
+                <tr v-for="item in rows" :key="item.code">
                     <td class="my-0">
                         <img
                             v-if="item.student.person.profile"
                             class="rounded-circle img-thumbnail"
                             style="width: 2.5rem"
                             :src="`/default/${item.student.person.profile.image}`"
-                        >
+                        />
                     </td>
                     <td>{{ item.student_dni }}</td>
                     <td>{{ item.code }}</td>
                     <td>
-                        <PersonLink
-                            :person="item.student.person"
-                            route="student_profile"
-                        />
+                        <PersonLink :person="item.student.person" route="student_profile" />
                     </td>
                     <td>
-                        <span
-                            class="badge"
-                            :class="[states[item.state].badge]"
-                        >
+                        <span class="badge" :class="[states[item.state].badge]">
                             {{ states[item.state].text }}
                         </span>
                     </td>
@@ -103,17 +106,14 @@ async function exportToExcel() {
                     <td>{{ $currency(item.monthly) }}</td>
                     <td>
                         <div class="d-flex">
-                            <span class="icon ion-md-call text-success me-2" />
+                            <span class="icon ion-md-call text-success me-2"></span>
                             <b class="opacity-75">
                                 {{ item.student.person.phone }}
                             </b>
                         </div>
                     </td>
                     <td>
-                        <i
-                            v-if="item.student.person.profile"
-                            class="text-primary-emphasis"
-                        >
+                        <i v-if="item.student.person.profile" class="text-primary-emphasis">
                             {{ $ago(item.student.person.profile.last_logout) }}
                         </i>
                         <i v-else>Nunca</i>

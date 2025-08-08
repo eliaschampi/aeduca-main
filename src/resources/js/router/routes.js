@@ -232,7 +232,8 @@ const routes = [
                                     },
                                     {
                                         path: ":dni?/attendance",
-                                        component: () => import("../Views/Attendance/ByStudent.vue"),
+                                        component: () =>
+                                            import("../Views/Attendance/ByStudent.vue"),
                                         name: "attendance_student",
                                         meta: {
                                             title: "Asistencia del estudiante",
@@ -252,7 +253,8 @@ const routes = [
                                     },
                                     {
                                         path: ":dni?/justificaciones",
-                                        component: () => import("../Views/Attendance/Justification.vue"),
+                                        component: () =>
+                                            import("../Views/Attendance/Justification.vue"),
                                         name: "justify_student",
                                         meta: {
                                             title: "Justificaciones",

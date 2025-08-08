@@ -3,8 +3,7 @@ import cache from "../core/cache";
 import { useRefreshStore } from "./refresh";
 import { useSnackbarStore } from "./snackbar";
 
-export const useResponseStore = defineStore({
-    id: "response",
+export const useResponseStore = defineStore("response", {
     state: () => ({
         reauthenticate: "Token has expired",
         black: ["Token Signature could not be verified.", "The token has been blacklisted"],

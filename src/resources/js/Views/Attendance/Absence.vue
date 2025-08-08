@@ -11,7 +11,15 @@ import { useDateStore } from "../../pinia/date";
 import { usePriorityStore } from "../../pinia/priority";
 import AttendanceRow from "./components/AttendanceRow.vue";
 import Justification from "./components/Justification.vue";
-const columns = ["#", "Estudiante", "Grupo/Secc.", "Celular", "Ingreso Registrado", "Estado", "Aciones"];
+const columns = [
+    "#",
+    "Estudiante",
+    "Grupo/Secc.",
+    "Celular",
+    "Ingreso Registrado",
+    "Estado",
+    "Aciones",
+];
 const attendances = ref([]);
 const sterm = ref("");
 const isLoading = ref(false);
@@ -42,10 +50,7 @@ watch(current, fetchData);
         <panel title="Ciclos activos">
             <Cyclepick />
         </panel>
-        <card
-            title="Tardanzas e Inasistencias"
-            class="mt-4"
-        >
+        <card title="Tardanzas e Inasistencias" class="mt-4">
             <template #rb>
                 <Priority @updated="fetchData" />
             </template>
@@ -57,10 +62,7 @@ watch(current, fetchData);
                 @refresh="fetchData"
             >
                 <div class="d-flex space mt-3 flex-wrap">
-                    <Datepick
-                        style="max-width: 13rem"
-                        @fetch="fetchData"
-                    />
+                    <Datepick style="max-width: 13rem" @fetch="fetchData" />
                 </div>
                 <template #data="{ rows }">
                     <AttendanceRow
@@ -75,20 +77,19 @@ watch(current, fetchData);
                         @update="handleUpdate(item)"
                         @cancel="cancelEdit(item)"
                         @edit="handleEdit(item)"
-                        @show-jus-modal="jusRef.handleShowModal(item.code, item.state, item.justification)"
+                        @show-jus-modal="
+                            jusRef.handleShowModal(item.code, item.state, item.justification)
+                        "
                     >
-                        <td><i class="icon ion-md-folder icon-md text-secondary" /></td>
+                        <td><i class="icon ion-md-folder icon-md text-secondary"></i></td>
                         <td>
-                            <PersonLink
-                                :person="item.person"
-                                route="student_profile"
-                            />
+                            <PersonLink :person="item.person" route="student_profile" />
                         </td>
                         <td>
                             {{ item.section_code.substring(8) }}
                         </td>
                         <td>
-                            <i class="icon ion-md-call icon-sm text-success" />
+                            <i class="icon ion-md-call icon-sm text-success"></i>
                             {{ item.person.phone }}
                         </td>
                     </AttendanceRow>
@@ -97,10 +98,7 @@ watch(current, fetchData);
             <template #foot>
                 <footext :title="`${attendances.length} estudiantes faltaron o llegaron tarde`" />
             </template>
-            <Justification
-                ref="jusRef"
-                @done="fetchData"
-            />
+            <Justification ref="jusRef" @done="fetchData" />
         </card>
     </section>
 </template>

@@ -8,7 +8,17 @@ import { downl } from "../../core/util";
 import { exportToExcelCashApi, fetchByMonthCashApi } from "../../http";
 import { useDateStore } from "../../pinia/date";
 import { useCasherStore } from "../../pinia/casher";
-const columns = ["Dia", "Aperturado por:", "Código", "Saldo Inicial", "Ingresos", "Gastos", "Rendido", "Saldo", "Caja"];
+const columns = [
+    "Dia",
+    "Aperturado por:",
+    "Código",
+    "Saldo Inicial",
+    "Ingresos",
+    "Gastos",
+    "Rendido",
+    "Saldo",
+    "Caja",
+];
 const cashes = ref([]);
 const lastCash = ref(0);
 const router = useRouter();
@@ -82,17 +92,9 @@ async function handleExport() {
             />
         </template>
         <Month @updated="fetchData" />
-        <m-table
-            :columns="columns"
-            :fetch="fetchData"
-            :data="cashes"
-            :head="false"
-        >
+        <m-table :columns="columns" :fetch="fetchData" :data="cashes" :head="false">
             <template #data="{ rows }">
-                <tr
-                    v-for="(item, index) in rows"
-                    :key="index"
-                >
+                <tr v-for="(item, index) in rows" :key="index">
                     <td>
                         <b>{{ formatedDate(item.created_at) }}</b>
                     </td>
@@ -105,7 +107,7 @@ async function handleExport() {
                             mytooltip="Ver detallado"
                             @click="handleGoList('incomes', item.created_at, item.user_code)"
                         >
-                            <i class="bg-secondary" />
+                            <i class="bg-secondary"></i>
                             <u class="text-success">{{ $currency(item.isum) }}</u>
                         </div>
                     </td>
@@ -115,7 +117,7 @@ async function handleExport() {
                             mytooltip="Ver detallado"
                             @click="handleGoList('expense', item.created_at, item.user_code)"
                         >
-                            <i class="bg-info" />
+                            <i class="bg-info"></i>
                             <u class="text-primary-emphasis">{{ $currency(item.esum) }}</u>
                         </div>
                     </td>
@@ -123,7 +125,9 @@ async function handleExport() {
                         <div v-if="item.surrendered !== null">
                             {{ $currency(item.surrendered.amount) }}
                             <span :mytooltip="item.surrendered.recipient">
-                                <i class="icon ion-md-information-circle icon-sm text-secondary pointer" />
+                                <i
+                                    class="icon ion-md-information-circle icon-sm text-secondary pointer"
+                                ></i>
                             </span>
                         </div>
                     </td>
@@ -138,7 +142,7 @@ async function handleExport() {
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="4" />
+                    <td colspan="4"></td>
                     <td>
                         <b class="text-secondary">Total: </b>
                         {{ $currency(incomes) }}
@@ -151,7 +155,7 @@ async function handleExport() {
                         <b class="text-secondary">Total: </b>
                         {{ $currency(surrendered) }}
                     </td>
-                    <td colspan="2" />
+                    <td colspan="2"></td>
                 </tr>
             </template>
         </m-table>

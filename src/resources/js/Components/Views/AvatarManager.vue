@@ -101,8 +101,19 @@ function readImage(file) {
 
 function drawScaledImage(img, canvas) {
     context.value.clearRect(0, 0, canvas.width, canvas.height);
-    const { width, height } = calculateScaleFactor(img.width, img.height, canvas.width, canvas.height);
-    context.value.drawImage(img, (canvas.width - width) / 2, (canvas.height - height) / 2, width, height);
+    const { width, height } = calculateScaleFactor(
+        img.width,
+        img.height,
+        canvas.width,
+        canvas.height,
+    );
+    context.value.drawImage(
+        img,
+        (canvas.width - width) / 2,
+        (canvas.height - height) / 2,
+        width,
+        height,
+    );
 }
 
 function drawImage() {
@@ -144,7 +155,12 @@ function createCroppedCanvas() {
         width,
         height,
         scaleFactor: imgScaleFactor,
-    } = calculateScaleFactor(imageData.value.width, imageData.value.height, canvasWidth, canvasHeight);
+    } = calculateScaleFactor(
+        imageData.value.width,
+        imageData.value.height,
+        canvasWidth,
+        canvasHeight,
+    );
 
     tempContext.drawImage(
         imageData.value,
@@ -198,22 +214,13 @@ onUnmounted(() => {
                     type="file"
                     accept="image/*"
                     @change="handleFileSelect"
-                >
+                />
             </label>
-            <m-button
-                size="btn-sm"
-                color="btn-warning"
-                @ok="handlePaste"
-            >
-                Pegar
-            </m-button>
+            <m-button size="btn-sm" color="btn-warning" @ok="handlePaste"> Pegar </m-button>
         </div>
         <div class="d-flex flex-column align-items-center mt-4">
-            <div
-                v-show="imageData"
-                class="canvas-container"
-            >
-                <canvas ref="canvas" />
+            <div v-show="imageData" class="canvas-container">
+                <canvas ref="canvas"></canvas>
                 <div
                     ref="cropOverlay"
                     class="crop-overlay"
@@ -223,18 +230,12 @@ onUnmounted(() => {
                     @touchstart.stop="startDragging"
                     @touchmove.stop="handleDrag"
                     @touchend.stop="stopDragging"
-                />
+                ></div>
             </div>
-            <div
-                v-show="imageData"
-                class="opacity-50"
-            >
+            <div v-show="imageData" class="opacity-50">
                 Ubique el recuadro en el centro de la imagen
             </div>
         </div>
-        <Empty
-            v-if="!imageData"
-            title="Seleccione una imagen"
-        />
+        <Empty v-if="!imageData" title="Seleccione una imagen" />
     </Dialog>
 </template>

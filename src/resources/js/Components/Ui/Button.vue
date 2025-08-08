@@ -21,15 +21,8 @@ function handleSave() {
 </script>
 
 <template>
-    <button
-        type="button"
-        :class="['btn', color, size]"
-        @click="handleSave"
-    >
-        <i
-            v-show="icon"
-            :class="icon"
-        />
-        <slot />
+    <button type="button" :class="['btn', color, size]" @click="handleSave">
+        <i v-show="icon" :class="icon"></i>
+        <slot></slot>
     </button>
 </template>

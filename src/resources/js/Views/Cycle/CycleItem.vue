@@ -47,36 +47,24 @@ const detailDays = computed(() => {
 });
 </script>
 <template>
-    <card
-        :title="props.cycleTypes[props.cycle.type]"
-        :f="false"
-    >
+    <card :title="props.cycleTypes[props.cycle.type]" :f="false">
         <template #rb>
-            <div
-                v-can="'AS'"
-                class="dropstart"
-            >
+            <div v-can="'AS'" class="dropstart">
                 <span
                     :id="`dropdown${cycle.code}`"
                     class="pointer p-2"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                 >
-                    <i class="icon ion-md-more icon-md opacity-75" />
+                    <i class="icon ion-md-more icon-md opacity-75"></i>
                 </span>
                 <div class="dropdown-menu">
-                    <div
-                        class="dropdown-item"
-                        @click="emit('edit', props.cycle.code)"
-                    >
-                        <i class="icon ion-md-create text-success" />
+                    <div class="dropdown-item" @click="emit('edit', props.cycle.code)">
+                        <i class="icon ion-md-create text-success"></i>
                         Modificar
                     </div>
-                    <div
-                        class="dropdown-item"
-                        @click="emit('showFinalize', props.cycle.code)"
-                    >
-                        <i class="icon ion-md-flag text-info" />
+                    <div class="dropdown-item" @click="emit('showFinalize', props.cycle.code)">
+                        <i class="icon ion-md-flag text-info"></i>
                         Finalizar
                     </div>
                     <div
@@ -84,7 +72,7 @@ const detailDays = computed(() => {
                         class="dropdown-item"
                         @click="emitShowInfo({})"
                     >
-                        <i class="icon ion-md-add text-secondary" />
+                        <i class="icon ion-md-add text-secondary"></i>
                         Crear Sección
                     </div>
                 </div>
@@ -103,10 +91,7 @@ const detailDays = computed(() => {
                     {{ props.cycle.title }}
                 </span>
             </div>
-            <div
-                class="progress"
-                style="height: 25px"
-            >
+            <div class="progress" style="height: 25px">
                 <div
                     class="progress-bar progress-bar-striped progress-bar-animate bg-success"
                     role="progressbar"
@@ -118,11 +103,7 @@ const detailDays = computed(() => {
                     <b>{{ detailDays.percentage + "%" }}</b>
                 </div>
             </div>
-            <ul
-                class="nav nav-line nav-fill"
-                role="tablist"
-                style="flex-wrap: nowrap"
-            >
+            <ul class="nav nav-line nav-fill" role="tablist" style="flex-wrap: nowrap">
                 <li class="nav-item">
                     <a
                         class="nav-link active"
@@ -130,20 +111,12 @@ const detailDays = computed(() => {
                         :href="`#sh${cycle.code}`"
                         role="tab"
                     >
-                        <i class="icon ion-md-partly-sunny" />
+                        <i class="icon ion-md-partly-sunny"></i>
                     </a>
                 </li>
-                <li
-                    class="nav-item"
-                    @click="fetchData()"
-                >
-                    <a
-                        class="nav-link"
-                        data-bs-toggle="tab"
-                        :href="`#rp${cycle.code}`"
-                        role="tab"
-                    >
-                        <i class="icon ion-md-people" />
+                <li class="nav-item" @click="fetchData()">
+                    <a class="nav-link" data-bs-toggle="tab" :href="`#rp${cycle.code}`" role="tab">
+                        <i class="icon ion-md-people"></i>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -153,16 +126,12 @@ const detailDays = computed(() => {
                         :href="`#info${cycle.code}`"
                         role="tab"
                     >
-                        <i class="icon ion-md-list" />
+                        <i class="icon ion-md-list"></i>
                     </a>
                 </li>
             </ul>
             <div class="tab-content">
-                <div
-                    :id="`sh${cycle.code}`"
-                    class="tab-pane fade in show active"
-                    role="tabpanel"
-                >
+                <div :id="`sh${cycle.code}`" class="tab-pane fade in show active" role="tabpanel">
                     <div class="table-responsive">
                         <div>Horarios de ingreso</div>
                         <table class="table table-sm">
@@ -174,10 +143,7 @@ const detailDays = computed(() => {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr
-                                    v-for="att in props.cycle.attendance"
-                                    :key="att.order"
-                                >
+                                <tr v-for="att in props.cycle.attendance" :key="att.order">
                                     <td>{{ ["Mañana", "Tarde"][att.order - 1] }}</td>
                                     <td>{{ att.entry_time }}</td>
                                     <td>{{ att.tolerance }} mins</td>
@@ -186,16 +152,9 @@ const detailDays = computed(() => {
                         </table>
                     </div>
                 </div>
-                <div
-                    :id="`rp${cycle.code}`"
-                    class="tab-pane fade"
-                    role="tabpanel"
-                >
+                <div :id="`rp${cycle.code}`" class="tab-pane fade" role="tabpanel">
                     <div class="d-flex space pb-3 overflow-auto">
-                        <template
-                            v-for="item in degrees"
-                            :key="item"
-                        >
+                        <template v-for="item in degrees" :key="item">
                             <div
                                 :class="[
                                     'badge',
@@ -208,7 +167,11 @@ const detailDays = computed(() => {
                                 ]"
                                 @click="selected = item"
                             >
-                                {{ [null, "1ro", "2do", "3ro", "4to", "5to", "6to"][item.substring(8, 9)] }}
+                                {{
+                                    [null, "1ro", "2do", "3ro", "4to", "5to", "6to"][
+                                        item.substring(8, 9)
+                                    ]
+                                }}
                             </div>
                         </template>
                     </div>
@@ -222,10 +185,7 @@ const detailDays = computed(() => {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr
-                                    v-for="item in filtered"
-                                    :key="item.code"
-                                >
+                                <tr v-for="item in filtered" :key="item.code">
                                     <td class="text-center">
                                         {{ item.name }}
                                     </td>
@@ -249,7 +209,7 @@ const detailDays = computed(() => {
                                                 data-bs-toggle="dropdown"
                                                 aria-expanded="false"
                                             >
-                                                <i class="icon ion-md-more icon-md text-info" />
+                                                <i class="icon ion-md-more icon-md text-info"></i>
                                             </span>
                                             <div class="dropdown-menu">
                                                 <div
@@ -277,17 +237,12 @@ const detailDays = computed(() => {
                                 </tr>
                             </tbody>
                         </table>
-                        <div
-                            v-if="!filtered.length"
-                            class="text-center"
-                        >
+                        <div v-if="!filtered.length" class="text-center">
                             <i class="opacity-50">Aun no hay secciones o grupos creados</i>
                         </div>
-                        <div
-                            v-else
-                            class="d-flex align-items-center space"
-                        >
-                            <span>Total de estudiantes: </span> <b class="text-warning">{{ total }}</b>
+                        <div v-else class="d-flex align-items-center space">
+                            <span>Total de estudiantes: </span>
+                            <b class="text-warning">{{ total }}</b>
                         </div>
                     </div>
                 </div>

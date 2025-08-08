@@ -11,14 +11,9 @@ defineProps({
 });
 </script>
 <template>
-    <panel
-        class="flex-fill mb-2"
-        :title="title"
-        :f="true"
-        style="max-width: 18rem"
-    >
+    <panel class="flex-fill mb-2" :title="title" :f="true" style="max-width: 18rem">
         <h2 class="font-weight-light">
-            <i :class="icon" />
+            <i :class="icon"></i>
             {{ $currency(content) }}
         </h2>
         <div>
@@ -37,11 +32,7 @@ defineProps({
                 >
                     Agregar
                 </m-router>
-                <m-button
-                    size="btn-sm"
-                    color="btn-inverse-info"
-                    @ok="emit('golist')"
-                >
+                <m-button size="btn-sm" color="btn-inverse-info" @ok="emit('golist')">
                     Ver {{ title }}
                 </m-button>
             </div>

@@ -157,11 +157,8 @@ defineExpose({
                             class="form-check-input"
                             name="mode"
                             value="01"
-                        >
-                        <label
-                            class="form-check-label"
-                            for="m01"
-                        >Efectivo</label>
+                        />
+                        <label class="form-check-label" for="m01">Efectivo</label>
                     </div>
                     <div class="form-check">
                         <input
@@ -171,20 +168,13 @@ defineExpose({
                             class="form-check-input"
                             name="mode"
                             value="02"
-                        >
-                        <label
-                            class="form-check-label"
-                            for="m02"
-                        >Caja o banco</label>
+                        />
+                        <label class="form-check-label" for="m02">Caja o banco</label>
                     </div>
                 </div>
             </div>
         </div>
-        <m-switch
-            id="invoice"
-            v-model="yetPaid"
-            text="El pago ya ha sido realizado"
-        />
+        <m-switch id="invoice" v-model="yetPaid" text="El pago ya ha sido realizado" />
         <div class="row gx-2 mt-3">
             <m-input
                 v-model="payment.topay"

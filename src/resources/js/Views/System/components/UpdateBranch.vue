@@ -85,11 +85,7 @@ defineExpose({
         @ok="handleSubmit"
     >
         <div class="space-b-1">
-            <m-plain
-                v-if="current_reg"
-                label="Última mat:"
-                :value="`${reg.full} - ${reg.state}`"
-            />
+            <m-plain v-if="current_reg" label="Última mat:" :value="`${reg.full} - ${reg.state}`" />
             <m-select
                 v-model="new_branch"
                 name="new_branch"

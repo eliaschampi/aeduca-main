@@ -38,12 +38,9 @@ function disableSaveButton(item) {
         <template #rb>
             <Priority @updated="fetchData" />
         </template>
-        <alert
-            class="alert alert-success"
-            :dismisable="false"
-        >
-            Listado de Estudiantes que aún no han registrado su asistencia. Para ver a los estudiantes que registrarón
-            sus asistencia
+        <alert class="alert alert-success" :dismisable="false">
+            Listado de Estudiantes que aún no han registrado su asistencia. Para ver a los
+            estudiantes que registrarón sus asistencia
             <RouterLink
                 :to="{
                     name: 'main_attendance',
@@ -55,23 +52,15 @@ function disableSaveButton(item) {
             </RouterLink>
         </alert>
 
-        <m-table
-            v-model="sterm"
-            :columns="columns"
-            :data="filtered"
-            @refresh="fetchData"
-        >
+        <m-table v-model="sterm" :columns="columns" :data="filtered" @refresh="fetchData">
             <MySection @done="fetchData" />
             <template #data="{ rows }">
-                <tr
-                    v-for="item in rows"
-                    :key="item.entity_identifier"
-                >
+                <tr v-for="item in rows" :key="item.entity_identifier">
                     <td class="text-primary-emphasis fw-medium">
                         {{ item.full_name }}
                     </td>
                     <td>
-                        <i class="icon ion-md-call icon-sm text-success" />
+                        <i class="icon ion-md-call icon-sm text-success"></i>
                         {{ item.phone }}
                     </td>
                     <td>
@@ -94,7 +83,7 @@ function disableSaveButton(item) {
                             class="form-control form-control-sm"
                             step="1"
                             type="time"
-                        >
+                        />
                     </td>
                     <td>
                         <m-button

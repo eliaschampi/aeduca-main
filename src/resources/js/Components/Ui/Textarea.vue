@@ -42,16 +42,12 @@ const {
             style="height: 6rem"
             @input="handleChange"
             @blur="handleBlur"
-        />
-        <label
-            class="form-label"
-            :for="`${field}Id`"
-        >
+        ></textarea>
+        <label class="form-label" :for="`${field}Id`">
             <slot>{{ label }}</slot>
         </label>
-        <small
-            v-show="errorMessage || meta.valid"
-            class="small text-danger"
-        >{{ errorMessage }}</small>
+        <small v-show="errorMessage || meta.valid" class="small text-danger">{{
+            errorMessage
+        }}</small>
     </div>
 </template>

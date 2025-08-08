@@ -14,19 +14,13 @@ const props = defineProps({
             :href="`#${props.id}`"
             :aria-controls="props.id"
         >
-            <i
-                class="menu-icon"
-                :class="props.icon"
-            />
+            <i class="menu-icon" :class="props.icon"></i>
             <span class="menu-title">{{ props.name }}</span>
-            <i class="menu-arrow" />
+            <i class="menu-arrow"></i>
         </a>
-        <div
-            :id="props.id"
-            class="collapse"
-        >
+        <div :id="props.id" class="collapse">
             <ul class="nav flex-column sub-menu">
-                <slot />
+                <slot></slot>
             </ul>
         </div>
     </li>

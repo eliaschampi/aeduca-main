@@ -1,6 +1,5 @@
 import { defineStore } from "pinia";
-export const useAppStore = defineStore({
-    id: "app",
+export const useAppStore = defineStore("app", {
     state: () => ({
         myapp: window.Laravel.app,
         version: window.Laravel.version,

@@ -47,7 +47,10 @@ async function fetchExByCode() {
 }
 
 function calculateTotal() {
-    expense.total = expense.detail.reduce((acu, { unit_price, quantity }) => acu + unit_price * quantity, 0);
+    expense.total = expense.detail.reduce(
+        (acu, { unit_price, quantity }) => acu + unit_price * quantity,
+        0,
+    );
 }
 
 function handleAddDetail(payload) {
@@ -127,11 +130,7 @@ const schema = computed(() => ({
                             Si el gasto tiene detalles active la opción "Registrar detalle"
                         </i>
                     </blockquote>
-                    <m-textarea
-                        v-model="expense.description"
-                        name="description"
-                        label="Concepto"
-                    />
+                    <m-textarea v-model="expense.description" name="description" label="Concepto" />
                     <m-input
                         v-model="expense.voucher_num"
                         name="voucher_num"
@@ -175,10 +174,7 @@ const schema = computed(() => ({
                             emptytext="Agrega los detalles del gasto"
                         >
                             <template #data="{ rows }">
-                                <tr
-                                    v-for="(item, index) in rows"
-                                    :key="index"
-                                >
+                                <tr v-for="(item, index) in rows" :key="index">
                                     <th>{{ item.description }}</th>
                                     <th>{{ $currency(item.unit_price) }}</th>
                                     <th>{{ item.quantity }}</th>
@@ -191,7 +187,7 @@ const schema = computed(() => ({
                                             class="text-primary pointer"
                                             @click="handleRemoveDetail(item)"
                                         >
-                                            <i class="icon ion-md-remove-circle icon-md" />
+                                            <i class="icon ion-md-remove-circle icon-md"></i>
                                         </span>
                                     </th>
                                 </tr>

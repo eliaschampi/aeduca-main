@@ -16,11 +16,7 @@ defineProps({
 const emit = defineEmits(["action"]);
 </script>
 <template>
-    <span
-        :class="'pointer text-' + color"
-        :mytooltip="tool"
-        @click="emit('action')"
-    >
-        <i :class="'icon icon-md ion-md-' + icon" />
+    <span :class="'pointer text-' + color" :mytooltip="tool" @click="emit('action')">
+        <i :class="'icon icon-md ion-md-' + icon"></i>
     </span>
 </template>

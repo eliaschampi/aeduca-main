@@ -18,9 +18,18 @@ const props = defineProps({
     },
 });
 
-const emit = defineEmits(["update", "showJusModal", "edit", "cancel", "update:state", "update:time"]);
+const emit = defineEmits([
+    "update",
+    "showJusModal",
+    "edit",
+    "cancel",
+    "update:state",
+    "update:time",
+]);
 
-const isAbsence = computed(() => ["justificado", "envió justificación", "falta"].includes(props.state));
+const isAbsence = computed(() =>
+    ["justificado", "envió justificación", "falta"].includes(props.state),
+);
 
 const isTimeRequired = computed(() => ["presente", "tarde"].includes(props.state));
 
@@ -37,7 +46,7 @@ const localEntryTime = computed({
 </script>
 <template>
     <tr>
-        <slot />
+        <slot></slot>
         <template v-if="mod === props.code">
             <td>
                 <input
@@ -47,7 +56,7 @@ const localEntryTime = computed({
                     class="form-control form-control-sm"
                     type="time"
                     step="1"
-                >
+                />
             </td>
             <td>
                 <select
@@ -68,12 +77,7 @@ const localEntryTime = computed({
                     icon="save"
                     @action="emit('update')"
                 />
-                <m-action
-                    icon="close"
-                    color="danger"
-                    tool="Cancelar"
-                    @action="emit('cancel')"
-                />
+                <m-action icon="close" color="danger" tool="Cancelar" @action="emit('cancel')" />
             </td>
         </template>
         <template v-else>
@@ -89,11 +93,7 @@ const localEntryTime = computed({
                     tool="Justificación"
                     @action="emit('showJusModal')"
                 />
-                <m-action
-                    v-show="props.hasJus"
-                    tool="Editar"
-                    @action="emit('edit')"
-                />
+                <m-action v-show="props.hasJus" tool="Editar" @action="emit('edit')" />
             </td>
         </template>
     </tr>

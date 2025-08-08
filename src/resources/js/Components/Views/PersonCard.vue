@@ -21,7 +21,7 @@ defineProps({
                             boxShadow: `var(--shadow)`,
                         }"
                         :src="`/default/${image || 'avatar.png'}`"
-                    >
+                    />
                 </div>
             </slot>
             <div>
@@ -34,10 +34,10 @@ defineProps({
                 >
                     {{ `${name} ${lastname}` }}
                 </RouterLink>
-                <slot />
+                <slot></slot>
             </div>
             <div class="ms-auto">
-                <slot name="right" />
+                <slot name="right"></slot>
             </div>
         </div>
     </div>

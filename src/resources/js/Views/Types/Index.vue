@@ -82,11 +82,7 @@ const modalOptions = computed(() => {
                     icon="icon ion-md-add"
                 />
             </template>
-            <m-table
-                :columns="columns"
-                :data="cats"
-                :fetch="fetchData"
-            >
+            <m-table :columns="columns" :data="cats" :fetch="fetchData">
                 <m-select
                     v-model="mode"
                     name="modality"
@@ -96,10 +92,7 @@ const modalOptions = computed(() => {
                     @update:model-value="fetchData"
                 />
                 <template #data="{ rows }">
-                    <tr
-                        v-for="item in rows"
-                        :key="item.code"
-                    >
+                    <tr v-for="item in rows" :key="item.code">
                         <td>{{ item.code }}</td>
                         <td>{{ item.name }}</td>
                         <td>

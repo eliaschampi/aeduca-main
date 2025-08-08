@@ -43,13 +43,11 @@ async function handleChangeBranch() {
 }
 </script>
 <template>
-    <Form
-        :validation-schema="{ branch: 'required' }"
-        @submit="handleChangeBranch"
-    >
+    <Form :validation-schema="{ branch: 'required' }" @submit="handleChangeBranch">
         <card title="Cambiar sede">
             <alert type="alert-warning">
-                Esta opción te permite acceder a otra sede. Recuerda consultar previamente con el encargado de la sede.
+                Esta opción te permite acceder a otra sede. Recuerda consultar previamente con el
+                encargado de la sede.
             </alert>
             <m-select
                 v-model="branch"

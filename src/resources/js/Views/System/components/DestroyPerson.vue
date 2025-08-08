@@ -31,16 +31,10 @@ defineExpose({ handleShowModal });
     >
         <alert> Toda la información relacionada será eliminada </alert>
         <div class="form-floating">
-            <input
-                id="finderid"
-                v-model="advance"
-                class="form-control"
-                placeholder="Acepto"
-            >
-            <label
-                class="form-label"
-                for="finderid"
-            > Para continuar escriba la palabra <b>Acepto</b> </label>
+            <input id="finderid" v-model="advance" class="form-control" placeholder="Acepto" />
+            <label class="form-label" for="finderid">
+                Para continuar escriba la palabra <b>Acepto</b>
+            </label>
         </div>
     </Dialog>
 </template>

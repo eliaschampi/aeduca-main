@@ -41,7 +41,8 @@ export const fetchByEntityAttApi = ({ entity_identifier, from, to, priority }) =
 
 export const fetchForTeacherAttApi = (date) => api.get(`/attendance_t/${date}`);
 
-export const absencesAttApi = (cycle, date, pri) => api.get(`/attendance_ab/${cycle}/${date}/${pri}`);
+export const absencesAttApi = (cycle, date, pri) =>
+    api.get(`/attendance_ab/${cycle}/${date}/${pri}`);
 
 export const fetchForChartAttApi = () => api.get("/attendance_chart");
 
@@ -122,9 +123,11 @@ export const fetchAllDgApi = (code) => api.get(`/grados/${code}`);
 //expense
 export const fetchExApi = (code) => api.get(`/expense/${code}`);
 
-export const fetchByDatesExApi = ({ from, to }, user_code) => api.get(`/expense/${from}/${to}/${user_code}`);
+export const fetchByDatesExApi = ({ from, to }, user_code) =>
+    api.get(`/expense/${from}/${to}/${user_code}`);
 
-export const exportToExcelExApi = (data) => api.get(`/expense_export/${data.from}/${data.to}`, rblob);
+export const exportToExcelExApi = (data) =>
+    api.get(`/expense_export/${data.from}/${data.to}`, rblob);
 
 export const storeExApi = (data) => api.post("/expense", data);
 
@@ -154,7 +157,8 @@ export const fetchByStudentFmApi = (student_dni) => api.get(`/family_s/${student
 
 export const addStudentFmApi = (data) => api.put("/family_s", data);
 
-export const removeStudentFmApi = (family_dni, student_dni) => api.delete(`/family_s/${family_dni}/${student_dni}`);
+export const removeStudentFmApi = (family_dni, student_dni) =>
+    api.delete(`/family_s/${family_dni}/${student_dni}`);
 
 export const fetchStudentsFmApi = (family_dni) => api.get(`/family_st/${family_dni}`);
 
@@ -169,12 +173,14 @@ export const updateInApi = (data) => api.put(`/incidence/${data.code}`, data);
 
 export const delInApi = (code) => api.delete(`/incidence/${code}`);
 
-export const downloadAttachedInApi = (code) => api.get(`/incidence_dw/${code}`, { ...rblob, ...cheader });
+export const downloadAttachedInApi = (code) =>
+    api.get(`/incidence_dw/${code}`, { ...rblob, ...cheader });
 
 export const printInApi = (code) => api.get(`/incidence_print/${code}`, { ...rblob, ...cheader });
 
 // income
-export const fetchByDateApi = ({ from, to }, user_code) => api.get(`/income/${from}/${to}/${user_code}`);
+export const fetchByDateApi = ({ from, to }, user_code) =>
+    api.get(`/income/${from}/${to}/${user_code}`);
 
 export const fetchDetailApi = (code) => api.get(`/income_detail/${code}`);
 
@@ -194,7 +200,8 @@ export const removeCachedDetailApi = (id) => api.put(`/income_detail/${id}`);
 
 export const cleanCachedIncomeApi = () => api.delete("/income_detail");
 
-export const exportToExcelIncomeApi = (data) => api.get(`/income_excel/${data.from}/${data.to}`, rblob);
+export const exportToExcelIncomeApi = (data) =>
+    api.get(`/income_excel/${data.from}/${data.to}`, rblob);
 
 // justification
 export const fetchByEntityJsApi = (dni) => api.get(`/cedp/justification/${dni}`);
@@ -215,7 +222,8 @@ export const updateOpApi = (code, data) => api.put(`/op/${code}`, data);
 export const destroyOpApi = (code) => api.delete(`/op/${code}`);
 
 // payment
-export const fetchByRegisterPyApi = (register_code) => api.get(`/payment/${register_code}`, cheader);
+export const fetchByRegisterPyApi = (register_code) =>
+    api.get(`/payment/${register_code}`, cheader);
 
 export const fetchPaidsPyApi = (register_code) => api.get(`/paid/${register_code}`);
 
@@ -235,7 +243,8 @@ export const changeDNIApi = (dni, newdni) => api.put(`/person/${dni}`, { newdni 
 
 export const fetchSimilarsApi = (fullname) => api.get(`/person/similars/${fullname}`);
 
-export const uploadProfileApi = (t, store_pid, formData) => api.post(`/${t}/image/${store_pid}`, formData, ctForm);
+export const uploadProfileApi = (t, store_pid, formData) =>
+    api.post(`/${t}/image/${store_pid}`, formData, ctForm);
 
 //profile
 export const storeProfileApi = (data) => api.post("/profile", data);
@@ -253,13 +262,17 @@ export const hasOnCacheRegApi = () => api.get("/register_has_cache");
 
 export const fetchLatestRegApi = (dni) => api.get(`/register/${dni}`);
 
-export const fetchDebtsRegApi = (section_code, filterBy) => api.get(`/register_p/${section_code}/${filterBy}`);
+export const fetchDebtsRegApi = (section_code, filterBy) =>
+    api.get(`/register_p/${section_code}/${filterBy}`);
 
-export const exportToExcelRegApi = (section_code) => api.get(`/register_etx/${section_code}`, rblob);
+export const exportToExcelRegApi = (section_code) =>
+    api.get(`/register_etx/${section_code}`, rblob);
 
-export const fetchForAttendanceApi = (code, priority) => api.get(`/register_asis/${code}/${priority}`);
+export const fetchForAttendanceApi = (code, priority) =>
+    api.get(`/register_asis/${code}/${priority}`);
 
-export const fetchBySectionRegApi = (s_code, inactives) => api.get(`/register/${s_code}/${inactives}`);
+export const fetchBySectionRegApi = (s_code, inactives) =>
+    api.get(`/register/${s_code}/${inactives}`);
 
 export const fetchGroupedRegApi = () => api.get("/register_branch");
 

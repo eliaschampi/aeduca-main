@@ -82,23 +82,12 @@ async function handleDeleteItem(item) {
                 icon="icon ion-md-add"
             />
         </template>
-        <m-table
-            v-model="sterm"
-            :columns="columns"
-            :data="filtered"
-            :fetch="fetchData"
-        >
+        <m-table v-model="sterm" :columns="columns" :data="filtered" :fetch="fetchData">
             <div class="d-flex align-items-center">
-                <Month
-                    style="max-width: 9rem"
-                    @updated="fetchData()"
-                />
+                <Month style="max-width: 9rem" @updated="fetchData()" />
             </div>
             <template #data="{ rows }">
-                <tr
-                    v-for="item in rows"
-                    :key="item.code"
-                >
+                <tr v-for="item in rows" :key="item.code">
                     <td>{{ item.code }}</td>
                     <td>{{ item.user.name }}</td>
                     <td style="max-width: 10rem">
@@ -109,7 +98,7 @@ async function handleDeleteItem(item) {
                         <p>{{ item.title }}</p>
                     </td>
                     <td class="fw-medium">
-                        <i class="icon ion-md-people icon-sm text-success" />
+                        <i class="icon ion-md-people icon-sm text-success"></i>
                         <template v-if="item.persons.length === 1">
                             {{ ` ${item.persons[0].name} ${item.persons[0].lastname}` }}
                         </template>
@@ -123,10 +112,7 @@ async function handleDeleteItem(item) {
                             @action="handlePrint(item.code)"
                         />
                         <template v-if="isMe(item.user_code)">
-                            <m-action
-                                v-show="item.type !== 'pe'"
-                                @action="handleEditClick(item)"
-                            />
+                            <m-action v-show="item.type !== 'pe'" @action="handleEditClick(item)" />
                             <m-action
                                 icon="trash"
                                 color="danger"
@@ -138,10 +124,7 @@ async function handleDeleteItem(item) {
                 </tr>
             </template>
             <template #foot>
-                <Pagination
-                    :data="pagination"
-                    @pagination-change-page="fetchData"
-                />
+                <Pagination :data="pagination" @pagination-change-page="fetchData" />
             </template>
         </m-table>
         <template #foot>

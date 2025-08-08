@@ -20,11 +20,7 @@ const props = defineProps({
             @click="navigate"
         >
             <span class="nav-link d-flex align-items-center">
-                <i
-                    class="icon"
-                    aria-hidden="true"
-                    :class="props.icon"
-                />
+                <i class="icon" aria-hidden="true" :class="props.icon"></i>
                 <span class="ms-2 d-none d-md-block d-lg-block">
                     {{ props.title }}
                 </span>

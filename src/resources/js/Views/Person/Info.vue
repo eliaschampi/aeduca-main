@@ -23,47 +23,17 @@ const fulldate = (date) => dformat(date, "DD/MM/YYYY h:mm a");
 </script>
 <template>
     <section>
-        <m-plain
-            label="DNI:"
-            :value="person.dni"
-        />
-        <m-plain
-            label="Sexo:"
-            :value="person.gender === 'M' ? 'Hombre' : 'Mujer'"
-        />
-        <m-plain
-            label="Fecha de Nacimiento:"
-            :value="$date(person.birthdate)"
-        />
-        <m-plain
-            label="Correo:"
-            :value="person.email"
-        />
-        <m-plain
-            label="Celular:"
-            :value="person.phone"
-        />
-        <m-plain
-            label="Dirección:"
-            :value="address"
-        />
-        <m-plain
-            label="Fecha de Registro:"
-            :value="fulldate(person.created_at)"
-        />
-        <m-plain
-            label="Modificado el:"
-            :value="fulldate(person.updated_at)"
-        />
-        <m-plain
-            label="Observaciones:"
-            :value="person.obs"
-        />
-        <slot />
-        <m-router
-            v-can="'AS'"
-            :to="{ name: route, params: { dni: person.dni } }"
-        >
+        <m-plain label="DNI:" :value="person.dni" />
+        <m-plain label="Sexo:" :value="person.gender === 'M' ? 'Hombre' : 'Mujer'" />
+        <m-plain label="Fecha de Nacimiento:" :value="$date(person.birthdate)" />
+        <m-plain label="Correo:" :value="person.email" />
+        <m-plain label="Celular:" :value="person.phone" />
+        <m-plain label="Dirección:" :value="address" />
+        <m-plain label="Fecha de Registro:" :value="fulldate(person.created_at)" />
+        <m-plain label="Modificado el:" :value="fulldate(person.updated_at)" />
+        <m-plain label="Observaciones:" :value="person.obs" />
+        <slot></slot>
+        <m-router v-can="'AS'" :to="{ name: route, params: { dni: person.dni } }">
             Modificar
         </m-router>
     </section>

@@ -53,11 +53,8 @@ watch(
                 v-model="cycleStore.show_overdues"
                 class="form-check-input"
                 type="checkbox"
-            >
-            <label
-                class="pointer user-select-none"
-                for="fwgwa"
-            > Mostrar ciclos anteriores </label>
+            />
+            <label class="pointer user-select-none" for="fwgwa"> Mostrar ciclos anteriores </label>
         </div>
         <div class="row gx-2 mt-4">
             <m-select

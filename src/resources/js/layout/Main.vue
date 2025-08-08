@@ -108,17 +108,11 @@ onUnmounted(() => {
         <div class="container-fluid page-body-wrapper">
             <AppHeader />
             <main class="main-panel">
-                <div
-                    id="overlay"
-                    @click="handleHideOverlay"
-                />
+                <div id="overlay" @click="handleHideOverlay"></div>
                 <div class="content-wrapper">
                     <Breadcrumb class="d-block d-md-none" />
                     <RouterView v-slot="{ Component }">
-                        <Transition
-                            name="fade"
-                            mode="out-in"
-                        >
+                        <Transition name="fade" mode="out-in">
                             <component :is="Component" />
                         </Transition>
                     </RouterView>

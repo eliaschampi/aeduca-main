@@ -20,8 +20,4 @@ WORKDIR /var/www/html
 # Copy application first
 COPY src/ ./
 
-# Install dependencies
-RUN composer install --no-dev --optimize-autoloader && \
-    npm install --only=production
-
 EXPOSE 9000

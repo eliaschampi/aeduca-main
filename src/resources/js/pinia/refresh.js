@@ -5,8 +5,7 @@ import { useModalStore } from "./modal";
 import { useSnackbarStore } from "./snackbar";
 import { useUserStore } from "./user";
 
-export const useRefreshStore = defineStore({
-    id: "refresh",
+export const useRefreshStore = defineStore("refresh", {
     state: () => ({
         password: "",
         title: "",

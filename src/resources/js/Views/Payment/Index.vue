@@ -16,12 +16,21 @@ import PersonLink from "../../Components/Views/PersonLink.vue";
 const { successSnack } = useSnackbarStore();
 const { showModal } = useModalStore();
 const catStore = useCatStore();
-const columns = ["Estudiante", "Estado", "Monto a pagar", "Fecha de pago", "Fecha limite", "Realizar pago"];
+const columns = [
+    "Estudiante",
+    "Estado",
+    "Monto a pagar",
+    "Fecha de pago",
+    "Fecha limite",
+    "Realizar pago",
+];
 const searchTerm = ref("");
 const registers = ref([]);
 const registerCode = ref(null);
 const isLoading = ref(false);
-const filtered = computed(() => registers.value.filter((item) => new RegExp(searchTerm.value, "i").test(item.name)));
+const filtered = computed(() =>
+    registers.value.filter((item) => new RegExp(searchTerm.value, "i").test(item.name)),
+);
 const addPaymentModal = ref(null);
 const selectedMonth = ref("");
 const caseLabel = {
@@ -80,11 +89,8 @@ onMounted(() => {
 
 <template>
     <section>
-        <panel
-            title="Pagos pendientes"
-            :f="false"
-        >
-            <hr style="opacity: 15%">
+        <panel title="Pagos pendientes" :f="false">
+            <hr style="opacity: 15%" />
             <m-table
                 v-model="searchTerm"
                 :columns="columns"
@@ -105,16 +111,10 @@ onMounted(() => {
                     <MySection @done="fetchData" />
                 </div>
                 <template #data="{ rows }">
-                    <template
-                        v-for="item in rows"
-                        :key="item.register_code"
-                    >
+                    <template v-for="item in rows" :key="item.register_code">
                         <tr>
                             <td>
-                                <PersonLink
-                                    :person="item"
-                                    route="payment"
-                                />
+                                <PersonLink :person="item" route="payment" />
                             </td>
                             <td>
                                 <small :class="caseLabel[item.pstate]">
@@ -123,7 +123,7 @@ onMounted(() => {
                             </td>
                             <td>
                                 <div class="d-flex align-items-center space">
-                                    <div class="boli bg-primary" />
+                                    <div class="boli bg-primary"></div>
                                     <span>{{ $currency(item.amount) }}</span>
                                 </div>
                             </td>
@@ -138,10 +138,7 @@ onMounted(() => {
                                 </b>
                             </td>
                             <td>
-                                <div
-                                    v-year
-                                    class="space"
-                                >
+                                <div v-year class="space">
                                     <m-action
                                         v-show="/(a|i)/.test(item.state)"
                                         :icon="`icon ion-md-${item.state === 'a' ? 'lock' : 'unlock'}`"

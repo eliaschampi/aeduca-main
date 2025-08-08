@@ -44,16 +44,9 @@ watch(storedDni, fetchData);
 </script>
 <template>
     <section>
-        <m-table
-            :columns="columns"
-            :data="attendances"
-            :fetch="fetchData"
-        >
+        <m-table :columns="columns" :data="attendances" :fetch="fetchData">
             <Range @fetch="fetchData">
-                <Priority
-                    :is-sm="false"
-                    @updated="fetchData"
-                />
+                <Priority :is-sm="false" @updated="fetchData" />
             </Range>
             <template #data="{ rows }">
                 <AttendanceRow
@@ -68,27 +61,22 @@ watch(storedDni, fetchData);
                     @update="handleUpdate(item)"
                     @cancel="cancelEdit(item)"
                     @edit="handleEdit(item)"
-                    @show-jus-modal="jusRef.handleShowModal(item.code, item.state, item.justification)"
+                    @show-jus-modal="
+                        jusRef.handleShowModal(item.code, item.state, item.justification)
+                    "
                 >
                     <td>{{ $date(item.created_at) }}</td>
                 </AttendanceRow>
             </template>
             <template #foot>
                 <footext>
-                    <m-button
-                        color="btn-inverse-primary"
-                        size="btn-sm"
-                        @ok="exportCV"
-                    >
+                    <m-button color="btn-inverse-primary" size="btn-sm" @ok="exportCV">
                         Constancia
                     </m-button>
                 </footext>
             </template>
         </m-table>
         <footext :title="`${attendances.length} asistencias registradas`" />
-        <Justification
-            ref="jusRef"
-            @done="fetchData"
-        />
+        <Justification ref="jusRef" @done="fetchData" />
     </section>
 </template>

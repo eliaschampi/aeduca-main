@@ -7,7 +7,14 @@ import SetupNew from "./SetupNew.vue";
 const payments = ref([]);
 const { showSnack, successSnack } = useSnackbarStore();
 const cats = computed(() => useCatStore().cats);
-const columns = ["Tipo de pago", "Descripción", "Monto", "Fecha de pago", "Estado", "Realizar pago"];
+const columns = [
+    "Tipo de pago",
+    "Descripción",
+    "Monto",
+    "Fecha de pago",
+    "Estado",
+    "Realizar pago",
+];
 const addPay = ref(null);
 const props = defineProps({
     registerCode: String,
@@ -56,10 +63,7 @@ watch(
         emptytext="Aun no se han establecido los pagos"
     >
         <template #data="{ rows }">
-            <tr
-                v-for="item in rows"
-                :key="item.code"
-            >
+            <tr v-for="item in rows" :key="item.code">
                 <td>{{ showPcodeLabel(item.pcode) }}</td>
                 <td>{{ item.description }}</td>
                 <td>{{ $currency(item.amount) }}</td>
@@ -72,17 +76,12 @@ watch(
                     >
                         Pagado
                     </span>
-                    <span
-                        v-else
-                        class="badge bg-warning-subtle text-warning-emphasis"
-                    > Pendiente </span>
+                    <span v-else class="badge bg-warning-subtle text-warning-emphasis">
+                        Pendiente
+                    </span>
                 </td>
                 <td>
-                    <div
-                        v-can="'AS'"
-                        v-year
-                        class="space"
-                    >
+                    <div v-can="'AS'" v-year class="space">
                         <m-action @action="addPay.handleShowModal(item)" />
                         <m-action
                             icon="trash"

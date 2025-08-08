@@ -40,7 +40,16 @@ const errMessages = ref([]);
 const customer = reactive({
     name: "",
 });
-const columns = ["#", "Modalidad de Ingreso", "Concepto", "Monto a pagar", "Descuento", "Importe", "Saldo", "#"];
+const columns = [
+    "#",
+    "Modalidad de Ingreso",
+    "Concepto",
+    "Monto a pagar",
+    "Descuento",
+    "Importe",
+    "Saldo",
+    "#",
+];
 
 const discount = computed(() => {
     return invoice.details.reduce((total, item) => {
@@ -135,7 +144,9 @@ async function handlePrintTicket(income) {
         invoice.customer_identifier = customer;
         client.name = customer.name;
     } else {
-        client.name = !cachedRegister.value ? student_name.value : cachedRegister.value.student_name;
+        client.name = !cachedRegister.value
+            ? student_name.value
+            : cachedRegister.value.student_name;
     }
     await ticket(
         {
@@ -226,28 +237,18 @@ onUnmounted(() => {
 <template>
     <section id="invoice">
         <div class="row justify-content-end">
-            <panel
-                v-if="cachedRegister"
-                class="col-md-8 mb-4"
-            >
+            <panel v-if="cachedRegister" class="col-md-8 mb-4">
                 <alert :dismisable="false">
-                    <i
-                        class="icon ion-md-megaphone"
-                        aria-hidden="true"
-                    />
+                    <i class="icon ion-md-megaphone" aria-hidden="true"></i>
                     Hay una matrícula en proceso del estudiante
                     <b class="fw-medium">{{ cachedRegister.student_name }}</b>
                     Por lo tanto, este comprobante será registrado con esta razón social.
-                    <b
-                        class="fw-medium pointer"
-                        @click="handleCancel"
-                    > Para cancelar este proceso clic aquí </b>
+                    <b class="fw-medium pointer" @click="handleCancel">
+                        Para cancelar este proceso clic aquí
+                    </b>
                 </alert>
             </panel>
-            <div
-                v-else
-                class="col-md-8"
-            >
+            <div v-else class="col-md-8">
                 <panel>
                     <div class="selectgroup selectgroup-pills mb-3">
                         <label class="selectgroup-item">
@@ -257,7 +258,7 @@ onUnmounted(() => {
                                 name="mode_in"
                                 value="student"
                                 class="selectgroup-input"
-                            >
+                            />
                             <span class="selectgroup-button">Estudiante</span>
                         </label>
                         <label class="selectgroup-item">
@@ -267,7 +268,7 @@ onUnmounted(() => {
                                 name="mode_in"
                                 value="customer"
                                 class="selectgroup-input"
-                            >
+                            />
                             <span class="selectgroup-button">Cliente</span>
                         </label>
                     </div>
@@ -301,7 +302,7 @@ onUnmounted(() => {
                                     v-model="customer.name"
                                     class="form-control"
                                     placeholder="Ingrese una razón social"
-                                >
+                                />
                                 <m-button
                                     data-bs-toggle="modal"
                                     data-bs-target="#customerModal"
@@ -324,13 +325,13 @@ onUnmounted(() => {
             <div class="col-md-4 mt-4 mt-md-0 mb-4">
                 <panel class="text-center">
                     <h5>
-                        <i class="icon ion-ios-wallet text-success" /> CAJA:
+                        <i class="icon ion-ios-wallet text-success"></i> CAJA:
                         <RouterLink :to="{ name: 'cash' }">
                             {{ invoice.cash_code }}
                             <span v-show="invoice.cash_code === ''"> ABRIR AHORA </span>
                         </RouterLink>
                     </h5>
-                    <hr>
+                    <hr />
                     <div class="m-2 form-floating">
                         <select
                             id="voucher_type_select"
@@ -366,16 +367,9 @@ onUnmounted(() => {
                             Nuevo
                         </m-button>
                     </div>
-                    <m-table
-                        :columns="columns"
-                        :data="invoice.details"
-                        :head="false"
-                    >
+                    <m-table :columns="columns" :data="invoice.details" :head="false">
                         <template #data="{ rows }">
-                            <tr
-                                v-for="item in rows"
-                                :key="item.id"
-                            >
+                            <tr v-for="item in rows" :key="item.id">
                                 <td>{{ item.id }}</td>
                                 <td>{{ item.actiontype.name }}</td>
                                 <td>{{ item.title }}</td>
@@ -394,21 +388,16 @@ onUnmounted(() => {
                             </tr>
                         </template>
                     </m-table>
-                    <alert
-                        v-show="errMessages.length"
-                        type="alert-danger"
-                        :dismisable="false"
-                    >
-                        <div
-                            v-for="(item, index) in errMessages"
-                            :key="index"
-                        >
-                            <i class="icon ion-md-info" /> {{ item }}
+                    <alert v-show="errMessages.length" type="alert-danger" :dismisable="false">
+                        <div v-for="(item, index) in errMessages" :key="index">
+                            <i class="icon ion-md-info"></i> {{ item }}
                         </div>
                     </alert>
                 </div>
                 <div class="col-md-12 col-lg-3">
-                    <div class="p-3 myround shadow-sm border-rounded d-flex justify-content-between fw-bold">
+                    <div
+                        class="p-3 myround shadow-sm border-rounded d-flex justify-content-between fw-bold"
+                    >
                         <div class="text-title space-b">
                             <div>Descuento:</div>
                             <div>Importe Total:</div>
@@ -436,9 +425,6 @@ onUnmounted(() => {
             </template>
         </panel>
         <Customer @selected="customerSelected" />
-        <IncomeDetail
-            :is-new="true"
-            @ok="afterAddDetail"
-        />
+        <IncomeDetail :is-new="true" @ok="afterAddDetail" />
     </section>
 </template>

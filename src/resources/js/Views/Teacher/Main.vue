@@ -47,10 +47,7 @@ const attendanceShowable = computed(() => {
 });
 </script>
 <template>
-    <MainWrapper
-        ptype="teacher"
-        @img-uploaded="updateImage"
-    >
+    <MainWrapper ptype="teacher" @img-uploaded="updateImage">
         <template #profile-info>
             <div class="border-rounded p-3 mx-auto mt-3">
                 <div class="text-title title">
@@ -68,10 +65,7 @@ const attendanceShowable = computed(() => {
             </div>
         </template>
         <div class="card">
-            <ul
-                class="card-header nav nav-pills nav-mtab"
-                role="tablist"
-            >
+            <ul class="card-header nav nav-pills nav-mtab" role="tablist">
                 <NavItem
                     icon="ion-md-person"
                     title="Información"
@@ -94,16 +88,9 @@ const attendanceShowable = computed(() => {
                 </template>
             </ul>
             <div class="card-body">
-                <div
-                    :id="routeName"
-                    class="tab-pane fade show active"
-                    role="tabpanel"
-                >
+                <div :id="routeName" class="tab-pane fade show active" role="tabpanel">
                     <RouterView v-slot="{ Component }">
-                        <Transition
-                            name="fade"
-                            mode="out-in"
-                        >
+                        <Transition name="fade" mode="out-in">
                             <component :is="Component" />
                         </Transition>
                     </RouterView>

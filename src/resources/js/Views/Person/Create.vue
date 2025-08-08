@@ -188,7 +188,10 @@ const onSubmit = async () => {
             Object.assign(payload, { ...other, sub: { dni, specialty, startdate } });
         } else if (isF) {
             const { profession, degree, telephone, institute, dni, ...other } = person;
-            Object.assign(payload, { ...other, sub: { dni, profession, degree, telephone, institute } });
+            Object.assign(payload, {
+                ...other,
+                sub: { dni, profession, degree, telephone, institute },
+            });
         }
         if (!theresSimilars()) {
             const { data } = await store(payload);
@@ -204,8 +207,8 @@ const onSubmit = async () => {
 <template>
     <section>
         <alert>
-            <span class="fw-medium">Importante:</span> Completa todos los campos requeridos con información previamente
-            verificada.
+            <span class="fw-medium">Importante:</span> Completa todos los campos requeridos con
+            información previamente verificada.
         </alert>
         <FormTab
             :btn-name="routeDni ? 'Modificar' : 'Guardar'"
@@ -215,33 +218,19 @@ const onSubmit = async () => {
         >
             <template #tabs>
                 <li class="nav-item">
-                    <a
-                        class="nav-link active"
-                        data-bs-toggle="tab"
-                        href="#main"
-                        role="tab"
-                    >
-                        <i class="icon ion-md-person d-md-none" />
+                    <a class="nav-link active" data-bs-toggle="tab" href="#main" role="tab">
+                        <i class="icon ion-md-person d-md-none"></i>
                         <span class="d-none d-md-block d-lg-block"> Datos Personales </span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a
-                        class="nav-link"
-                        data-bs-toggle="tab"
-                        href="#additional"
-                        role="tab"
-                    >
-                        <i class="icon ion-md-information-circle-outline d-md-none" />
+                    <a class="nav-link" data-bs-toggle="tab" href="#additional" role="tab">
+                        <i class="icon ion-md-information-circle-outline d-md-none"></i>
                         <span class="d-none d-md-block d-lg-block"> Información Adicional </span>
                     </a>
                 </li>
             </template>
-            <div
-                id="main"
-                class="tab-pane fade show active"
-                role="tabpanel"
-            >
+            <div id="main" class="tab-pane fade show active" role="tabpanel">
                 <div class="row gx-2 mt-4">
                     <m-input
                         v-model="person.name"
@@ -290,11 +279,7 @@ const onSubmit = async () => {
                     />
                 </div>
             </div>
-            <div
-                id="additional"
-                class="tab-pane fade"
-                role="tabpanel"
-            >
+            <div id="additional" class="tab-pane fade" role="tabpanel">
                 <div class="row gx-2 mt-4 align-items-center">
                     <div class="col-md-6 mb-4 d-flex align-items-center space-1">
                         <m-input
@@ -350,10 +335,7 @@ const onSubmit = async () => {
                         />
                     </div>
                 </template>
-                <div
-                    v-else-if="isT"
-                    class="row gx-2"
-                >
+                <div v-else-if="isT" class="row gx-2">
                     <m-select
                         v-model="person.specialty"
                         name="specialty"
@@ -387,24 +369,24 @@ const onSubmit = async () => {
                 </div>
             </div>
             <ul class="list-group myround bg-body p-3">
-                <li
-                    v-if="isLoading || similars.length"
-                    class="list-group-item"
-                >
+                <li v-if="isLoading || similars.length" class="list-group-item">
                     <strong class="text-success">
-                        {{ isLoading ? "Espere, estamos verificando " : `Se han encontrado ${similars.length} ` }}
+                        {{
+                            isLoading
+                                ? "Espere, estamos verificando "
+                                : `Se han encontrado ${similars.length} `
+                        }}
                         posibles duplicados
                     </strong>
                     <i class="d-block">Verifica antes para evitar duplicados</i>
                 </li>
-                <template
-                    v-for="dp in similars"
-                    :key="dp.dni"
-                >
+                <template v-for="dp in similars" :key="dp.dni">
                     <li class="list-group-item space-1">
                         <div class="d-flex align-items-center space">
-                            <span class="text-secondary fw-medium icon ion-md-contacts icon-md" />
-                            <b> <i class="icon ion-md-clipboard" /> {{ dp.dni }} </b>
+                            <span
+                                class="text-secondary fw-medium icon ion-md-contacts icon-md"
+                            ></span>
+                            <b> <i class="icon ion-md-clipboard"></i> {{ dp.dni }} </b>
                             <span
                                 class="fw-medium text-primary pointer user-select-none"
                                 mytooltip="Click para ver más información"

@@ -36,17 +36,9 @@ watchEffect(() => {
 });
 </script>
 <template>
-    <m-table
-        :columns="columns"
-        :is-loading="isLoading"
-        :head="false"
-        :data="incidences"
-    >
+    <m-table :columns="columns" :is-loading="isLoading" :head="false" :data="incidences">
         <template #data="{ rows }">
-            <tr
-                v-for="item in rows"
-                :key="item.code"
-            >
+            <tr v-for="item in rows" :key="item.code">
                 <td>{{ item.code }}</td>
                 <td>{{ item.user.name }}</td>
                 <td>
@@ -61,10 +53,7 @@ watchEffect(() => {
                     {{ $datetim(item.created_at) }}
                 </td>
                 <td>
-                    <m-action
-                        v-show="isMe(item.user_code)"
-                        @action="handleEditClick(item)"
-                    />
+                    <m-action v-show="isMe(item.user_code)" @action="handleEditClick(item)" />
                     <m-action
                         icon="print"
                         color="info"

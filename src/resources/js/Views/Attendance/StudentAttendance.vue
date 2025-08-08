@@ -89,17 +89,16 @@ async function excel() {
                     @update="handleUpdate(item)"
                     @cancel="cancelEdit(item)"
                     @edit="handleEdit(item)"
-                    @show-jus-modal="jusRef.handleShowModal(item.code, item.state, item.justification)"
+                    @show-jus-modal="
+                        jusRef.handleShowModal(item.code, item.state, item.justification)
+                    "
                 >
-                    <td><i class="icon ion-md-folder icon-md text-secondary" /></td>
+                    <td><i class="icon ion-md-folder icon-md text-secondary"></i></td>
                     <td>
-                        <PersonLink
-                            :person="item.person"
-                            route="student_profile"
-                        />
+                        <PersonLink :person="item.person" route="student_profile" />
                     </td>
                     <td>
-                        <i class="icon ion-md-call icon-sm text-success" />
+                        <i class="icon ion-md-call icon-sm text-success"></i>
                         {{ item.person.phone }}
                     </td>
                 </AttendanceRow>
@@ -108,9 +107,6 @@ async function excel() {
         <template #foot>
             <footext :title="`${attendances.length} estudiantes registraron su asistencia`" />
         </template>
-        <Justification
-            ref="jusRef"
-            @done="fetchData"
-        />
+        <Justification ref="jusRef" @done="fetchData" />
     </card>
 </template>

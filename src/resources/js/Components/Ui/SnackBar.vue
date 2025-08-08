@@ -29,15 +29,9 @@ const styles = computed(() => {
 });
 </script>
 <template>
-    <div
-        id="snackbar"
-        :class="styles.join(' ')"
-    >
-        <div
-            class="snackbar_icon pointer"
-            :mytooltip="text"
-        >
-            <span :class="icon" />
+    <div id="snackbar" :class="styles.join(' ')">
+        <div class="snackbar_icon pointer" :mytooltip="text">
+            <span :class="icon"></span>
         </div>
         <div class="snackbar__text">
             {{ text }}
@@ -50,11 +44,8 @@ const styles = computed(() => {
                 {{ button }}
             </div>
         </template>
-        <div
-            class="times pointer"
-            @click="closeSnackbar"
-        >
-            <span class="icon ion-md-close icon-md" />
+        <div class="times pointer" @click="closeSnackbar">
+            <span class="icon ion-md-close icon-md"></span>
         </div>
     </div>
 </template>

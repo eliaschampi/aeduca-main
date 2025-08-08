@@ -51,38 +51,20 @@ async function handleDeleteSchedule(item) {
 <template>
     <section>
         <ul class="nav nav-line nav-fill">
-            <li
-                v-for="d in fdays"
-                :key="d.code"
-                class="nav-item pointer"
-                @click="day = d.code"
-            >
-                <div
-                    class="nav-link"
-                    :class="{ active: day === d.code }"
-                >
+            <li v-for="d in fdays" :key="d.code" class="nav-item pointer" @click="day = d.code">
+                <div class="nav-link" :class="{ active: day === d.code }">
                     {{ d.name }}
                 </div>
             </li>
         </ul>
-        <m-table
-            :columns="columns"
-            :data="filtered"
-            :head="false"
-        >
+        <m-table :columns="columns" :data="filtered" :head="false">
             <template #data="{ rows }">
-                <tr
-                    v-for="item in rows"
-                    :key="item.code"
-                >
+                <tr v-for="item in rows" :key="item.code">
                     <td>{{ item.stext }}</td>
                     <td>{{ item.course }}</td>
                     <td>{{ item.from_time }}</td>
                     <td>{{ item.to_time }}</td>
-                    <td
-                        v-can="'AS'"
-                        class="space"
-                    >
+                    <td v-can="'AS'" class="space">
                         <m-action
                             icon="trash"
                             color="danger"

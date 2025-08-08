@@ -77,24 +77,18 @@ const onSubmit = handleSubmit(handleSaveBranch);
             data-bs-target="#branchModal"
             color="rounded-circle btn-success btn-icon fixed-action-btn"
         >
-            <i class="icon ion-ios-add" />
+            <i class="icon ion-ios-add"></i>
         </m-button>
         <div class="mygrid g18">
-            <template
-                v-for="item in branches"
-                :key="item.code"
-            >
+            <template v-for="item in branches" :key="item.code">
                 <div class="card">
                     <img
                         class="card-up"
                         :src="`/default/user-info${item.code}.jpg`"
                         alt="Portada"
-                    >
+                    />
                     <div class="card-body position-relative">
-                        <div
-                            class="position-absolute"
-                            style="top: -1rem; right: 1rem"
-                        >
+                        <div class="position-absolute" style="top: -1rem; right: 1rem">
                             <m-button
                                 color="btn-primary"
                                 icon="ion-md-options"
@@ -103,21 +97,9 @@ const onSubmit = handleSubmit(handleSaveBranch);
                             />
                         </div>
                         <h5 class="fw-medium text-title">{{ item.name }}</h5>
-                        <m-plain
-                            wraped
-                            label="Correo de Contacto:"
-                            :value="item.email"
-                        />
-                        <m-plain
-                            wraped
-                            label="Dirección:"
-                            :value="item.address"
-                        />
-                        <m-plain
-                            wraped
-                            label="Teléfono:"
-                            :value="item.telephone"
-                        />
+                        <m-plain wraped label="Correo de Contacto:" :value="item.email" />
+                        <m-plain wraped label="Dirección:" :value="item.address" />
+                        <m-plain wraped label="Teléfono:" :value="item.telephone" />
                     </div>
                 </div>
             </template>
@@ -130,27 +112,15 @@ const onSubmit = handleSubmit(handleSaveBranch);
             @cancel="handleCancel"
         >
             <div class="space-b-1">
-                <m-input
-                    v-model="branch.name"
-                    name="name"
-                    label="Nombre de la Sede"
-                />
+                <m-input v-model="branch.name" name="name" label="Nombre de la Sede" />
                 <m-input
                     v-model="branch.email"
                     name="email"
                     type="email"
                     label="Correo de Contacto"
                 />
-                <m-input
-                    v-model="branch.address"
-                    name="address"
-                    label="Direccion"
-                />
-                <m-input
-                    v-model="branch.telephone"
-                    name="telephone"
-                    label="Telefono de Contacto"
-                />
+                <m-input v-model="branch.address" name="address" label="Direccion" />
+                <m-input v-model="branch.telephone" name="telephone" label="Telefono de Contacto" />
             </div>
         </Dialog>
     </section>

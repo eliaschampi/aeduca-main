@@ -81,17 +81,9 @@ onMounted(fetchData);
                     icon="icon ion-md-add"
                 />
             </template>
-            <m-table
-                :columns="columns"
-                :data="customers"
-                :head="false"
-                @refresh="fetchData"
-            >
+            <m-table :columns="columns" :data="customers" :head="false" @refresh="fetchData">
                 <template #data="{ rows }">
-                    <tr
-                        v-for="item in rows"
-                        :key="item.code"
-                    >
+                    <tr v-for="item in rows" :key="item.code">
                         <td>{{ item.code }}</td>
                         <td>{{ item.name }}</td>
                         <td>{{ item.contact_number }}</td>

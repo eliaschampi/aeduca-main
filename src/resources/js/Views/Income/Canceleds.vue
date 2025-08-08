@@ -8,7 +8,14 @@ const types = {
     "00": "Nota de Venta",
     "03": "Boleta de Venta",
 };
-const columns = ["Fecha", "Comprobante", "Correlativo", "Razon Social", "Total Importe", "Justificacion"];
+const columns = [
+    "Fecha",
+    "Comprobante",
+    "Correlativo",
+    "Razon Social",
+    "Total Importe",
+    "Justificacion",
+];
 
 async function fetchData() {
     const { data } = await fetchCanceledsApi();
@@ -17,16 +24,9 @@ async function fetchData() {
 </script>
 <template>
     <panel :title="`Comprobantes Anulados ${fullyear}`">
-        <m-table
-            :columns="columns"
-            :data="incomes"
-            :fetch="fetchData"
-        >
+        <m-table :columns="columns" :data="incomes" :fetch="fetchData">
             <template #data="{ rows }">
-                <tr
-                    v-for="(item, index) in rows"
-                    :key="index"
-                >
+                <tr v-for="(item, index) in rows" :key="index">
                     <td>{{ $datetim(item.created_at) }}</td>
                     <td>{{ types[item.type] }}</td>
                     <td>{{ item.serie }}</td>

@@ -60,15 +60,11 @@ onUnmounted(() => {
         aria-hidden="true"
         tabindex="-1"
     >
-        <div
-            class="modal-dialog cascading-modal"
-            role="document"
-            :class="props.size"
-        >
+        <div class="modal-dialog cascading-modal" role="document" :class="props.size">
             <div class="modal-content">
                 <div class="modal-header text-white">
                     <h4 class="title">
-                        <i class="icon ion-md-git-branch icon-md" />
+                        <i class="icon ion-md-git-branch icon-md"></i>
                         {{ props.title }}
                     </h4>
                     <button
@@ -76,10 +72,10 @@ onUnmounted(() => {
                         data-bs-dismiss="modal"
                         type="button"
                         aria-label="Close"
-                    />
+                    ></button>
                 </div>
                 <div class="modal-body">
-                    <slot />
+                    <slot></slot>
                 </div>
                 <slot name="foot">
                     <div class="modal-footer justify-content-center">
@@ -91,12 +87,7 @@ onUnmounted(() => {
                         >
                             {{ props.btnName }}
                         </m-button>
-                        <m-button
-                            data-bs-dismiss="modal"
-                            color="btn-warning"
-                        >
-                            Cancelar
-                        </m-button>
+                        <m-button data-bs-dismiss="modal" color="btn-warning"> Cancelar </m-button>
                     </div>
                 </slot>
             </div>

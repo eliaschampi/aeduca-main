@@ -41,17 +41,8 @@ function handleCancel() {
 const onSubmit = handleSubmit(handleSave);
 </script>
 <template>
-    <Dialog
-        id="expenseDetailModal"
-        btn-name="Agregar"
-        @ok="onSubmit"
-        @cancel="handleCancel"
-    >
-        <m-input
-            v-model="detail.description"
-            name="description"
-            label="Descripción"
-        />
+    <Dialog id="expenseDetailModal" btn-name="Agregar" @ok="onSubmit" @cancel="handleCancel">
+        <m-input v-model="detail.description" name="description" label="Descripción" />
         <div class="row gx-2 my-4">
             <m-input
                 v-model="detail.unit_price"

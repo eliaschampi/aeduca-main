@@ -72,12 +72,7 @@ defineExpose({
                 :options="ops"
                 :opt-label="(s) => `${s.course.name}. Docente ${s.person.name}`"
             />
-            <m-select
-                v-model="sched.day"
-                name="day"
-                label="Dia"
-                :options="days"
-            />
+            <m-select v-model="sched.day" name="day" label="Dia" :options="days" />
             <div class="row gx-2">
                 <m-input
                     v-model="sched.from_time"

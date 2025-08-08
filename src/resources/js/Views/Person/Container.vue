@@ -85,16 +85,9 @@ onUnmounted(() => {
 </script>
 <template>
     <div id="person_container">
-        <panel
-            class="mb-5"
-            :title="route.meta.title"
-        >
+        <panel class="mb-5" :title="route.meta.title">
             <div class="d-flex flex-wrap align-items-center">
-                <InputFinder
-                    :who="ptype"
-                    :only-current-reg="ptype !== 'student'"
-                    :mode="2"
-                />
+                <InputFinder :who="ptype" :only-current-reg="ptype !== 'student'" :mode="2" />
                 <m-button
                     class="mt-2 ms-md-2 mt-md-0"
                     color="btn-inverse-success"
@@ -102,7 +95,7 @@ onUnmounted(() => {
                     @ok="refreshData()"
                 >
                     <template v-if="isLoading">
-                        <i class="icon ion-ios-hourglass infinite-spin" />
+                        <i class="icon ion-ios-hourglass infinite-spin"></i>
                     </template>
                     <template v-else>
                         {{ isMain ? "Actualizar" : "Ir a Perfil" }}
@@ -110,15 +103,9 @@ onUnmounted(() => {
                 </m-button>
             </div>
         </panel>
-        <section
-            v-if="storedDni"
-            id="info-container"
-        >
+        <section v-if="storedDni" id="info-container">
             <RouterView v-slot="{ Component }">
-                <Transition
-                    name="fade"
-                    mode="out-in"
-                >
+                <Transition name="fade" mode="out-in">
                     <component :is="Component" />
                 </Transition>
             </RouterView>
@@ -130,12 +117,7 @@ onUnmounted(() => {
                 ptype === 'student' ? 'estudiante' : ptype === 'teacher' ? 'docente' : 'apoderado'
             }`"
         >
-            <m-router
-                v-can="'AS'"
-                :to="{ name: `new_${ptype}` }"
-            >
-                Registrar ahora
-            </m-router>
+            <m-router v-can="'AS'" :to="{ name: `new_${ptype}` }"> Registrar ahora </m-router>
         </footext>
     </div>
 </template>

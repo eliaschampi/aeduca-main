@@ -23,18 +23,11 @@ defineProps({
 });
 </script>
 <template>
-    <button
-        type="submit"
-        :class="['btn', color, size]"
-        :disabled="isLoading || disabled"
-    >
-        <template v-if="isLoading"> <i class="icon ion-md-globe infinite-spin" /> </template>
+    <button type="submit" :class="['btn', color, size]" :disabled="isLoading || disabled">
+        <template v-if="isLoading"> <i class="icon ion-md-globe infinite-spin"></i> </template>
         <template v-else>
-            <i
-                v-show="icon || !isLoading"
-                :class="icon"
-            />
-            <slot />
+            <i v-show="icon || !isLoading" :class="icon"></i>
+            <slot></slot>
         </template>
     </button>
 </template>

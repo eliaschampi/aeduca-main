@@ -1,8 +1,7 @@
 import { defineStore } from "pinia";
 import { fetchCatApi } from "../http";
 
-export const useCatStore = defineStore({
-    id: "cat",
+export const useCatStore = defineStore("cat", {
     state: () => ({
         cats: [],
     }),

@@ -58,16 +58,12 @@ const inputClass = computed(() => {
             :class="inputClass"
             @input="handleChange"
             @blur="handleBlur"
-        >
-        <label
-            class="form-label"
-            :for="`${field}Id`"
-        >
+        />
+        <label class="form-label" :for="`${field}Id`">
             {{ label }}
         </label>
-        <span
-            v-show="errorMessage || meta.valid"
-            class="small text-danger"
-        >{{ errorMessage }}</span>
+        <span v-show="errorMessage || meta.valid" class="small text-danger">{{
+            errorMessage
+        }}</span>
     </div>
 </template>

@@ -16,17 +16,11 @@ onMounted(() => {
             class="btn btn-icon btn-md btn-success fixed-action-btn rounded-circle"
             :to="{ name: 'new_user' }"
         >
-            <i class="icon ion-ios-add" />
+            <i class="icon ion-ios-add"></i>
         </RouterLink>
         <div class="row">
-            <div
-                v-if="userStored.actives.length"
-                class="col-md-12 mygrid g18"
-            >
-                <template
-                    v-for="item in userStored.actives"
-                    :key="item.code"
-                >
+            <div v-if="userStored.actives.length" class="col-md-12 mygrid g18">
+                <template v-for="item in userStored.actives" :key="item.code">
                     <UserCard
                         :role="item.rol.name"
                         :user="item"
@@ -45,10 +39,7 @@ onMounted(() => {
                         :head="false"
                     >
                         <template #data="{ rows }">
-                            <tr
-                                v-for="item in rows"
-                                :key="item.code"
-                            >
+                            <tr v-for="item in rows" :key="item.code">
                                 <td>
                                     <RouterLink
                                         :to="{

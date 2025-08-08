@@ -15,24 +15,15 @@ const props = defineProps({
 });
 </script>
 <template>
-    <div
-        class="card"
-        :class="props.type"
-    >
+    <div class="card" :class="props.type">
         <div class="card-body">
-            <div
-                v-if="props.title"
-                class="card-title"
-            >
+            <div v-if="props.title" class="card-title">
                 {{ props.title }}
             </div>
-            <slot />
+            <slot></slot>
         </div>
-        <div
-            v-if="props.f"
-            class="card-footer"
-        >
-            <slot name="foot" />
+        <div v-if="props.f" class="card-footer">
+            <slot name="foot"></slot>
         </div>
     </div>
 </template>

@@ -36,7 +36,7 @@ onMounted(() => {
         addActiveClass(link);
     });
 
-    sidebar.addEventListener("show.bs.collapse", function () {
+    sidebar.addEventListener("show.bs.collapse", function() {
         const openCollapses = sidebar.querySelectorAll(".collapse.show");
         openCollapses.forEach((collapse) => {
             collapse.classList.remove("show");
@@ -44,7 +44,7 @@ onMounted(() => {
     });
 
     const togglebtn = document.querySelector(".toggler");
-    togglebtn.addEventListener("click", function () {
+    togglebtn.addEventListener("click", function() {
         const offcanvas = document.querySelector(".sidebar-offcanvas");
         offcanvas.classList.toggle("active");
         const isFloatingSidebar = window.innerWidth < 982;
@@ -56,86 +56,36 @@ onMounted(() => {
 });
 </script>
 <template>
-    <nav
-        id="sidebar"
-        class="sidebar sidebar-offcanvas"
-    >
+    <nav id="sidebar" class="sidebar sidebar-offcanvas">
         <ul class="nav">
             <li class="nav-item sidebar-category">
                 <p>Sistema</p>
             </li>
             <li class="nav-item">
-                <RouterLink
-                    class="nav-link"
-                    to="/"
-                >
-                    <i class="icon ion-ios-apps menu-icon" />
+                <RouterLink class="nav-link" to="/">
+                    <i class="icon ion-ios-apps menu-icon"></i>
                     <span class="menu-title">Dashboard</span>
                 </RouterLink>
             </li>
-            <MenuSide
-                id="sidesis"
-                icon="icon ion-md-desktop"
-                name="Sistema"
-            >
-                <SideItem
-                    label="Acerca de"
-                    :to="{ name: 'about' }"
-                />
-                <SideItem
-                    :visible="can('A')"
-                    label="Configuración"
-                    :to="{ name: 'config' }"
-                />
-                <SideItem
-                    :visible="can('A')"
-                    label="Sedes"
-                    :to="{ name: 'branch' }"
-                />
-                <SideItem
-                    label="Usuarios"
-                    :to="{ name: 'main_user' }"
-                />
-                <SideItem
-                    :visible="can('A')"
-                    label="Monitoreo"
-                    :to="{ name: 'tracking' }"
-                />
+            <MenuSide id="sidesis" icon="icon ion-md-desktop" name="Sistema">
+                <SideItem label="Acerca de" :to="{ name: 'about' }" />
+                <SideItem :visible="can('A')" label="Configuración" :to="{ name: 'config' }" />
+                <SideItem :visible="can('A')" label="Sedes" :to="{ name: 'branch' }" />
+                <SideItem label="Usuarios" :to="{ name: 'main_user' }" />
+                <SideItem :visible="can('A')" label="Monitoreo" :to="{ name: 'tracking' }" />
             </MenuSide>
             <li class="nav-item sidebar-category">
                 <p>Registros Generales</p>
             </li>
             <template v-if="can('AS')">
-                <MenuSide
-                    id="sidemain"
-                    icon="icon ion-ios-construct"
-                    name="Mantenimiento"
-                >
-                    <SideItem
-                        label="Consultas avanzadas"
-                        :to="{ name: 'entitymanage' }"
-                    />
-                    <SideItem
-                        :visible="can('A')"
-                        label="Cursos"
-                        :to="{ name: 'course' }"
-                    />
-                    <SideItem
-                        :visible="can('A')"
-                        label="Clientes"
-                        :to="{ name: 'customer' }"
-                    />
-                    <SideItem
-                        label="Tipos"
-                        :to="{ name: 'types' }"
-                    />
+                <MenuSide id="sidemain" icon="icon ion-ios-construct" name="Mantenimiento">
+                    <SideItem label="Consultas avanzadas" :to="{ name: 'entitymanage' }" />
+                    <SideItem :visible="can('A')" label="Cursos" :to="{ name: 'course' }" />
+                    <SideItem :visible="can('A')" label="Clientes" :to="{ name: 'customer' }" />
+                    <SideItem label="Tipos" :to="{ name: 'types' }" />
                 </MenuSide>
             </template>
-            <MenuSide
-                id="sidedoc"
-                icon="icon ion-ios-people"
-                name="Docente"
-            >
+            <MenuSide id="sidedoc" icon="icon ion-ios-people" name="Docente">
                 <SideItem
                     label="Perfil del docente"
                     :to="{
@@ -143,16 +93,9 @@ onMounted(() => {
                         params: { dni: tDni },
                     }"
                 />
-                <SideItem
-                    label="Listado"
-                    :to="{ name: 'main_teacher' }"
-                />
+                <SideItem label="Listado" :to="{ name: 'main_teacher' }" />
             </MenuSide>
-            <MenuSide
-                id="sidefam"
-                icon="icon ion-md-people"
-                name="Apoderado"
-            >
+            <MenuSide id="sidefam" icon="icon ion-md-people" name="Apoderado">
                 <SideItem
                     label="Perfil del apoderado"
                     :to="{
@@ -165,11 +108,7 @@ onMounted(() => {
                     :to="{ name: 'main_family', params: { degree_code: dc } }"
                 />
             </MenuSide>
-            <MenuSide
-                id="sidestu"
-                icon="icon ion-md-person"
-                name="Estudiante"
-            >
+            <MenuSide id="sidestu" icon="icon ion-md-person" name="Estudiante">
                 <SideItem
                     label="Perfil del estudiante"
                     :to="{ name: 'student_profile', params: { dni: sDni } }"
@@ -183,11 +122,7 @@ onMounted(() => {
             <li class="nav-item sidebar-category">
                 <p>Administración</p>
             </li>
-            <MenuSide
-                id="sideadmi"
-                icon="icon ion-md-folder"
-                name="Académico"
-            >
+            <MenuSide id="sideadmi" icon="icon ion-md-folder" name="Académico">
                 <SideItem
                     :visible="can('ANS')"
                     label="Resumen anual"
@@ -218,11 +153,7 @@ onMounted(() => {
                 />
             </MenuSide>
             <template v-if="can('AS')">
-                <MenuSide
-                    id="sidePay"
-                    icon="icon ion-md-stats"
-                    name="Pagos"
-                >
+                <MenuSide id="sidePay" icon="icon ion-md-stats" name="Pagos">
                     <SideItem
                         label="Pagos del estudiante"
                         :to="{
@@ -236,31 +167,12 @@ onMounted(() => {
                 </MenuSide>
             </template>
             <template v-if="showCash">
-                <MenuSide
-                    id="sidecash"
-                    icon="icon ion-md-cart"
-                    name="Caja"
-                >
-                    <SideItem
-                        label="Caja"
-                        :to="{ name: 'cash' }"
-                    />
-                    <SideItem
-                        label="Reporte mensual"
-                        :to="{ name: 'cashes' }"
-                    />
-                    <SideItem
-                        label="Ingresos"
-                        :to="{ name: 'incomes' }"
-                    />
-                    <SideItem
-                        label="Gastos"
-                        :to="{ name: 'expense' }"
-                    />
-                    <SideItem
-                        label="Comprobantes Anulados"
-                        :to="{ name: 'canceleds' }"
-                    />
+                <MenuSide id="sidecash" icon="icon ion-md-cart" name="Caja">
+                    <SideItem label="Caja" :to="{ name: 'cash' }" />
+                    <SideItem label="Reporte mensual" :to="{ name: 'cashes' }" />
+                    <SideItem label="Ingresos" :to="{ name: 'incomes' }" />
+                    <SideItem label="Gastos" :to="{ name: 'expense' }" />
+                    <SideItem label="Comprobantes Anulados" :to="{ name: 'canceleds' }" />
                 </MenuSide>
             </template>
             <template v-if="can('APN')">
@@ -272,43 +184,21 @@ onMounted(() => {
                     icon="icon ion-md-checkmark-circle-outline"
                     name="Asistencia"
                 >
-                    <SideItem
-                        label="Carnet"
-                        :to="{ name: 'carday' }"
-                    />
-                    <SideItem
-                        label="Por sección"
-                        :to="{ name: 'main_attendance' }"
-                    />
+                    <SideItem label="Carnet" :to="{ name: 'carday' }" />
+                    <SideItem label="Por sección" :to="{ name: 'main_attendance' }" />
                     <SideItem
                         label="Registro Manual"
                         :to="{ name: 'checkday', params: { degree_code: dc } }"
                     />
-                    <SideItem
-                        label="Tardanzas"
-                        :to="{ name: 'absence' }"
-                    />
-                    <SideItem
-                        label="Docentes"
-                        :to="{ name: 'teacher_attendance' }"
-                    />
+                    <SideItem label="Tardanzas" :to="{ name: 'absence' }" />
+                    <SideItem label="Docentes" :to="{ name: 'teacher_attendance' }" />
                 </MenuSide>
                 <li class="nav-item sidebar-category">
                     <p>Psicopedagogía</p>
                 </li>
-                <MenuSide
-                    id="sideinc"
-                    icon="icon ion-md-text"
-                    name="Atenciones"
-                >
-                    <SideItem
-                        label="Reporte general"
-                        :to="{ name: 'main_incidence' }"
-                    />
-                    <SideItem
-                        label="Registrar nuevo"
-                        :to="{ name: 'new_incidence' }"
-                    />
+                <MenuSide id="sideinc" icon="icon ion-md-text" name="Atenciones">
+                    <SideItem label="Reporte general" :to="{ name: 'main_incidence' }" />
+                    <SideItem label="Registrar nuevo" :to="{ name: 'new_incidence' }" />
                 </MenuSide>
             </template>
         </ul>

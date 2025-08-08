@@ -50,10 +50,7 @@ const handleClear = () => {
 <template>
     <div class="uploader">
         <div class="fw-medium mb-2">Documento adjunto (pdf o imagen)</div>
-        <label
-            class="border-rounded p-2 text-center pointer d-block"
-            for="attachedId"
-        >
+        <label class="border-rounded p-2 text-center pointer d-block" for="attachedId">
             <u class="fw-medium">
                 {{ filename }}
             </u>
@@ -64,26 +61,14 @@ const handleClear = () => {
                 type="file"
                 :accept="allowedTypes.join(',')"
                 @change="handleUploadFile"
-            >
-            <i
-                v-if="!modelValue"
-                class="d-block icon ion-md-cloud-upload text-title icon-lg"
             />
-            <i
-                v-else
-                class="d-block icon ion-md-checkmark-circle text-success icon-lg"
-            />
+            <i v-if="!modelValue" class="d-block icon ion-md-cloud-upload text-title icon-lg"></i>
+            <i v-else class="d-block icon ion-md-checkmark-circle text-success icon-lg"></i>
         </label>
-        <em
-            v-if="!modelValue"
-            class="small text-warning-emphasis"
-        >
+        <em v-if="!modelValue" class="small text-warning-emphasis">
             Tamaño maximo {{ (maxsize / 1024).toFixed(2) }} kb
         </em>
-        <i
-            v-else
-            class="small text-danger pointer icon ion-md-trash"
-            @click="handleClear"
-        > Eliminar</i>
+        <i v-else class="small text-danger pointer icon ion-md-trash" @click="handleClear">
+            Eliminar</i>
     </div>
 </template>

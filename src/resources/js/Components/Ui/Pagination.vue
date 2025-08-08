@@ -74,7 +74,11 @@ const getPages = () => {
     <!-- eslint-disable -->
     <ul class="pagination mb-0" v-if="validated">
         <li class="page-item" v-if="props.data.prev_page_url">
-            <span class="page-link pointer" aria-label="Previous" @click="selectPage(--props.data.current_page)">
+            <span
+                class="page-link pointer"
+                aria-label="Previous"
+                @click="selectPage(--props.data.current_page)"
+            >
                 Anterior
             </span>
         </li>
@@ -89,7 +93,11 @@ const getPages = () => {
             </a>
         </li>
         <li class="page-item" v-if="props.data.next_page_url">
-            <span class="page-link pointer" aria-label="Next" @click="selectPage(++props.data.current_page)">
+            <span
+                class="page-link pointer"
+                aria-label="Next"
+                @click="selectPage(++props.data.current_page)"
+            >
                 Siguiente
             </span>
         </li>

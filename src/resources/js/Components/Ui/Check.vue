@@ -31,10 +31,7 @@ const emitChange = () => {
             class="form-check-input"
             type="checkbox"
             @change="emitChange"
-        >
-        <label
-            class="form-check-label user-select-none"
-            :for="props.id"
-        >{{ props.text }}</label>
+        />
+        <label class="form-check-label user-select-none" :for="props.id">{{ props.text }}</label>
     </div>
 </template>

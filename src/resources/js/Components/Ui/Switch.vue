@@ -30,11 +30,8 @@ const emitChange = () => {
                 :checked="props.modelValue"
                 :disabled="props.dis"
                 @change="emitChange"
-            >
-            <label
-                class="success"
-                :for="props.id"
-            >Toggle</label>
+            />
+            <label class="success" :for="props.id">Toggle</label>
         </div>
         <label :for="props.id">
             {{ props.text }}

@@ -27,7 +27,8 @@ const getOSAndBrowserName = (userAgent) => {
     ];
 
     const osName = osList.find((os) => os.regex.test(userAgent))?.name || "unknown";
-    const browserName = browserList.find((browser) => browser.regex.test(userAgent))?.name || "Desconocido";
+    const browserName =
+        browserList.find((browser) => browser.regex.test(userAgent))?.name || "Desconocido";
 
     return `${osName} - ${browserName}`;
 };
@@ -52,8 +53,8 @@ function isCurrentDevice(item) {
 <template>
     <panel title="Inicios de sesión en otros dispositivos">
         <blockquote class="blockquote">
-            Ahora puedes gestionar las sesiones iniciados en otros dispositivos, Desactiva las sesiones no utilizados
-            para protejer tu informacion.
+            Ahora puedes gestionar las sesiones iniciados en otros dispositivos, Desactiva las
+            sesiones no utilizados para protejer tu informacion.
         </blockquote>
         <m-table
             :columns="['Inicio de Sesión', 'Dispositivo', 'Eliminar']"
@@ -62,10 +63,7 @@ function isCurrentDevice(item) {
             :head="false"
         >
             <template #data="{ rows }">
-                <tr
-                    v-for="item in rows"
-                    :key="item.dni"
-                >
+                <tr v-for="item in rows" :key="item.dni">
                     <td>{{ $datetim(item.created_at) }}</td>
                     <td>
                         {{ getOSAndBrowserName(item.device) }}

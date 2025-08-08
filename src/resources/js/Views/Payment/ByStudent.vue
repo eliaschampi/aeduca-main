@@ -152,38 +152,23 @@ onUnmounted(() => {
                     </div>
                     <div class="resmar">
                         <b class="fw-medium me-1">Estado:</b>
-                        <span
-                            class="badge"
-                            :class="states[selected.state].badge"
-                        >
+                        <span class="badge" :class="states[selected.state].badge">
                             {{ states[selected.state].text }}
                         </span>
                     </div>
                 </template>
             </div>
         </panel>
-        <card
-            title="Gestión de pagos"
-            :f="false"
-            class="mt-4"
-        >
+        <card title="Gestión de pagos" :f="false" class="mt-4">
             <template #rb>
                 <template v-if="selected.code && tab === 'setup'">
-                    <m-button
-                        size="btn-sm"
-                        data-bs-toggle="modal"
-                        data-bs-target="#apmodal"
-                    >
+                    <m-button size="btn-sm" data-bs-toggle="modal" data-bs-target="#apmodal">
                         Agregar
                     </m-button>
                 </template>
             </template>
             <ul class="nav nav-line nav-fill">
-                <li
-                    class="nav-item"
-                    role="presentation"
-                    @click="tab = 'setup'"
-                >
+                <li class="nav-item" role="presentation" @click="tab = 'setup'">
                     <button
                         id="setupPays-tab"
                         class="nav-link active"
@@ -197,11 +182,7 @@ onUnmounted(() => {
                         Pagos establecidos
                     </button>
                 </li>
-                <li
-                    class="nav-item"
-                    role="presentation"
-                    @click="handleShowPaids"
-                >
+                <li class="nav-item" role="presentation" @click="handleShowPaids">
                     <button
                         id="cashPays-tab"
                         class="nav-link"
@@ -216,10 +197,7 @@ onUnmounted(() => {
                     </button>
                 </li>
             </ul>
-            <div
-                id="repContent"
-                class="tab-content mt-3"
-            >
+            <div id="repContent" class="tab-content mt-3">
                 <div
                     id="setupPays"
                     class="tab-pane fade show active p-2 space-b"
@@ -238,10 +216,7 @@ onUnmounted(() => {
                     role="tabpanel"
                     aria-labelledby="cashPays-tab"
                 >
-                    <CashReport
-                        :paids="paids"
-                        @cancel="cancelPay"
-                    />
+                    <CashReport :paids="paids" @cancel="cancelPay" />
                 </div>
             </div>
         </card>

@@ -41,18 +41,12 @@ watchEffect(() => {
 });
 </script>
 <template>
-    <MainWrapper
-        ptype="student"
-        @img-uploaded="updateImage"
-    >
+    <MainWrapper ptype="student" @img-uploaded="updateImage">
         <template #profile-info>
             <RegisterInfo />
         </template>
         <div class="card">
-            <ul
-                class="card-header nav nav-pills nav-mtab"
-                role="tablist"
-            >
+            <ul class="card-header nav nav-pills nav-mtab" role="tablist">
                 <NavItem
                     title="Información"
                     icon="ion-md-person"
@@ -67,16 +61,9 @@ watchEffect(() => {
                 />
             </ul>
             <div class="card-body">
-                <div
-                    :id="routeName"
-                    class="tab-pane fade show active"
-                    role="tabpanel"
-                >
+                <div :id="routeName" class="tab-pane fade show active" role="tabpanel">
                     <RouterView v-slot="{ Component }">
-                        <Transition
-                            name="fade"
-                            mode="out-in"
-                        >
+                        <Transition name="fade" mode="out-in">
                             <component :is="Component" />
                         </Transition>
                     </RouterView>

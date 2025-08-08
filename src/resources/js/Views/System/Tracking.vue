@@ -25,22 +25,17 @@ async function fetchData(page = 1) {
 </script>
 <template>
     <card title="Reporte de actividades importantes">
-        <m-table
-            :columns="columns"
-            :data="tracks"
-            :fetch="fetchData"
-        >
+        <m-table :columns="columns" :data="tracks" :fetch="fetchData">
             <template #data="{ rows }">
-                <tr
-                    v-for="item in rows"
-                    :key="item.code"
-                >
+                <tr v-for="item in rows" :key="item.code">
                     <td>{{ item.code }}</td>
                     <td>
                         <b>{{ item.user.name }}</b>
                     </td>
                     <td>
-                        <div class="badge bg-warning-subtle text-warning-emphasis">{{ types[item.action] }}</div>
+                        <div class="badge bg-warning-subtle text-warning-emphasis">
+                            {{ types[item.action] }}
+                        </div>
                     </td>
                     <td class="d-flex space">
                         <div style="max-width: 12rem">{{ item.description }}</div>
@@ -51,10 +46,7 @@ async function fetchData(page = 1) {
                 </tr>
             </template>
             <template #foot>
-                <Pagination
-                    :data="pagination"
-                    @pagination-change-page="fetchData"
-                />
+                <Pagination :data="pagination" @pagination-change-page="fetchData" />
             </template>
         </m-table>
         <template #foot>

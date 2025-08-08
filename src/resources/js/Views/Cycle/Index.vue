@@ -163,11 +163,7 @@ onMounted(() => {
 </script>
 <template>
     <section id="ciclo">
-        <m-router
-            v-can="'A'"
-            class="fixed-action-btn"
-            :to="{ name: 'new_cycle' }"
-        >
+        <m-router v-can="'A'" class="fixed-action-btn" :to="{ name: 'new_cycle' }">
             Aperturar
         </m-router>
         <panel :title="`Resumen anual ${fullyear}`">
@@ -195,10 +191,7 @@ onMounted(() => {
             </template>
         </panel>
         <div class="mygrid g18 mt-4">
-            <template
-                v-for="item in cycles"
-                :key="item.code"
-            >
+            <template v-for="item in cycles" :key="item.code">
                 <CycleItem
                     :cycle="item"
                     :cycle-types="cycleTypes"
@@ -231,10 +224,7 @@ onMounted(() => {
                 text="Confirmo que esta acción es permanente y no se podrá revertir"
             />
         </Dialog>
-        <Dialog
-            id="secInfo"
-            :title="`${sectionIsUpdating ? 'Actualizar' : 'Crear'} sección`"
-        >
+        <Dialog id="secInfo" :title="`${sectionIsUpdating ? 'Actualizar' : 'Crear'} sección`">
             <Form
                 v-slot="{ meta: { valid } }"
                 :validation-schema="schema"
@@ -255,8 +245,9 @@ onMounted(() => {
                         label="Sección"
                         :disabled="sectionIsUpdating"
                     />
-                    <small>El nombre de la Sección proporcionado no deberá existir en el Grado Actual</small>
-                    <hr>
+                    <small>El nombre de la Sección proporcionado no deberá existir en el Grado
+                        Actual</small>
+                    <hr />
                     <m-select
                         v-model="section.tutor"
                         name="tutor"
@@ -272,11 +263,7 @@ onMounted(() => {
                         </div>
                     </div>
                     <div class="text-center">
-                        <m-submit
-                            icon="ion-ios-send"
-                            color="btn-success"
-                            :disabled="!valid"
-                        >
+                        <m-submit icon="ion-ios-send" color="btn-success" :disabled="!valid">
                             Guardar
                         </m-submit>
                     </div>
@@ -288,7 +275,8 @@ onMounted(() => {
                     class="text-center pointer fst-italic bg-light p-3 rounded"
                     @click="handleDestroySection"
                 >
-                    <i class="text-danger icon ion-md-information-circle" /> Eliminar sección permanentemente
+                    <i class="text-danger icon ion-md-information-circle"></i> Eliminar sección
+                    permanentemente
                 </div>
             </template>
         </Dialog>

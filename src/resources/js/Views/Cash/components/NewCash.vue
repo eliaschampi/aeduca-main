@@ -25,22 +25,10 @@ async function fetchData() {
         @open="fetchData"
         @ok="emit('ok', newCode, lastCash)"
     >
-        <m-plain
-            label="Fecha"
-            :value="formated()"
-        />
-        <m-plain
-            label="Código:"
-            :value="newCode"
-        />
-        <m-plain
-            label="Usuario:"
-            :value="fullname"
-        />
-        <div
-            class="border-rounded p-3 mt-4"
-            style="max-width: 100%"
-        >
+        <m-plain label="Fecha" :value="formated()" />
+        <m-plain label="Código:" :value="newCode" />
+        <m-plain label="Usuario:" :value="fullname" />
+        <div class="border-rounded p-3 mt-4" style="max-width: 100%">
             <div class="text-title title">Saldo anterior:</div>
             <input
                 id="m-cash"
@@ -48,7 +36,7 @@ async function fetchData() {
                 type="text"
                 :value="`S/: ${lastCash}`"
                 readonly
-            >
+            />
         </div>
     </Dialog>
 </template>

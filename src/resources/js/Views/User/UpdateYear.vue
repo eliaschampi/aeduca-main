@@ -36,28 +36,25 @@ async function handleUpdateYear() {
 }
 </script>
 <template>
-    <card title="Opciones avanzadas">
+    <Card title="Opciones avanzadas">
         <div class="space-b-1">
-            <alert type="alert-secondary">
-                La información académica y administrativa del sistema será gestionado solamente del año establecido
-            </alert>
+            <Alert type="alert-secondary">
+                La información académica y administrativa del sistema será gestionado solamente del
+                año establecido
+            </Alert>
 
-            <m-select
+            <MSelect
                 v-model="currentYear"
                 name="year"
-                label="Año"
+                label="Año"
                 standalone
                 :options="years"
             />
         </div>
         <template #foot>
-            <m-button
-                :disabled="disableYearBtn"
-                color="btn-success"
-                @ok="handleUpdateYear"
-            >
+            <MButton :disabled="disableYearBtn" color="btn-success" @ok="handleUpdateYear">
                 Guardar
-            </m-button>
+            </MButton>
         </template>
-    </card>
+    </Card>
 </template>

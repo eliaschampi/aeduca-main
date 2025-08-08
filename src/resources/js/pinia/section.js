@@ -1,8 +1,7 @@
 import { defineStore } from "pinia";
 import { fetchByDegreeScApi } from "../http";
 
-export const useSectionStore = defineStore({
-    id: "section",
+export const useSectionStore = defineStore("section", {
     state: () => ({
         sections: [],
         section_code: null,

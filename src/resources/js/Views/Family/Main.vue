@@ -29,22 +29,10 @@ watch(family_dni, (val) => fetchData(val));
         </template>
         <panel title="Información del apoderado">
             <Info who="family">
-                <m-plain
-                    label="Teléfono:"
-                    :value="self.telephone"
-                />
-                <m-plain
-                    label="Profesión:"
-                    :value="self.profession"
-                />
-                <m-plain
-                    label="Nivel de estudios:"
-                    :value="self.degree"
-                />
-                <m-plain
-                    label="Colegio:"
-                    :value="self.institute"
-                />
+                <m-plain label="Teléfono:" :value="self.telephone" />
+                <m-plain label="Profesión:" :value="self.profession" />
+                <m-plain label="Nivel de estudios:" :value="self.degree" />
+                <m-plain label="Colegio:" :value="self.institute" />
             </Info>
         </panel>
     </MainWrapper>

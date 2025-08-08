@@ -144,7 +144,11 @@ async function handleOpSubmit() {
     const store = (op) => {
         const isDuplicated = () => {
             return ops.value.some(({ code, teacher_dni, course_code }) => {
-                return teacher_dni === op.teacher_dni && course_code === op.course_code && code !== op.code;
+                return (
+                    teacher_dni === op.teacher_dni &&
+                    course_code === op.course_code &&
+                    code !== op.code
+                );
             });
         };
         if (isDuplicated()) {
@@ -174,20 +178,13 @@ async function handleDeleteSchedule(sh) {
         <panel title="Docentes y horario">
             <div class="d-flex space mb-3">
                 <MySection @done="fetchData" />
-                <m-button
-                    v-can="'AS'"
-                    color="btn-info btn-sm"
-                    @ok="showCreateModal()"
-                >
+                <m-button v-can="'AS'" color="btn-info btn-sm" @ok="showCreateModal()">
                     Agregar docente
                 </m-button>
             </div>
         </panel>
         <div class="mygrid g18">
-            <template
-                v-for="item in ops"
-                :key="item.code"
-            >
+            <template v-for="item in ops" :key="item.code">
                 <PersonCard
                     :dni="item.teacher_dni"
                     :image="item.person.profile?.image"
@@ -197,37 +194,28 @@ async function handleDeleteSchedule(sh) {
                 >
                     <div class="text-small d-flex">
                         <div class="d-flex align-items-center me-1">
-                            <span class="boli bg-success me-1" />
+                            <span class="boli bg-success me-1"></span>
                             <span class="fw-medium">Curso: </span>
                         </div>
                         <span>{{ item.course.name }}</span>
                     </div>
                     <template #right>
-                        <div
-                            v-can="'AS'"
-                            class="dropstart"
-                        >
+                        <div v-can="'AS'" class="dropstart">
                             <span
                                 :id="`dropdown${item.teacher_dni}`"
                                 class="pointer p-2"
                                 data-bs-toggle="dropdown"
                                 aria-expanded="false"
                             >
-                                <i class="icon ion-md-more icon-md opacity-75" />
+                                <i class="icon ion-md-more icon-md opacity-75"></i>
                             </span>
                             <div class="dropdown-menu">
-                                <div
-                                    class="dropdown-item"
-                                    @click="showCreateModal(item)"
-                                >
-                                    <i class="icon ion-md-create text-success" />
+                                <div class="dropdown-item" @click="showCreateModal(item)">
+                                    <i class="icon ion-md-create text-success"></i>
                                     Modificar
                                 </div>
-                                <div
-                                    class="dropdown-item"
-                                    @click="showDeleteOp(item)"
-                                >
-                                    <i class="icon ion-md-add text-danger" />
+                                <div class="dropdown-item" @click="showDeleteOp(item)">
+                                    <i class="icon ion-md-add text-danger"></i>
                                     Eliminar
                                 </div>
                             </div>
@@ -236,10 +224,7 @@ async function handleDeleteSchedule(sh) {
                 </PersonCard>
             </template>
         </div>
-        <card
-            title="Horario Semanal"
-            :f="false"
-        >
+        <card title="Horario Semanal" :f="false">
             <template #rb>
                 <m-button
                     :disabled="!ops.length"
@@ -250,16 +235,8 @@ async function handleDeleteSchedule(sh) {
                 />
             </template>
             <ul class="nav nav-pills mb-4">
-                <li
-                    v-for="d in fdays"
-                    :key="d.code"
-                    class="nav-item pointer"
-                    @click="day = d.code"
-                >
-                    <div
-                        class="nav-link"
-                        :class="{ active: day === d.code }"
-                    >
+                <li v-for="d in fdays" :key="d.code" class="nav-item pointer" @click="day = d.code">
+                    <div class="nav-link" :class="{ active: day === d.code }">
                         {{ d.name }}
                     </div>
                 </li>
@@ -270,17 +247,11 @@ async function handleDeleteSchedule(sh) {
                 :head="false"
             >
                 <template #data="{ rows }">
-                    <tr
-                        v-for="item in rows"
-                        :key="item.code"
-                    >
+                    <tr v-for="item in rows" :key="item.code">
                         <td>{{ item.op.course.name }}</td>
                         <td>{{ item.from_time }}</td>
                         <td>{{ item.to_time }}</td>
-                        <td
-                            v-can="'AS'"
-                            class="space"
-                        >
+                        <td v-can="'AS'" class="space">
                             <m-action @action="createSh.show(item)" />
                             <m-action
                                 icon="trash"
@@ -293,19 +264,13 @@ async function handleDeleteSchedule(sh) {
                 </template>
             </m-table>
         </card>
-        <AddItem
-            ref="createSh"
-            :days="days"
-            :ops="ops"
-            @ok="handleSubSched"
-        />
-        <Dialog
-            id="delOP"
-            title="Eliminar docente"
-        >
+        <AddItem ref="createSh" :days="days" :ops="ops" @ok="handleSubSched" />
+        <Dialog id="delOP" title="Eliminar docente">
             <alert :dismisable="false">
                 Se eliminará el horario y los cursos del docente en esta sección.
-                <i class="text-info-emphasis"> tambien se borrará el contenido de su plataforma. </i>
+                <i class="text-info-emphasis">
+                    tambien se borrará el contenido de su plataforma.
+                </i>
             </alert>
             <m-check
                 id="isOkID"
@@ -314,20 +279,13 @@ async function handleDeleteSchedule(sh) {
             />
             <template #foot>
                 <div class="text-center p-3">
-                    <m-button
-                        color="btn-inverse-danger"
-                        :disabled="!isOk"
-                        @ok="handleDeleteOP"
-                    >
+                    <m-button color="btn-inverse-danger" :disabled="!isOk" @ok="handleDeleteOP">
                         Confirmar
                     </m-button>
                 </div>
             </template>
         </Dialog>
-        <Dialog
-            id="createOpModal"
-            :title="`${!newOp.code ? 'Agregar' : 'Modificar'} docente`"
-        >
+        <Dialog id="createOpModal" :title="`${!newOp.code ? 'Agregar' : 'Modificar'} docente`">
             <Form
                 v-slot="{ meta: { valid } }"
                 class="space-b-1"
@@ -352,7 +310,7 @@ async function handleDeleteSchedule(sh) {
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"><b>Secciones</b></li>
                         <li class="list-group-item align-items-center">
-                            <i class="icon ion-md-arrow-round-forward text-success" />
+                            <i class="icon ion-md-arrow-round-forward text-success"></i>
                             {{ decorator(newOp.sts[0]) }}
                         </li>
                         <div class="list-group-item pointer opacity-50 text-primary text-small">
@@ -361,11 +319,7 @@ async function handleDeleteSchedule(sh) {
                     </ul>
                 </div>
                 <div class="text-center">
-                    <m-submit
-                        icon="ion-ios-send"
-                        color="btn-success"
-                        :disabled="!valid"
-                    >
+                    <m-submit icon="ion-ios-send" color="btn-success" :disabled="!valid">
                         Guardar
                     </m-submit>
                 </div>

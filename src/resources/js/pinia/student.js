@@ -1,8 +1,7 @@
 import { defineStore } from "pinia";
 import { imagePerson } from "../core/util";
 
-export const useStudentStore = defineStore({
-    id: "student",
+export const useStudentStore = defineStore("student", {
     state: () => ({
         student: null,
     }),

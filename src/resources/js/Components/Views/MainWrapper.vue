@@ -48,20 +48,10 @@ async function handleSubmitClick(image) {
 <template>
     <div class="row">
         <div class="col-lg-4 col-md-5 col-xlg-3">
-            <div
-                v-if="personDni"
-                class="card profile-card mb-5"
-            >
-                <img
-                    alt="Portada"
-                    :src="`/default/user-info${branch_code}.jpg`"
-                >
+            <div v-if="personDni" class="card profile-card mb-5">
+                <img alt="Portada" :src="`/default/user-info${branch_code}.jpg`" />
                 <div class="avatar mx-auto">
-                    <img
-                        class="rounded-circle"
-                        alt="avatar"
-                        :src="store.image"
-                    >
+                    <img class="rounded-circle" alt="avatar" :src="store.image" />
                     <m-button
                         v-if="store.hasProfile"
                         data-bs-toggle="modal"
@@ -74,10 +64,10 @@ async function handleSubmitClick(image) {
                     <h5>
                         {{ store.fullname }}
                     </h5>
-                    <slot name="profile-info" />
+                    <slot name="profile-info"></slot>
                 </div>
                 <div class="card-footer text-center">
-                    <slot name="profile-foot" />
+                    <slot name="profile-foot"></slot>
                 </div>
             </div>
             <slot name="room">
@@ -85,7 +75,7 @@ async function handleSubmitClick(image) {
             </slot>
         </div>
         <div class="col-lg-8 col-md-7 col-xlg-9 mt-5 mt-md-0">
-            <slot />
+            <slot></slot>
         </div>
         <AvatarManager @done="handleSubmitClick" />
     </div>

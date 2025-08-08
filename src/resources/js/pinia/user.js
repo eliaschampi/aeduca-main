@@ -3,8 +3,7 @@ import cache from "../core/cache";
 import { checkPermission } from "../directives/can";
 import { changeStateUserApi, fetchAllUserApi, fetchRolesUserApi, fetchUserApi } from "../http";
 
-export const useUserStore = defineStore({
-    id: "user",
+export const useUserStore = defineStore("user", {
     state: () => ({
         user: cache.getItem("user"),
         users: [],

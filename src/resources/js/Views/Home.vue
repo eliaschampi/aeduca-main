@@ -20,7 +20,17 @@ import buttons from "../data/buttons.json";
 import { fetchChartCashApi, fetchCountsApi, fetchForChartAttApi, fetchLatestApi } from "../http";
 import { useAppStore } from "../pinia/app";
 import { useUserStore } from "../pinia/user";
-ChartJS.register(Title, Tooltip, Legend, PointElement, BarElement, LinearScale, CategoryScale, LineElement, Filler);
+ChartJS.register(
+    Title,
+    Tooltip,
+    Legend,
+    PointElement,
+    BarElement,
+    LinearScale,
+    CategoryScale,
+    LineElement,
+    Filler,
+);
 
 const {
     fullyear,
@@ -157,15 +167,13 @@ onMounted(() => {
     <section>
         <panel :title="`Hola ${username}!`">
             <b class="text-success">¡Bienvenido a {{ app.myapp }} {{ app.version }}</b>
-            . Descubre nuestra nueva versión con importantes mejoras en seguridad, rendimiento y velocidad, además de
-            una interfaz de usuario renovada para una experiencia más agradable.
-            <div
-                v-if="isLoading"
-                style="float: right"
-            >
+            . Descubre nuestra nueva versión con importantes mejoras en seguridad, rendimiento y
+            velocidad, además de una interfaz de usuario renovada para una experiencia más
+            agradable.
+            <div v-if="isLoading" style="float: right">
                 <PulseLoader />
             </div>
-            <hr>
+            <hr />
             <div class="space">
                 <template v-if="rol.code === 'A'">
                     <m-button
@@ -193,35 +201,37 @@ onMounted(() => {
                     <div class="fw-medium">Estudiantes</div>
                     <h2 class="text-body opacity-75">{{ counts.s_count }}</h2>
                 </div>
-                <i class="icon ion-ios-contacts text-warning" />
+                <i class="icon ion-ios-contacts text-warning"></i>
             </div>
             <div class="px-4 py-1 shadow-md myround">
                 <div>
                     <div class="fw-medium">Docentes</div>
                     <h2 class="text-body opacity-75">{{ counts.t_count }}</h2>
                 </div>
-                <i class="icon ion-ios-person text-secondary" />
+                <i class="icon ion-ios-person text-secondary"></i>
             </div>
             <div class="px-4 py-1 shadow-md myround">
                 <div>
                     <div class="fw-medium">Matriculas {{ fullyear }}</div>
                     <h2 class="text-body opacity-75">{{ counts.r_count }}</h2>
                 </div>
-                <i class="icon ion-md-stats text-success" />
+                <i class="icon ion-md-stats text-success"></i>
             </div>
             <div class="px-4 py-1 shadow-md myround">
                 <div>
                     <div class="fw-medium">Apoderados</div>
                     <h2 class="text-body opacity-75">{{ counts.f_count }}</h2>
                 </div>
-                <i class="icon ion-ios-people text-primary" />
+                <i class="icon ion-ios-people text-primary"></i>
             </div>
         </div>
         <div class="row mt-4">
             <div class="col-md-6">
                 <template v-if="show_type === 'admin'">
                     <div class="card card-body">
-                        <h6 class="text-title fw-medium">Gráfico acumulativo de ingresos rendidos</h6>
+                        <h6 class="text-title fw-medium">
+                            Gráfico acumulativo de ingresos rendidos
+                        </h6>
                         <div class="chart-container">
                             <Bar
                                 id="adminChart1"
@@ -247,8 +257,8 @@ onMounted(() => {
                     <div class="card card-body">
                         <h6 class="text-title fw-medium">Gráfico de asistencia diaria</h6>
                         <small>
-                            A partir del segundo trimestre anual, el grafico mostrará información solo de los tres
-                            últimos meses
+                            A partir del segundo trimestre anual, el grafico mostrará información
+                            solo de los tres últimos meses
                         </small>
                         <div class="chart-container">
                             <Line
@@ -264,7 +274,9 @@ onMounted(() => {
             <div class="col-md-6 mt-4 mt-md-0">
                 <div class="card card-body space-b-1">
                     <h6 class="text-title fw-medium">Area de {{ rol.name }}</h6>
-                    <div class="opacity-50"><b class="text-success">Puedes realizar:</b> {{ rol.description }}</div>
+                    <div class="opacity-50">
+                        <b class="text-success">Puedes realizar:</b> {{ rol.description }}
+                    </div>
                     <div class="space">
                         <m-router
                             :to="{ name: buttons[rol.code].b1.route }"
@@ -292,22 +304,18 @@ onMounted(() => {
                 <div class="card card-body mt-4">
                     <h6 class="text-title fw-medium">Ultimos 7 estudiantes registrados</h6>
                     <ul class="list-group list-group-flush">
-                        <template
-                            v-for="item in newSts"
-                            :key="item.dni"
-                        >
+                        <template v-for="item in newSts" :key="item.dni">
                             <li class="list-group-item d-flex align-items-center">
                                 <img
                                     :src="`/default/${item.image || 'avatar.png'}`"
                                     alt="avatar"
                                     style="width: 2.5rem; height: 2.5rem,  borderRadius: '50%'"
-                                >
+                                />
                                 <div class="ms-2 me-auto">
-                                    <PersonLink
-                                        :person="item"
-                                        route="student_profile"
-                                    />
-                                    <div class="opacity-50 fst-italic">Creado el: {{ $datetim(item.created_at) }}</div>
+                                    <PersonLink :person="item" route="student_profile" />
+                                    <div class="opacity-50 fst-italic">
+                                        Creado el: {{ $datetim(item.created_at) }}
+                                    </div>
                                 </div>
                             </li>
                         </template>

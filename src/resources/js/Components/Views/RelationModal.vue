@@ -84,10 +84,7 @@ async function handleOkClick() {
             <template v-else>
                 <p class="fst-italic text-center text-capitalize mt-2">
                     {{ props.title }} no seleccionado
-                    <RouterLink
-                        :to="{ name: props.whoR }"
-                        target="_blank"
-                    >
+                    <RouterLink :to="{ name: props.whoR }" target="_blank">
                         Registrar Nuevo
                     </RouterLink>
                 </p>

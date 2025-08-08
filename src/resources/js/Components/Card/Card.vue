@@ -19,24 +19,18 @@ const props = defineProps({
     <div class="card head-panel">
         <div class="card-header">
             <div class="float-end card-action">
-                <slot name="rb" />
+                <slot name="rb"></slot>
             </div>
             <div class="card-title">
-                <i
-                    class="text-info ion"
-                    :class="props.icon"
-                /> {{ props.title }}
+                <i class="text-info ion" :class="props.icon"></i> {{ props.title }}
             </div>
-            <slot name="subtitle" />
+            <slot name="subtitle"></slot>
         </div>
         <div class="card-body">
-            <slot />
+            <slot></slot>
         </div>
-        <div
-            v-if="props.f"
-            class="card-footer"
-        >
-            <slot name="foot" />
+        <div v-if="props.f" class="card-footer">
+            <slot name="foot"></slot>
         </div>
     </div>
 </template>

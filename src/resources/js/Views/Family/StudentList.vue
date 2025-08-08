@@ -30,10 +30,7 @@ watch(storedDni, (val) => fetchData(val), { immediate: true });
 </script>
 <template>
     <section class="mt-5">
-        <panel
-            title="Estudiantes"
-            :f="true"
-        >
+        <panel title="Estudiantes" :f="true">
             <m-table
                 :columns="['Apoderado:', 'Encargado', 'Estudiante', 'Acciones']"
                 :data="students"
@@ -41,17 +38,11 @@ watch(storedDni, (val) => fetchData(val), { immediate: true });
                 emptytext="Aún no pertenece a ningún Estudiante."
             >
                 <template #data="{ rows }">
-                    <tr
-                        v-for="item in rows"
-                        :key="item.dni"
-                    >
+                    <tr v-for="item in rows" :key="item.dni">
                         <td>{{ relation_types[item.pivot.relation_type].name }}</td>
                         <td>{{ item.pivot.is_main ? "Si" : "No" }}</td>
                         <td>
-                            <PersonLink
-                                route="student_profile"
-                                :person="item.person"
-                            />
+                            <PersonLink route="student_profile" :person="item.person" />
                         </td>
                         <td>
                             <m-action

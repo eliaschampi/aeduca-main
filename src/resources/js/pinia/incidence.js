@@ -11,8 +11,7 @@ const defaultIncidence = {
     created_at: new Date(),
 };
 
-export const useIncidenceStore = defineStore({
-    id: "incidence",
+export const useIncidenceStore = defineStore("incidence", {
     state: () => ({
         incidence: { ...defaultIncidence },
     }),

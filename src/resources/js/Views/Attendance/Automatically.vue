@@ -163,24 +163,14 @@ onUnmounted(() => {
                 <div class="card-header">
                     <h5 class="d-flex space">
                         <span class="text-title">Horario:</span>
-                        <Priority
-                            v-show="isStudent"
-                            @updated="ocultar"
-                        />
+                        <Priority v-show="isStudent" @updated="ocultar" />
                         <i>{{ currentTime }}</i>
                     </h5>
                 </div>
                 <div class="card-body d-flex flex-column align-items-center space-b-1">
-                    <m-check
-                        id="reader_type"
-                        v-model="is_dni"
-                        text="Ingresar DNI"
-                    />
-                    <div
-                        v-show="!is_dni"
-                        class="qr-wrapper"
-                    >
-                        <video ref="video" />
+                    <m-check id="reader_type" v-model="is_dni" text="Ingresar DNI" />
+                    <div v-show="!is_dni" class="qr-wrapper">
+                        <video ref="video"></video>
                     </div>
                     <input
                         v-if="is_dni"
@@ -191,7 +181,7 @@ onUnmounted(() => {
                         maxlength="8"
                         placeholder="Ingrese DNI y presione ENTER"
                         @keypress.enter="handleInputEnter"
-                    >
+                    />
                 </div>
                 <div class="card-footer text-center">
                     <m-button
@@ -200,12 +190,7 @@ onUnmounted(() => {
                     >
                         {{ isStudent ? "Estudiante" : "Docente" }}
                     </m-button>
-                    <m-button
-                        color="btn-inverse-primary"
-                        @ok="showFinder"
-                    >
-                        Sin carnet
-                    </m-button>
+                    <m-button color="btn-inverse-primary" @ok="showFinder"> Sin carnet </m-button>
                 </div>
             </div>
         </div>
@@ -218,7 +203,7 @@ onUnmounted(() => {
                         alt="Alumno"
                         :src="`/default/${person.profile.image}`"
                         style="width: 100px; height: 100px"
-                    >
+                    />
                     <h5>
                         {{ `${person.name} ${person.lastname}` }}
                     </h5>
@@ -226,10 +211,7 @@ onUnmounted(() => {
                         <b>{{ cycle }}</b>
                     </p>
                 </template>
-                <span
-                    style="font-size: 5rem"
-                    :class="states[state]"
-                />
+                <span style="font-size: 5rem" :class="states[state]"></span>
                 <alert
                     :type="state === 's' ? 'alert-success' : 'alert-warning'"
                     :dismisable="false"

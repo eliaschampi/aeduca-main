@@ -40,12 +40,7 @@ function savePassword() {
 const showPass = ref(false);
 </script>
 <template>
-    <Form
-        v-slot="{ meta }"
-        autocomplete="off"
-        :validation-schema="schema"
-        @submit="savePassword"
-    >
+    <Form v-slot="{ meta }" autocomplete="off" :validation-schema="schema" @submit="savePassword">
         <card title="Seguridad">
             <template #rb>
                 <m-action

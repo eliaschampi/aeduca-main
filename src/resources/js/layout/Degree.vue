@@ -50,14 +50,8 @@ onMounted(fetchData);
 </script>
 <template>
     <div id="degreeContainer">
-        <panel
-            class="mb-5 left-panel"
-            style="max-width: 30rem"
-        >
-            <div
-                v-if="degreeStore.code"
-                class="d-flex flex-wrap align-items-center space"
-            >
+        <panel class="mb-5 left-panel" style="max-width: 30rem">
+            <div v-if="degreeStore.code" class="d-flex flex-wrap align-items-center space">
                 <m-button
                     style="min-width: 45px"
                     color="btn-inverse-primary"
@@ -72,7 +66,7 @@ onMounted(fetchData);
                     <i
                         class="icon ion-md-information-circle text-body-secondary"
                         :mytooltip="cycleProps.title"
-                    />
+                    ></i>
                 </h5>
                 <h5>
                     <span class="text-primary-emphasis">Grado:</span>
@@ -86,28 +80,19 @@ onMounted(fetchData);
                 @click="handleShowModal"
             >
                 Selecciona un grado
-                <i class="ms-2 icon ion-md-hand text-success" />
+                <i class="ms-2 icon ion-md-hand text-success"></i>
             </h5>
         </panel>
         <section v-if="degreeStore.exists">
             <template v-if="degreeStore.sections_count">
                 <RouterView v-slot="{ Component }">
-                    <Transition
-                        name="fade"
-                        mode="out-in"
-                    >
+                    <Transition name="fade" mode="out-in">
                         <component :is="Component" />
                     </Transition>
                 </RouterView>
             </template>
-            <footext
-                v-else
-                title="Este grado aun no tiene secciones"
-            >
-                <m-router
-                    color="btn-inverse-success"
-                    :to="{ name: 'main_cycle' }"
-                >
+            <footext v-else title="Este grado aun no tiene secciones">
+                <m-router color="btn-inverse-success" :to="{ name: 'main_cycle' }">
                     Registrar nueva Seccion
                 </m-router>
             </footext>

@@ -40,22 +40,13 @@ function handleSubmit() {
             <div class="card-title">{{ title }}</div>
         </div>
         <div class="card-body">
-            <slot />
+            <slot></slot>
         </div>
         <div class="card-footer text-center">
-            <m-submit
-                color="btn-success"
-                :disabled="!meta.valid"
-                :is-loading="isLoading"
-            >
+            <m-submit color="btn-success" :disabled="!meta.valid" :is-loading="isLoading">
                 {{ btnName }}
             </m-submit>
-            <m-button
-                color="btn-outline-warning"
-                @ok="goBack(-1)"
-            >
-                Cancelar
-            </m-button>
+            <m-button color="btn-outline-warning" @ok="goBack(-1)"> Cancelar </m-button>
         </div>
     </Form>
 </template>

@@ -108,17 +108,10 @@ function handleCancel() {
         @open="cat.fetchCats"
         @cancel="handleCancel"
     >
-        <Form
-            :validation-schema="schema"
-            @submit="handleSubmit"
-        >
+        <Form :validation-schema="schema" @submit="handleSubmit">
             <template v-if="store.isNew">
-                <m-switch
-                    id="mycheck"
-                    v-model="store.canceled"
-                    text="Cancelando Saldo Anterior"
-                />
-                <hr>
+                <m-switch id="mycheck" v-model="store.canceled" text="Cancelando Saldo Anterior" />
+                <hr />
             </template>
             <div class="row gx-2">
                 <m-select

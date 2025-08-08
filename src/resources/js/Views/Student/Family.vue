@@ -49,15 +49,9 @@ watch(storedDni, (val) => fetchData(val));
         :head="false"
     >
         <template #data="{ rows }">
-            <tr
-                v-for="item in rows"
-                :key="item.dni"
-            >
+            <tr v-for="item in rows" :key="item.dni">
                 <td>
-                    <PersonLink
-                        route="family_profile"
-                        :person="item.person"
-                    />
+                    <PersonLink route="family_profile" :person="item.person" />
                 </td>
                 <td>{{ relation_types[item.pivot.relation_type].name }}</td>
                 <td>{{ item.pivot.is_main ? "Si" : "No" }}</td>

@@ -22,12 +22,7 @@ function handleSubmit() {
     <div class="card mt-4 p-2 p-md-3 p-lg-4">
         <div class="card-header">
             <div class="card-title d-flex space text-dark">
-                <img
-                    src="/img/carrion.svg"
-                    alt="logo"
-                    width="50"
-                    style="max-width: 60px"
-                >
+                <img src="/img/carrion.svg" alt="logo" width="50" style="max-width: 60px" />
                 <div class="opacity-50">
                     {{ props.title }}
                     <div class="text-small">
@@ -37,31 +32,20 @@ function handleSubmit() {
             </div>
         </div>
         <div class="card-body">
-            <Form
-                autocomplete="off"
-                :validation-schema="props.schema"
-                @submit="handleSubmit"
-            >
-                <slot />
-                <alert
-                    v-show="props.res.message"
-                    :type="props.res.alert"
-                >
+            <Form autocomplete="off" :validation-schema="props.schema" @submit="handleSubmit">
+                <slot></slot>
+                <alert v-show="props.res.message" :type="props.res.alert">
                     {{ props.res.message }}
                 </alert>
                 <div class="text-center">
-                    <m-submit
-                        size="btn-lg"
-                        :is-loading="props.isLoading"
-                        color="btn-info"
-                    >
+                    <m-submit size="btn-lg" :is-loading="props.isLoading" color="btn-info">
                         {{ props.btn }}
                     </m-submit>
                 </div>
             </Form>
         </div>
         <div class="card-footer">
-            <slot name="foot" />
+            <slot name="foot"></slot>
         </div>
     </div>
 </template>

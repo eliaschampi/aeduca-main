@@ -63,14 +63,8 @@ const schema = {
 </script>
 
 <template>
-    <Form
-        :validation-schema="schema"
-        @submit="handleSubmitClick"
-    >
-        <panel
-            title="Información de la Institución"
-            :f="true"
-        >
+    <Form :validation-schema="schema" @submit="handleSubmitClick">
+        <panel title="Información de la Institución" :f="true">
             <div class="space-b-1">
                 <m-input
                     v-model="company.name"

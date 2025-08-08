@@ -81,11 +81,7 @@ defineExpose({
                 @update:model-value="handleUpdateType"
             />
             <template v-if="newInfo.type === 'Documentos adjuntos'">
-                <m-input
-                    v-model="newInfo.info"
-                    name="info"
-                    label="Nombre o descripción"
-                />
+                <m-input v-model="newInfo.info" name="info" label="Nombre o descripción" />
                 <template v-if="isNew">
                     <div class="d-flex justify-content-center">
                         <File v-model="attached" />
@@ -96,7 +92,7 @@ defineExpose({
                     class="text-secondary fw-bold pointer"
                     @click="emit('downloadA', newInfo)"
                 >
-                    <i class="icon ion-md-cloud-download icon-sm text-primary" />
+                    <i class="icon ion-md-cloud-download icon-sm text-primary"></i>
                     Hay un archivo adjunto aquí.
                 </p>
             </template>
@@ -117,10 +113,7 @@ defineExpose({
                     label="Observación"
                 />
             </template>
-            <alert
-                v-show="message"
-                :dismisable="false"
-            >
+            <alert v-show="message" :dismisable="false">
                 {{ message }}
             </alert>
         </div>

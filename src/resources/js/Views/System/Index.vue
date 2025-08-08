@@ -93,12 +93,7 @@ onUnmounted(() => {
         <div class="col-lg-5 space-b-1">
             <panel title="Logo">
                 <div class="text-center">
-                    <img
-                        src="/default/logo.png"
-                        alt="Logo"
-                        class="mb-3 mx-auto"
-                        width="150"
-                    >
+                    <img src="/default/logo.png" alt="Logo" class="mb-3 mx-auto" width="150" />
                     <p class="opacity-50">
                         <small>Logo de la institución educativa</small>
                     </p>
@@ -107,12 +102,13 @@ onUnmounted(() => {
             <panel title="Formatos">
                 <div class="space-b">
                     <div class="space d-flex align-items-center fw-medium opacity-75">
-                        <i class="icon pointer ion-md-folder icon-md" />
+                        <i class="icon pointer ion-md-folder icon-md"></i>
                         <span>Formato de carnet (card)</span>
                     </div>
                     <span class="d-block">
-                        El carnet debe tener un formato png, con dimensiones 1,280 × 824 píxeles y menos de 200kb de
-                        peso. Además, el diseño del carnet debe estar sujeto a los reglamentos vigentes.
+                        El carnet debe tener un formato png, con dimensiones 1,280 × 824 píxeles y
+                        menos de 200kb de peso. Además, el diseño del carnet debe estar sujeto a los
+                        reglamentos vigentes.
                     </span>
                     <div class="space">
                         <m-button
@@ -123,19 +119,17 @@ onUnmounted(() => {
                         >
                             Subir
                         </m-button>
-                        <a
-                            href="/default/card.png"
-                            download
-                            class="btn btn-sm btn-inverse-info"
-                        > Descargar </a>
+                        <a href="/default/card.png" download class="btn btn-sm btn-inverse-info">
+                            Descargar
+                        </a>
                     </div>
                     <div class="space d-flex align-items-center fw-medium opacity-75">
-                        <i class="icon pointer ion-md-folder icon-md" />
+                        <i class="icon pointer ion-md-folder icon-md"></i>
                         <span>Membrete de reportes (pdf)</span>
                     </div>
                     <span class="d-block">
-                        El membrete debe tener un formato png, con dimensiones A4 (210 x 297 cm) y menos de 200kb de
-                        peso.
+                        El membrete debe tener un formato png, con dimensiones A4 (210 x 297 cm) y
+                        menos de 200kb de peso.
                     </span>
                     <div class="space">
                         <m-button
@@ -146,20 +140,17 @@ onUnmounted(() => {
                         >
                             Subir
                         </m-button>
-                        <a
-                            href="/default/pdf.png"
-                            download
-                            class="btn btn-sm btn-inverse-info"
-                        > Descargar </a>
+                        <a href="/default/pdf.png" download class="btn btn-sm btn-inverse-info">
+                            Descargar
+                        </a>
                     </div>
                 </div>
             </panel>
-            <panel
-                title="Configuración del sistema"
-                :f="true"
-            >
+            <panel title="Configuración del sistema" :f="true">
                 <div class="space-b-1">
-                    <div class="fw-medium opacity-75">Paginación: {{ config.pgnt }} registros por página</div>
+                    <div class="fw-medium opacity-75">
+                        Paginación: {{ config.pgnt }} registros por página
+                    </div>
                     <input
                         v-model="config.pgnt"
                         name="pgnt"
@@ -167,15 +158,19 @@ onUnmounted(() => {
                         class="w-100 form-range"
                         min="10"
                         max="100"
-                    >
-                    <div class="fw-medium opacity-75">Parámetros de configuración de asistencia de los docentes</div>
+                    />
+                    <div class="fw-medium opacity-75">
+                        Parámetros de configuración de asistencia de los docentes
+                    </div>
                     <m-input
                         v-model="config.entry_time"
                         name="entry_time"
                         type="time"
                         label="Hora de ingreso"
                     />
-                    <div class="fw-medium opacity-75">Tolerancia: {{ config.tolerance }} minutos</div>
+                    <div class="fw-medium opacity-75">
+                        Tolerancia: {{ config.tolerance }} minutos
+                    </div>
                     <input
                         v-model="config.tolerance"
                         name="tolerance"
@@ -183,7 +178,7 @@ onUnmounted(() => {
                         class="w-100 form-range"
                         min="1"
                         max="60"
-                    >
+                    />
                     <div>
                         <div class="fw-medium opacity-75">Asistencia por la plataforma</div>
                         <div class="space-b mt-2">
@@ -194,11 +189,8 @@ onUnmounted(() => {
                                     class="form-check-input"
                                     type="checkbox"
                                     value="1"
-                                >
-                                <label
-                                    class="form-check-label"
-                                    for="mondayId"
-                                > Lunes </label>
+                                />
+                                <label class="form-check-label" for="mondayId"> Lunes </label>
                             </div>
                             <div class="form-check">
                                 <input
@@ -207,11 +199,8 @@ onUnmounted(() => {
                                     class="form-check-input"
                                     type="checkbox"
                                     value="2"
-                                >
-                                <label
-                                    class="form-check-label"
-                                    for="tuesdayId"
-                                > Martes </label>
+                                />
+                                <label class="form-check-label" for="tuesdayId"> Martes </label>
                             </div>
                             <div class="form-check">
                                 <input
@@ -220,11 +209,8 @@ onUnmounted(() => {
                                     class="form-check-input"
                                     type="checkbox"
                                     value="3"
-                                >
-                                <label
-                                    class="form-check-label"
-                                    for="wedId"
-                                > Miercoles </label>
+                                />
+                                <label class="form-check-label" for="wedId"> Miercoles </label>
                             </div>
                             <div class="form-check">
                                 <input
@@ -233,11 +219,8 @@ onUnmounted(() => {
                                     class="form-check-input"
                                     type="checkbox"
                                     value="4"
-                                >
-                                <label
-                                    class="form-check-label"
-                                    for="thursdayId"
-                                > Jueves </label>
+                                />
+                                <label class="form-check-label" for="thursdayId"> Jueves </label>
                             </div>
                             <div class="form-check">
                                 <input
@@ -246,11 +229,8 @@ onUnmounted(() => {
                                     class="form-check-input"
                                     type="checkbox"
                                     value="5"
-                                >
-                                <label
-                                    class="form-check-label"
-                                    for="fridayId"
-                                > Viernes </label>
+                                />
+                                <label class="form-check-label" for="fridayId"> Viernes </label>
                             </div>
                             <div class="form-check">
                                 <input
@@ -259,11 +239,8 @@ onUnmounted(() => {
                                     class="form-check-input"
                                     type="checkbox"
                                     value="6"
-                                >
-                                <label
-                                    class="form-check-label"
-                                    for="saturdayId"
-                                > Sábado </label>
+                                />
+                                <label class="form-check-label" for="saturdayId"> Sábado </label>
                             </div>
                         </div>
                     </div>
@@ -275,11 +252,12 @@ onUnmounted(() => {
                     />
                     <blockquote class="blockquote">
                         <p>
-                            Aquí, agrega todos los ciclos académicos o modalidades activas al registro automático de
-                            inasistencias para cada turno.
+                            Aquí, agrega todos los ciclos académicos o modalidades activas al
+                            registro automático de inasistencias para cada turno.
                             <i>
-                                Recuerda, la inasistencia para el turno de la mañana se registrará automáticamente a las
-                                9:00 a.m., y la inasistencia para el turno de la tarde se registrará a las 6:00 p.m
+                                Recuerda, la inasistencia para el turno de la mañana se registrará
+                                automáticamente a las 9:00 a.m., y la inasistencia para el turno de
+                                la tarde se registrará a las 6:00 p.m
                             </i>
                         </p>
                     </blockquote>
@@ -292,11 +270,8 @@ onUnmounted(() => {
                                 type="radio"
                                 value="abs1"
                                 name="turn"
-                            >
-                            <label
-                                class="form-check-label"
-                                for="abs1Id"
-                            > Turno Mañana </label>
+                            />
+                            <label class="form-check-label" for="abs1Id"> Turno Mañana </label>
                         </div>
                         <div class="form-check">
                             <input
@@ -306,11 +281,8 @@ onUnmounted(() => {
                                 type="radio"
                                 value="abs2"
                                 name="turn"
-                            >
-                            <label
-                                class="form-check-label"
-                                for="abs2Id"
-                            > Turno Tarde </label>
+                            />
+                            <label class="form-check-label" for="abs2Id"> Turno Tarde </label>
                         </div>
                     </div>
                     <div class="d-flex align-items-center space">
@@ -323,22 +295,12 @@ onUnmounted(() => {
                             label="Ciclo Académico"
                             :opt-label="(item) => `${item.full_name} ${item.title}`"
                         />
-                        <m-action
-                            icon="add"
-                            tool="Agregar"
-                            @action="handleAddCycleItem"
-                        />
+                        <m-action icon="add" tool="Agregar" @action="handleAddCycleItem" />
                     </div>
-                    <div
-                        class="border-rounded p-3"
-                        style="max-width: max-content"
-                    >
+                    <div class="border-rounded p-3" style="max-width: max-content">
                         <div class="text-title title">Ciclos</div>
                         <ul class="list-group list-group-flush">
-                            <template
-                                v-for="item in config[abs]"
-                                :key="item"
-                            >
+                            <template v-for="item in config[abs]" :key="item">
                                 <li class="list-group-item d-flex align-items-center space">
                                     <em>{{ decorator(item) }}</em>
                                     <m-action
@@ -350,10 +312,7 @@ onUnmounted(() => {
                                     />
                                 </li>
                             </template>
-                            <div
-                                v-show="!config[abs].length"
-                                class="text-center opacity-50"
-                            >
+                            <div v-show="!config[abs].length" class="text-center opacity-50">
                                 Agregue aquí los ciclos o modalidades
                             </div>
                         </ul>

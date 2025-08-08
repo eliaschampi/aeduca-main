@@ -9,8 +9,7 @@ const initialState = {
     discount: 0,
 };
 
-export const useDetailStore = defineStore({
-    id: "detail",
+export const useDetailStore = defineStore("detail", {
     state: () => ({
         detail: initialState,
         canceled: false,

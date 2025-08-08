@@ -30,31 +30,19 @@ function goBack() {
         @submit="handleSubmit"
     >
         <div class="card-body">
-            <ul
-                class="m-2 nav nav-line nav-fill"
-                role="tablist"
-            >
-                <slot name="tabs" />
+            <ul class="m-2 nav nav-line nav-fill" role="tablist">
+                <slot name="tabs"></slot>
             </ul>
             <div class="tab-content">
-                <slot />
+                <slot></slot>
             </div>
         </div>
         <div class="card-footer text-center">
-            <m-submit
-                :disabled="!valid || !touched"
-                color="btn-success"
-                :is-loading="isLoading"
-            >
+            <m-submit :disabled="!valid || !touched" color="btn-success" :is-loading="isLoading">
                 {{ btnName }}
             </m-submit>
-            <m-button
-                color="btn-inverse-danger"
-                @ok="goBack"
-            >
-                Cancelar
-            </m-button>
-            <slot name="foot" />
+            <m-button color="btn-inverse-danger" @ok="goBack"> Cancelar </m-button>
+            <slot name="foot"></slot>
         </div>
     </Form>
 </template>

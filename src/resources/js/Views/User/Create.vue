@@ -109,49 +109,25 @@ const onSubmit = async () => {
 };
 </script>
 <template>
-    <FormTab
-        :btn-name="btnName"
-        :schema="schema"
-        :is-loading="isLoading"
-        @ok="onSubmit"
-    >
+    <FormTab :btn-name="btnName" :schema="schema" :is-loading="isLoading" @ok="onSubmit">
         <template #tabs>
             <li class="nav-item">
-                <a
-                    class="nav-link active"
-                    data-bs-toggle="tab"
-                    href="#main"
-                    role="tab"
-                >
-                    <i class="icon ion-md-person d-md-none" />
+                <a class="nav-link active" data-bs-toggle="tab" href="#main" role="tab">
+                    <i class="icon ion-md-person d-md-none"></i>
                     <span class="d-none d-md-block d-lg-block">General</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a
-                    class="nav-link"
-                    data-bs-toggle="tab"
-                    href="#contact"
-                    role="tab"
-                >
-                    <i class="icon ion-md-call d-md-none" />
+                <a class="nav-link" data-bs-toggle="tab" href="#contact" role="tab">
+                    <i class="icon ion-md-call d-md-none"></i>
                     <span class="d-none d-md-block d-lg-block">Contacto</span>
                 </a>
             </li>
         </template>
-        <div
-            id="main"
-            class="tab-pane fade in show active"
-            role="tabpanel"
-        >
+        <div id="main" class="tab-pane fade in show active" role="tabpanel">
             <div class="card-body">
                 <div class="row gx-2">
-                    <m-input
-                        v-model="user.name"
-                        name="name"
-                        label="Nombre"
-                        class="col-md-6 mb-4"
-                    />
+                    <m-input v-model="user.name" name="name" label="Nombre" class="col-md-6 mb-4" />
                     <m-input
                         v-model="user.lastname"
                         name="lastname"
@@ -160,12 +136,7 @@ const onSubmit = async () => {
                     />
                 </div>
                 <div class="row gx-2">
-                    <m-input
-                        v-model="user.dni"
-                        name="dni"
-                        label="DNI"
-                        class="col-md-6 mb-4"
-                    />
+                    <m-input v-model="user.dni" name="dni" label="DNI" class="col-md-6 mb-4" />
                     <m-select
                         v-model="user.gender"
                         name="gender"
@@ -176,10 +147,7 @@ const onSubmit = async () => {
                         <option value="F">Femenino</option>
                     </m-select>
                 </div>
-                <div
-                    v-show="isDiferentUser"
-                    class="row gx-2"
-                >
+                <div v-show="isDiferentUser" class="row gx-2">
                     <m-select
                         v-model="user.rol_code"
                         name="rol_code"
@@ -197,11 +165,7 @@ const onSubmit = async () => {
                 </div>
             </div>
         </div>
-        <div
-            id="contact"
-            class="tab-pane fade"
-            role="tabpanel"
-        >
+        <div id="contact" class="tab-pane fade" role="tabpanel">
             <div class="card-body">
                 <div class="row gx-2">
                     <m-input

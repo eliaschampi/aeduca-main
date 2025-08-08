@@ -61,67 +61,46 @@ onMounted(fetchData);
 </script>
 <template>
     <div class="table-responsive">
-        <div
-            v-if="head"
-            class="d-flex flex-wrap mb-4 align-items-center"
-        >
+        <div v-if="head" class="d-flex flex-wrap mb-4 align-items-center">
             <div class="col-md-8">
-                <slot />
+                <slot></slot>
             </div>
-            <div
-                class="ms-auto mt-4 mt-md-0 input-group"
-                style="max-width: 15rem"
-            >
+            <div class="ms-auto mt-4 mt-md-0 input-group" style="max-width: 15rem">
                 <input
                     class="form-control"
                     :value="modelValue"
                     placeholder="Buscar"
                     @input="handleInput"
-                >
+                />
                 <button
                     class="input-group-text btn btn-success btn-icon"
                     type="button"
                     @click="handleRefresh"
                 >
-                    <i class="icon ion-md-refresh" />
+                    <i class="icon ion-md-refresh"></i>
                 </button>
             </div>
         </div>
-        <PulseLoader
-            v-if="isLoading || fetchingData"
-            class="text-center"
-        />
-        <table
-            v-else-if="data.length"
-            class="table table-hover table-striped"
-        >
+        <PulseLoader v-if="isLoading || fetchingData" class="text-center" />
+        <table v-else-if="data.length" class="table table-hover table-striped">
             <thead>
                 <tr class="fw-bold">
-                    <th
-                        v-for="(item, index) in columns"
-                        :key="index"
-                    >
+                    <th v-for="(item, index) in columns" :key="index">
                         {{ item }}
                     </th>
                 </tr>
             </thead>
             <tbody>
-                <slot
-                    name="data"
-                    :rows="data"
-                />
+                <slot name="data" :rows="data"></slot>
             </tbody>
             <tfoot>
                 <tr>
                     <td :colspan="columns.length">
-                        <slot name="foot" />
+                        <slot name="foot"></slot>
                     </td>
                 </tr>
             </tfoot>
         </table>
-        <Empty
-            v-else
-            :title="emptytext"
-        />
+        <Empty v-else :title="emptytext" />
     </div>
 </template>

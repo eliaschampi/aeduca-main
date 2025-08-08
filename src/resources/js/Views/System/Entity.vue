@@ -121,14 +121,11 @@ function reAuthenticate() {
 }
 </script>
 <template>
-    <section
-        id="aec"
-        style="max-width: 40rem"
-    >
+    <section id="aec" style="max-width: 40rem">
         <panel title="Consultas avanzadas">
             <blockquote class="blockquote">
-                Con este módulo, podrás actualizar o eliminar la información completa de cualquier entidad, ya sea
-                estudiante, docente o apoderado.
+                Con este módulo, podrás actualizar o eliminar la información completa de cualquier
+                entidad, ya sea estudiante, docente o apoderado.
                 <i class="text-info-emphasis">
                     Por razones de seguridad, esta actividad será notificada y monitoreada
                 </i>
@@ -143,11 +140,8 @@ function reAuthenticate() {
                         placeholder="Ejm. 15481548"
                         maxlength="8"
                         @keypress.enter="findPerson"
-                    >
-                    <label
-                        class="form-label"
-                        for="finderid"
-                    >Ingresa el DNI</label>
+                    />
+                    <label class="form-label" for="finderid">Ingresa el DNI</label>
                 </div>
                 <m-action
                     v-show="dni.length === 8"
@@ -157,25 +151,13 @@ function reAuthenticate() {
                     @action="findPerson"
                 />
             </div>
-            <alert
-                v-show="message"
-                type="alert-danger mt-3"
-            >
+            <alert v-show="message" type="alert-danger mt-3">
                 {{ message }}
             </alert>
             <template v-if="person">
-                <m-plain
-                    label="DNI:"
-                    :value="person.dni"
-                />
-                <m-plain
-                    label="Nombres:"
-                    :value="person.fullname"
-                />
-                <m-plain
-                    label="Sede:"
-                    :value="branchtext"
-                />
+                <m-plain label="DNI:" :value="person.dni" />
+                <m-plain label="Nombres:" :value="person.fullname" />
+                <m-plain label="Sede:" :value="branchtext" />
                 <RouterLink
                     v-show="person.branch === branch_code"
                     class="btn btn-outline-success mb-2"
@@ -183,29 +165,13 @@ function reAuthenticate() {
                 >
                     Ir al perfil
                 </RouterLink>
-                <div
-                    class="border-rounded p-3 mt-3"
-                    style="max-width: 25rem"
-                >
+                <div class="border-rounded p-3 mt-3" style="max-width: 25rem">
                     <div class="text-danger title">Zona de peligro</div>
                     <div class="d-flex space align-items-center">
-                        <select
-                            v-model="action"
-                            class="form-select"
-                        >
-                            <option
-                                value=""
-                                disabled
-                                hidden
-                                selected
-                            >
-                                Seleccione un acción
-                            </option>
+                        <select v-model="action" class="form-select">
+                            <option value="" disabled hidden selected>Seleccione un acción</option>
                             <option value="updateDni">Actualizar DNI</option>
-                            <option
-                                value="updateBranch"
-                                :disabled="!branchable"
-                            >
+                            <option value="updateBranch" :disabled="!branchable">
                                 Cambiar de sede
                             </option>
                             <option value="destroyPerson">Eliminar permanentemente</option>

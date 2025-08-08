@@ -26,7 +26,7 @@ const updateValue = (value) => emit("update:modelValue", value);
                 :disabled="disabled"
                 :checked="modelValue === 'student'"
                 @change="updateValue('student')"
-            >
+            />
             <span class="selectgroup-button">Estudiante</span>
         </label>
         <label class="form-label selectgroup-item">
@@ -38,13 +38,10 @@ const updateValue = (value) => emit("update:modelValue", value);
                 :disabled="disabled"
                 :checked="modelValue === 'teacher'"
                 @change="updateValue('teacher')"
-            >
+            />
             <span class="selectgroup-button">Docente</span>
         </label>
-        <label
-            v-show="!nofamily"
-            class="form-label selectgroup-item"
-        >
+        <label v-show="!nofamily" class="form-label selectgroup-item">
             <input
                 class="selectgroup-input"
                 name="persontyperadio"
@@ -52,7 +49,7 @@ const updateValue = (value) => emit("update:modelValue", value);
                 value="family"
                 :checked="modelValue === 'family'"
                 @change="updateValue('family')"
-            >
+            />
             <span class="selectgroup-button">Apoderado</span>
         </label>
     </div>

@@ -2,8 +2,7 @@ import { defineStore } from "pinia";
 import { fetchAllCyApi } from "../http";
 import { iso } from "../core/date";
 
-export const useCycleStore = defineStore({
-    id: "cycle",
+export const useCycleStore = defineStore("cycle", {
     state: () => ({
         cycles: [],
         current: "",

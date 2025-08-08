@@ -15,14 +15,8 @@ const props = defineProps({
 });
 </script>
 <template>
-    <div
-        class="alert alert-dismissible fade show"
-        :class="props.type"
-    >
-        <h4
-            v-show="props.title"
-            class="alert-heading"
-        >
+    <div class="alert alert-dismissible fade show" :class="props.type">
+        <h4 v-show="props.title" class="alert-heading">
             {{ props.title }}
         </h4>
         <button
@@ -30,7 +24,7 @@ const props = defineProps({
             class="btn-close"
             data-bs-dismiss="alert"
             type="button"
-        />
-        <slot />
+        ></button>
+        <slot></slot>
     </div>
 </template>

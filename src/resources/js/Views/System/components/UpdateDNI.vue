@@ -69,28 +69,15 @@ defineExpose({ handleShowModal });
         @ok="handleSubmitClick"
     >
         <div class="space-b-1">
-            <m-input
-                v-model="lastdni"
-                name="lastdni"
-                label="DNI anterior"
-                placeholder="DNI"
-            />
-            <m-input
-                v-model="newdni"
-                name="newdni"
-                label="Nuevo DNI"
-                placeholder="DNI"
-            />
+            <m-input v-model="lastdni" name="lastdni" label="DNI anterior" placeholder="DNI" />
+            <m-input v-model="newdni" name="newdni" label="Nuevo DNI" placeholder="DNI" />
             <m-check
                 id="dwefdwe"
                 v-model="ok"
                 :dis="!newdni"
                 text="Confirmo que el DNI ha sido verificado y validado previamente"
             />
-            <alert
-                v-show="message"
-                type="alert-danger"
-            >
+            <alert v-show="message" type="alert-danger">
                 {{ message }}
             </alert>
         </div>

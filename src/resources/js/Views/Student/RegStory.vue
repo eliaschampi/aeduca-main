@@ -43,19 +43,13 @@ watchEffect(() => {
         :head="false"
     >
         <template #data="{ rows }">
-            <tr
-                v-for="item in rows"
-                :key="item.code"
-            >
+            <tr v-for="item in rows" :key="item.code">
                 <td>{{ item.code }}</td>
                 <td>{{ prdecorated[item.priority] }}</td>
                 <td>{{ item.section_code.substring(8) }} de {{ item.level }}</td>
                 <td>{{ $currency(item.monthly) }}</td>
                 <td>
-                    <span
-                        class="badge"
-                        :class="states[item.state].badge"
-                    >
+                    <span class="badge" :class="states[item.state].badge">
                         {{ states[item.state].text }}
                     </span>
                 </td>

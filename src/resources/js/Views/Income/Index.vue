@@ -6,7 +6,13 @@ import Casher from "../../Components/Views/Casher.vue";
 import { isToday } from "../../core/date";
 import { ticket } from "../../core/ticket";
 import { downl } from "../../core/util";
-import { canceledApi, exportToExcelIncomeApi, fetchByDateApi, fetchDetailApi, printTicketPdfApi } from "../../http";
+import {
+    canceledApi,
+    exportToExcelIncomeApi,
+    fetchByDateApi,
+    fetchDetailApi,
+    printTicketPdfApi,
+} from "../../http";
 import { useCasherStore } from "../../pinia/casher";
 import { useDateStore } from "../../pinia/date";
 import { useModalStore } from "../../pinia/modal";
@@ -19,7 +25,16 @@ const incomes = ref([]);
 const details = ref([]);
 const selected = reactive({});
 const sterm = ref("");
-const columns = ["Fecha", "Caja", "Comprobante", "Correlativo", "Tipo", "Cliente", "Total", "Acciones"];
+const columns = [
+    "Fecha",
+    "Caja",
+    "Comprobante",
+    "Correlativo",
+    "Tipo",
+    "Cliente",
+    "Total",
+    "Acciones",
+];
 const dColumns = ["Modalidad", "Concepto", "Monto a Pagar", "Descuento", "Importe", "Saldo"];
 
 const types = {
@@ -144,22 +159,11 @@ onMounted(async () => {
                     />
                 </div>
             </template>
-            <Casher
-                class="my-2"
-                @changed="fetchData"
-            />
-            <m-table
-                v-model="sterm"
-                :columns="columns"
-                :data="filtered"
-                @refresh="fetchData"
-            >
+            <Casher class="my-2" @changed="fetchData" />
+            <m-table v-model="sterm" :columns="columns" :data="filtered" @refresh="fetchData">
                 <Range @fetch="refreshAll" />
                 <template #data="{ rows }">
-                    <tr
-                        v-for="item in rows"
-                        :key="item.code"
-                    >
+                    <tr v-for="item in rows" :key="item.code">
                         <td>
                             <span class="fw-medium">
                                 {{ $datetim(item.created_at) }}
@@ -173,7 +177,9 @@ onMounted(async () => {
                             <template v-else>
                                 Estudiante
                                 <span :mytooltip="fullSection(item.name.type)">
-                                    <i class="icon ion-md-information-circle icon-sm text-secondary pointer" />
+                                    <i
+                                        class="icon ion-md-information-circle icon-sm text-secondary pointer"
+                                    ></i>
                                 </span>
                             </template>
                         </td>
@@ -182,11 +188,7 @@ onMounted(async () => {
                         </td>
                         <td>{{ $currency(item.total) }}</td>
                         <td class="space">
-                            <m-action
-                                icon="eye"
-                                tool="Ver Detalle"
-                                @action="showDetail(item)"
-                            />
+                            <m-action icon="eye" tool="Ver Detalle" @action="showDetail(item)" />
                             <m-action
                                 icon="print"
                                 color="info"
@@ -217,16 +219,9 @@ onMounted(async () => {
             size="modal-lg"
             @cancel="handleClosed"
         >
-            <m-table
-                :columns="dColumns"
-                :data="details"
-                :head="false"
-            >
+            <m-table :columns="dColumns" :data="details" :head="false">
                 <template #data="{ rows }">
-                    <tr
-                        v-for="(item, index) in rows"
-                        :key="index"
-                    >
+                    <tr v-for="(item, index) in rows" :key="index">
                         <td>{{ item.actiontype.name }}</td>
                         <td>{{ item.title }}</td>
                         <td>{{ $currency(item.topay) }}</td>
@@ -242,9 +237,6 @@ onMounted(async () => {
                 <footext :title="`Correlativo: ${selected.serie}`" />
             </template>
         </Dialog>
-        <Cancel
-            :serie="selected.serie"
-            @save="handleCancel"
-        />
+        <Cancel :serie="selected.serie" @save="handleCancel" />
     </section>
 </template>

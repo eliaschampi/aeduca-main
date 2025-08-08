@@ -43,29 +43,23 @@ function handleEditClick() {
 
 <template>
     <div class="card text-center profile-card user-card">
-        <div class="card-up aqua-gradient" />
+        <div class="card-up aqua-gradient"></div>
         <div class="avatar mx-auto">
-            <img
-                class="rounded-circle img-fluid"
-                :src="`/default/${props.user.image}`"
-            >
+            <img class="rounded-circle img-fluid" :src="`/default/${props.user.image}`" />
             <m-button
                 v-if="props.isAdmin"
                 class="rounded-circle btn-icon"
                 color="btn-success"
                 @ok="handleEditClick"
             >
-                <i class="icon ion-md-create" />
+                <i class="icon ion-md-create"></i>
             </m-button>
         </div>
         <div class="card-body space-b">
             <h5>
                 {{ `${props.user.name} ${props.user.lastname}` }}
             </h5>
-            <div
-                v-if="user_code !== user.code"
-                class="mx-auto switch"
-            >
+            <div v-if="user_code !== user.code" class="mx-auto switch">
                 <input
                     :id="'tg' + user.dni"
                     type="checkbox"
@@ -77,21 +71,17 @@ function handleEditClick() {
                             state: $event.target.checked,
                         })
                     "
-                >
-                <label
-                    class="form-label success"
-                    :for="'tg' + props.user.dni"
-                >Toggle</label>
+                />
+                <label class="form-label success" :for="'tg' + props.user.dni">Toggle</label>
             </div>
             <template v-else>
-                <m-button
-                    class="mx-auto rounded-circle btn-icon"
-                    @ok="profile"
-                >
-                    <i class="icon ion-md-person" />
+                <m-button class="mx-auto rounded-circle btn-icon" @ok="profile">
+                    <i class="icon ion-md-person"></i>
                 </m-button>
             </template>
-            <span class="badge bg-warning-subtle text-warning-emphasis border border-warning border-2">
+            <span
+                class="badge bg-warning-subtle text-warning-emphasis border border-warning border-2"
+            >
                 {{ props.role }}
             </span>
         </div>

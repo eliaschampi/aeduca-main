@@ -45,17 +45,8 @@ const spinnerDelay3 = computed(() => ({ animationDelay: "0.36s" }));
 </script>
 <template>
     <div class="v-spinner mt-3">
-        <div
-            class="v-pulse v-pulse1"
-            :style="[spinnerStyle, spinnerDelay1]"
-        />
-        <div
-            class="v-pulse v-pulse2"
-            :style="[spinnerStyle, spinnerDelay2]"
-        />
-        <div
-            class="v-pulse v-pulse3"
-            :style="[spinnerStyle, spinnerDelay3]"
-        />
+        <div class="v-pulse v-pulse1" :style="[spinnerStyle, spinnerDelay1]"></div>
+        <div class="v-pulse v-pulse2" :style="[spinnerStyle, spinnerDelay2]"></div>
+        <div class="v-pulse v-pulse3" :style="[spinnerStyle, spinnerDelay3]"></div>
     </div>
 </template>

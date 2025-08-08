@@ -16,7 +16,7 @@ import Switch from "../Components/Ui/Switch.vue";
 import Table from "../Components/Ui/Table.vue";
 import Textarea from "../Components/Ui/Textarea.vue";
 
-export default function (app) {
+export default function(app) {
     app.component("Card", Card);
     app.component("Panel", Panel);
     app.component("Alert", Alert);

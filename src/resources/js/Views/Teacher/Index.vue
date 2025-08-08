@@ -36,12 +36,7 @@ onMounted(async () => {
                     :opt-value="(_, key) => key"
                     @update:model-value="fetchAll"
                 />
-                <m-check
-                    id="wistiki"
-                    v-model="state"
-                    text="Solo activos"
-                    @change="fetchAll"
-                />
+                <m-check id="wistiki" v-model="state" text="Solo activos" @change="fetchAll" />
                 <m-router
                     v-can="'AS'"
                     size="btn-sm"
@@ -53,10 +48,7 @@ onMounted(async () => {
             </div>
         </panel>
         <div class="mygrid g18 mt-4">
-            <template
-                v-for="item in teachers"
-                :key="item.code"
-            >
+            <template v-for="item in teachers" :key="item.code">
                 <PersonCard
                     :dni="item.dni"
                     :name="item.person.name"
@@ -65,7 +57,7 @@ onMounted(async () => {
                     route="teacher_profile"
                 >
                     <div class="text-small d-flex align-items-center space">
-                        <span class="icon ion-md-call text-success me-1" />
+                        <span class="icon ion-md-call text-success me-1"></span>
                         <span>{{ item.person.phone }}</span>
                     </div>
                     <template #right>

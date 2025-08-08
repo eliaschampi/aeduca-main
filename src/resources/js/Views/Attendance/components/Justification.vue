@@ -77,10 +77,7 @@ defineExpose({
                 label="Justificación"
                 :disabled="!isNew"
             />
-            <div
-                v-if="!isNew"
-                class="text-center my-2"
-            >
+            <div v-if="!isNew" class="text-center my-2">
                 <m-button
                     v-show="justification.attached"
                     color="btn-warning"
@@ -90,10 +87,7 @@ defineExpose({
                 >
                     Descargar archivo adjunto
                 </m-button>
-                <div
-                    v-show="state === 'envió justificación'"
-                    class="selectgroup selectgroup-pills"
-                >
+                <div v-show="state === 'envió justificación'" class="selectgroup selectgroup-pills">
                     <label class="selectgroup-item">
                         <input
                             v-model="approve"
@@ -101,7 +95,7 @@ defineExpose({
                             name="accept_jus"
                             type="radio"
                             value="yes"
-                        >
+                        />
                         <span class="selectgroup-button">Aceptar</span>
                     </label>
                     <label class="selectgroup-item">
@@ -111,15 +105,12 @@ defineExpose({
                             name="accept_jus"
                             type="radio"
                             value="no"
-                        >
+                        />
                         <span class="selectgroup-button">Rechazar</span>
                     </label>
                 </div>
             </div>
-            <div
-                v-else
-                class="d-flex justify-content-center"
-            >
+            <div v-else class="d-flex justify-content-center">
                 <File v-model="justification.attached" />
             </div>
         </div>

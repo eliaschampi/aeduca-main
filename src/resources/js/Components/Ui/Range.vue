@@ -63,13 +63,9 @@ const fetchData = () => {
                 />
             </div>
         </div>
-        <button
-            type="submit"
-            class="btn btn-inverse-info mt-2 mt-md-0"
-            icon="icon ion-md-search"
-        >
+        <button type="submit" class="btn btn-inverse-info mt-2 mt-md-0" icon="icon ion-md-search">
             buscar
         </button>
-        <slot />
+        <slot></slot>
     </Form>
 </template>

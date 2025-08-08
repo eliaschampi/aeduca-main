@@ -2,7 +2,13 @@
 import { computed, onMounted, onUnmounted, reactive, ref } from "vue";
 import { useRouter } from "vue-router";
 import cache from "../../core/cache";
-import { fetchByCodeCyApi, fetchCountByTypeCyApi, fetchCyclesApi, setCyApi, updateCyApi } from "../../http";
+import {
+    fetchByCodeCyApi,
+    fetchCountByTypeCyApi,
+    fetchCyclesApi,
+    setCyApi,
+    updateCyApi,
+} from "../../http";
 import { useSnackbarStore } from "../../pinia/snackbar";
 import { useUserStore } from "../../pinia/user";
 import FormTab from "../../Components/Card/FormTab.vue";
@@ -39,7 +45,11 @@ function toggleAttendancePrioority() {
     if (attendance.value.length > 1) {
         attendance.value.pop();
     } else {
-        attendance.value.push({ order: attendance.value.length + 1, entry_time: "16:00", tolerance: 5 });
+        attendance.value.push({
+            order: attendance.value.length + 1,
+            entry_time: "16:00",
+            tolerance: 5,
+        });
     }
 }
 
@@ -131,40 +141,22 @@ const schema = computed(() => ({
     >
         <template #tabs>
             <li class="nav-item">
-                <a
-                    class="nav-link active"
-                    data-bs-toggle="tab"
-                    href="#main"
-                    role="tab"
-                >
-                    <i class="icon ion-md-list d-md-none" />
+                <a class="nav-link active" data-bs-toggle="tab" href="#main" role="tab">
+                    <i class="icon ion-md-list d-md-none"></i>
                     <span class="d-none d-md-block d-lg-block"> Datos generales </span>
                 </a>
             </li>
             <li class="nav-item">
-                <a
-                    class="nav-link"
-                    data-bs-toggle="tab"
-                    href="#config"
-                    role="tab"
-                >
-                    <i class="icon ion-md-settings d-md-none" />
+                <a class="nav-link" data-bs-toggle="tab" href="#config" role="tab">
+                    <i class="icon ion-md-settings d-md-none"></i>
                     <span class="d-none d-md-block d-lg-block"> Configuración </span>
                 </a>
             </li>
         </template>
 
-        <div
-            id="main"
-            class="tab-pane fade show active"
-            role="tabpanel"
-        >
+        <div id="main" class="tab-pane fade show active" role="tabpanel">
             <div class="d-none">
-                <m-input
-                    v-model="cycle.code"
-                    name="code"
-                    label="code"
-                />
+                <m-input v-model="cycle.code" name="code" label="code" />
             </div>
             <div class="row mt-4 gx-3">
                 <m-select
@@ -181,7 +173,14 @@ const schema = computed(() => ({
                     name="title"
                     class="col-md-6 mb-3"
                     label="Ciclo"
-                    :options="['Regular', 'Verano', 'Intensivo', 'Vacacional', 'Reforzamiento', 'Otro']"
+                    :options="[
+                        'Regular',
+                        'Verano',
+                        'Intensivo',
+                        'Vacacional',
+                        'Reforzamiento',
+                        'Otro',
+                    ]"
                 />
             </div>
             <div class="row align-items-center gx-3">
@@ -221,11 +220,7 @@ const schema = computed(() => ({
                 </div>
             </template>
         </div>
-        <div
-            id="config"
-            class="tab-pane fade"
-            role="tabpanel"
-        >
+        <div id="config" class="tab-pane fade" role="tabpanel">
             <div class="fw-medium my-4">Duración</div>
             <div class="row gx-3">
                 <m-input
@@ -244,10 +239,7 @@ const schema = computed(() => ({
                 />
             </div>
             <div class="fw-medium mb-3">Horarios de ingreso</div>
-            <template
-                v-for="item in attendance"
-                :key="item.order"
-            >
+            <template v-for="item in attendance" :key="item.order">
                 <div class="row gx-3">
                     <m-input
                         v-model="item.entry_time"
@@ -265,11 +257,8 @@ const schema = computed(() => ({
                     />
                 </div>
             </template>
-            <div
-                class="d-flex space pointer"
-                @click="toggleAttendancePrioority"
-            >
-                <b class="icon ion-md-add" />
+            <div class="d-flex space pointer" @click="toggleAttendancePrioority">
+                <b class="icon ion-md-add"></b>
                 <span>{{ attendance.length > 1 ? "Desabilitar" : "Habilitar" }} turno tarde</span>
             </div>
         </div>

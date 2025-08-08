@@ -8,7 +8,13 @@ import { useSnackbarStore } from "../../../pinia/snackbar";
 const { successSnack } = useSnackbarStore();
 const { hideModal } = useModalStore();
 
-const types = ["Deposito Caja Cusco", "Deposito Bancario", "Entrega en efectivo", "Giro/Transferencia", "Otro"];
+const types = [
+    "Deposito Caja Cusco",
+    "Deposito Bancario",
+    "Entrega en efectivo",
+    "Giro/Transferencia",
+    "Otro",
+];
 
 const customers = ref([]);
 

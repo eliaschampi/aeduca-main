@@ -37,10 +37,7 @@ const fulldate = (date) => dformat(date, "DD/MM/YYYY h:mm a");
         emptytext="El estudiante aun no ha realizado ningun pago"
     >
         <template #data="{ rows }">
-            <tr
-                v-for="item in rows"
-                :key="item.code"
-            >
+            <tr v-for="item in rows" :key="item.code">
                 <td>{{ item.income.serie }}</td>
                 <td>{{ item.actiontype.name }}</td>
                 <td>{{ item.title }}</td>
@@ -51,10 +48,7 @@ const fulldate = (date) => dformat(date, "DD/MM/YYYY h:mm a");
                     {{ $currency(item.topay - item.discount - item.paid) }}
                 </td>
                 <td>{{ fulldate(item.income.created_at) }}</td>
-                <td
-                    v-can="'AS'"
-                    v-year
-                >
+                <td v-can="'AS'" v-year>
                     <m-action
                         v-show="incompleted(item)"
                         color="danger"

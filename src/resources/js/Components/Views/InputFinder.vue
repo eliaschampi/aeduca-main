@@ -47,18 +47,9 @@ const handleShowModal = () => {
 </script>
 <template>
     <div class="d-flex">
-        <input
-            v-model="inputvalue"
-            class="form-control"
-            readonly
-            :placeholder="placeholder"
-        >
-        <button
-            class="btn btn-inverse-warning btn-icon"
-            type="button"
-            @click="handleShowModal"
-        >
-            <i class="icon ion-md-search" />
+        <input v-model="inputvalue" class="form-control" readonly :placeholder="placeholder" />
+        <button class="btn btn-inverse-warning btn-icon" type="button" @click="handleShowModal">
+            <i class="icon ion-md-search"></i>
         </button>
     </div>
 </template>

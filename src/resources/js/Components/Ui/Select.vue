@@ -66,11 +66,15 @@ const selectClass = computed(() => {
 });
 
 function getLabel(option) {
-    return typeof props.optLabel === "function" ? props.optLabel(option) : option[props.optLabel] || option;
+    return typeof props.optLabel === "function"
+        ? props.optLabel(option)
+        : option[props.optLabel] || option;
 }
 
 function getOption(option, key) {
-    return typeof props.optValue === "function" ? props.optValue(option, key) : option[props.optValue] || option;
+    return typeof props.optValue === "function"
+        ? props.optValue(option, key)
+        : option[props.optValue] || option;
 }
 </script>
 <template>
@@ -93,30 +97,16 @@ function getOption(option, key) {
                 >
                     {{ placeholder }}
                 </option>
-                <option
-                    v-show="placeholder"
-                    disabled
-                >
+                <option v-show="placeholder" disabled>
                     {{ placeholder }}
                 </option>
-                <option
-                    v-for="(option, key) in options"
-                    :key="key"
-                    :value="getOption(option, key)"
-                >
+                <option v-for="(option, key) in options" :key="key" :value="getOption(option, key)">
                     {{ getLabel(option) }}
                 </option>
             </slot>
         </select>
-        <label
-            v-show="label"
-            class="form-label fw-medium"
-            :for="`${field}Id`"
-        >{{ label }}</label>
-        <span
-            v-show="errorMessage"
-            class="invalid-feedback"
-        >
+        <label v-show="label" class="form-label fw-medium" :for="`${field}Id`">{{ label }}</label>
+        <span v-show="errorMessage" class="invalid-feedback">
             {{ errorMessage }}
         </span>
     </div>

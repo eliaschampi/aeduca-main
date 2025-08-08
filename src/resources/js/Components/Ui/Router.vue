@@ -16,14 +16,8 @@ const props = defineProps({
 });
 </script>
 <template>
-    <RouterLink
-        :class="['btn', props.color, props.size]"
-        :to="props.to"
-    >
-        <i
-            v-show="props.icon"
-            :class="props.icon"
-        />
-        <slot />
+    <RouterLink :class="['btn', props.color, props.size]" :to="props.to">
+        <i v-show="props.icon" :class="props.icon"></i>
+        <slot></slot>
     </RouterLink>
 </template>

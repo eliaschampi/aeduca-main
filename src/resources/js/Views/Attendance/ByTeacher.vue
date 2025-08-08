@@ -53,14 +53,10 @@ async function excel() {
 <template>
     <section>
         <alert>
-            El horario de ingreso para los docentes es {{ configData.entry_time }} con una tolerancia de
-            {{ configData.tolerance }} minutos.
+            El horario de ingreso para los docentes es {{ configData.entry_time }} con una
+            tolerancia de {{ configData.tolerance }} minutos.
         </alert>
-        <m-table
-            :columns="columns"
-            :data="attendances"
-            :fetch="fetchData"
-        >
+        <m-table :columns="columns" :data="attendances" :fetch="fetchData">
             <Range @fetch="fetchData" />
             <template #data="{ rows }">
                 <AttendanceRow
@@ -75,7 +71,9 @@ async function excel() {
                     @update="handleUpdate(item)"
                     @cancel="cancelEdit(item)"
                     @edit="handleEdit(item)"
-                    @show-jus-modal="jusRef.handleShowModal(item.code, item.state, item.justification)"
+                    @show-jus-modal="
+                        jusRef.handleShowModal(item.code, item.state, item.justification)
+                    "
                 >
                     <td>{{ $datetim(item.created_at) }}</td>
                     <td>
@@ -83,18 +81,15 @@ async function excel() {
                     </td>
                 </AttendanceRow>
                 <tr>
-                    <td
-                        colspan="2"
-                        class="text-secondary"
-                    >
-                        Total de minutos de tardanza
-                    </td>
+                    <td colspan="2" class="text-secondary">Total de minutos de tardanza</td>
                     <td colspan="4">{{ total_delay }} minutos</td>
                 </tr>
             </template>
         </m-table>
         <div class="d-flex justify-content-between">
-            <span class="fw-bold opacity-50"> Cantidad de Asistencias: {{ attendances.length }} </span>
+            <span class="fw-bold opacity-50">
+                Cantidad de Asistencias: {{ attendances.length }}
+            </span>
             <m-button
                 :disabled="!attendances.length"
                 color="btn-warning btn-icon"
@@ -102,9 +97,6 @@ async function excel() {
                 @ok="excel"
             />
         </div>
-        <Justification
-            ref="jusRef"
-            @done="fetchData"
-        />
+        <Justification ref="jusRef" @done="fetchData" />
     </section>
 </template>

@@ -4,7 +4,12 @@ import { inject, onMounted, onUnmounted, reactive, ref, watch } from "vue";
 import { useRouter } from "vue-router";
 import IncomeDetail from "../../Components/Views/IncomeDetail.vue";
 import { downl } from "../../core/util";
-import { fetchAttVarsCyApi, fetchByYearAndBranchApi, hasOnCacheRegApi, setRegApi } from "../../http";
+import {
+    fetchAttVarsCyApi,
+    fetchByYearAndBranchApi,
+    hasOnCacheRegApi,
+    setRegApi,
+} from "../../http";
 import { useCatStore } from "../../pinia/cat";
 import { useDetailStore } from "../../pinia/detail";
 import { useModalStore } from "../../pinia/modal";
@@ -174,26 +179,15 @@ const schema = {
 </script>
 <template>
     <section>
-        <alert
-            v-if="existsInCache"
-            class="my-4"
-            type="alert-warning"
-        >
-            Querido Usuario. No puede continuar porque hay una matrícula o inscripción en proceso. Para finalizar o
-            cancelar dicha matricula
-            <RouterLink
-                :to="{ name: 'invoice' }"
-                class="fw-medium text-secondary"
-            >
+        <alert v-if="existsInCache" class="my-4" type="alert-warning">
+            Querido Usuario. No puede continuar porque hay una matrícula o inscripción en proceso.
+            Para finalizar o cancelar dicha matricula
+            <RouterLink :to="{ name: 'invoice' }" class="fw-medium text-secondary">
                 Click aquí
             </RouterLink>
         </alert>
         <template v-else>
-            <Form
-                :validation-schema="schema"
-                class="space-b-1"
-                @submit="handleSubmitClick"
-            >
+            <Form :validation-schema="schema" class="space-b-1" @submit="handleSubmitClick">
                 <h6
                     class="text-title pointer fst-italic user-select-none"
                     data-bs-toggle="collapse"
@@ -202,11 +196,7 @@ const schema = {
                 >
                     {{ mode + " Matrícula " + fullyear }}
                 </h6>
-                <div
-                    id="advance"
-                    class="collapse"
-                    :class="{ show: mode === 'Nueva' }"
-                >
+                <div id="advance" class="collapse" :class="{ show: mode === 'Nueva' }">
                     <div class="myround p-3 border border-1 border-warning space-b-1">
                         <m-select
                             v-model="register.section_code"
@@ -216,17 +206,8 @@ const schema = {
                             opt-label="full_name"
                             @update:model-value="handleSectionChange"
                         />
-                        <m-select
-                            v-model="register.priority"
-                            label="Turno"
-                            name="priority"
-                        >
-                            <option
-                                :value="0"
-                                selected
-                            >
-                                Turno múltiple
-                            </option>
+                        <m-select v-model="register.priority" label="Turno" name="priority">
+                            <option :value="0" selected>Turno múltiple</option>
                             <option
                                 v-for="item in priorities"
                                 :key="item.order"
@@ -249,11 +230,7 @@ const schema = {
                         v-model="consV"
                         text="Generar Constancia de Vacancia (Nuevo estudiante)."
                     />
-                    <m-switch
-                        id="state"
-                        v-model="state"
-                        text="Registrar estado como Activo"
-                    />
+                    <m-switch id="state" v-model="state" text="Registrar estado como Activo" />
                     <m-switch
                         id="invoice"
                         v-model="invoicing"
@@ -262,10 +239,7 @@ const schema = {
                     />
                 </div>
                 <div class="text-center">
-                    <m-submit
-                        :is-loading="isLoading"
-                        color="btn-warning"
-                    >
+                    <m-submit :is-loading="isLoading" color="btn-warning">
                         {{ invoicing ? "Ir a Ingresos" : "Registrar" }}
                     </m-submit>
                 </div>

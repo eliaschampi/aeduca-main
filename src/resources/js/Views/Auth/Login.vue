@@ -72,11 +72,8 @@ const schema = {
             />
         </div>
         <template #foot>
-            <RouterLink
-                :to="{ name: 'recover' }"
-                class="btn btn-success btn-sm text-dark"
-            >
-                <i class="icon ion-md-lock" /> Olvidé mi contraseña
+            <RouterLink :to="{ name: 'recover' }" class="btn btn-success btn-sm text-dark">
+                <i class="icon ion-md-lock"></i> Olvidé mi contraseña
             </RouterLink>
         </template>
     </LoginForm>

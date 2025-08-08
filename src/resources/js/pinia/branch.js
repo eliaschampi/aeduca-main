@@ -1,8 +1,7 @@
 import { defineStore } from "pinia";
 import { fetchAllBranchApi } from "../http";
 
-export const useBranchStore = defineStore({
-    id: "branch",
+export const useBranchStore = defineStore("branch", {
     state: () => ({
         branches: [],
         sfmOps: {

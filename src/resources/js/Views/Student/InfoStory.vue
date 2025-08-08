@@ -40,7 +40,11 @@ const handleSaveClick = async (p, file, callback) => {
         }
     };
 
-    if (idata.value.some(({ code, type, info }) => code !== p.code && type === p.type && info === p.info)) {
+    if (
+        idata.value.some(
+            ({ code, type, info }) => code !== p.code && type === p.type && info === p.info,
+        )
+    ) {
         warningSnack("Posible duplicado");
         return;
     }
@@ -109,17 +113,11 @@ watchEffect(() => {
         :is-loading="isLoading"
     >
         <template #data="{ rows }">
-            <tr
-                v-for="item in rows"
-                :key="item.code"
-            >
-                <td><span class="icon ion-md-folder-open" /></td>
+            <tr v-for="item in rows" :key="item.code">
+                <td><span class="icon ion-md-folder-open"></span></td>
                 <td style="max-width: 5rem">{{ item.type }}</td>
                 <td style="max-width: 15rem">{{ item.info }}</td>
-                <td
-                    v-can="'AS'"
-                    class="space"
-                >
+                <td v-can="'AS'" class="space">
                     <m-action @action="editInfo(item)" />
                     <m-action
                         icon="trash"
@@ -131,9 +129,5 @@ watchEffect(() => {
             </tr>
         </template>
     </m-table>
-    <AddInfo
-        ref="infoModal"
-        @save="handleSaveClick"
-        @download-a="handleDownloadAttached"
-    />
+    <AddInfo ref="infoModal" @save="handleSaveClick" @download-a="handleDownloadAttached" />
 </template>

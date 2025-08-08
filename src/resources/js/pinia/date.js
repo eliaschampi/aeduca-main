@@ -1,8 +1,7 @@
 import { defineStore } from "pinia";
 import { isToday as isTodayUtility, iso, mym, tomorrow } from "../core/date";
 
-export const useDateStore = defineStore({
-    id: "date",
+export const useDateStore = defineStore("date", {
     state: () => ({
         date: iso(),
         range: {

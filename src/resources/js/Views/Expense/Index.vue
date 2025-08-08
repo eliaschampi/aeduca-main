@@ -97,22 +97,11 @@ onMounted(async () => {
                     />
                 </div>
             </template>
-            <Casher
-                class="my-2"
-                @changed="fetchData"
-            />
-            <m-table
-                v-model="sterm"
-                :columns="columns"
-                :data="filtered"
-                @refresh="fetchData"
-            >
+            <Casher class="my-2" @changed="fetchData" />
+            <m-table v-model="sterm" :columns="columns" :data="filtered" @refresh="fetchData">
                 <Range @fetch="refreshAll()" />
                 <template #data="{ rows }">
-                    <tr
-                        v-for="(item, index) in rows"
-                        :key="index"
-                    >
+                    <tr v-for="(item, index) in rows" :key="index">
                         <td>{{ item.code }}</td>
                         <td>
                             <span class="fw-medium">
@@ -128,11 +117,7 @@ onMounted(async () => {
                         </td>
                         <td>{{ $currency(item.total) }}</td>
                         <td class="space">
-                            <m-action
-                                icon="eye"
-                                tool="Detalle"
-                                @action="handleEdit(item)"
-                            />
+                            <m-action icon="eye" tool="Detalle" @action="handleEdit(item)" />
                             <m-action
                                 icon="print"
                                 color="info"

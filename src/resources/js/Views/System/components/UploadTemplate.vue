@@ -37,15 +37,11 @@ defineExpose({
         @ok="handleUpload"
     >
         <alert type="alert-danger">
-            Al actualizar la plantilla o el membrete ({{ type }}), este, afectará tambien a todas las sedes de la
-            institución
+            Al actualizar la plantilla o el membrete ({{ type }}), este, afectará tambien a todas
+            las sedes de la institución
         </alert>
         <div class="d-flex justify-content-center">
-            <File
-                v-model="image"
-                :size="260"
-                :allowed-types="['image/png']"
-            />
+            <File v-model="image" :size="260" :allowed-types="['image/png']" />
         </div>
     </Dialog>
 </template>

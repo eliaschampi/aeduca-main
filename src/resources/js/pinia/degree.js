@@ -2,8 +2,7 @@ import { defineStore } from "pinia";
 import { fetchAllDgApi, fetchDgApi } from "../http";
 import { useCycleStore } from "./cycle";
 
-export const useDegreeStore = defineStore({
-    id: "degree",
+export const useDegreeStore = defineStore("degree", {
     state: () => ({
         degrees: [],
         degree: {},

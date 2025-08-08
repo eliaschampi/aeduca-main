@@ -19,10 +19,7 @@ const updateUserCode = (user_code) => {
 </script>
 <template>
     <div class="d-flex space overflow-auto">
-        <template
-            v-for="item in store.cashers"
-            :key="item.code"
-        >
+        <template v-for="item in store.cashers" :key="item.code">
             <div
                 class="badge pointer"
                 :class="classes(item.code)"

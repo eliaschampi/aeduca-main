@@ -2,8 +2,7 @@ import { defineStore } from "pinia";
 import { fetchBySectionRegApi, fetchLatestRegApi } from "../http";
 import { useSectionStore } from "./section";
 
-export const useRegisterStore = defineStore({
-    id: "register",
+export const useRegisterStore = defineStore("register", {
     state: () => ({
         registers: [],
         register: null,

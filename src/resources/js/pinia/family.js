@@ -1,7 +1,6 @@
 import { defineStore } from "pinia";
 
-export const useFamilyStore = defineStore({
-    id: "family",
+export const useFamilyStore = defineStore("family", {
     state: () => ({
         family: null,
     }),

@@ -26,10 +26,7 @@ const handleSubmit = () => {
 };
 </script>
 <template>
-    <form
-        style="max-width: 18rem"
-        @submit.prevent="handleSubmit"
-    >
+    <form style="max-width: 18rem" @submit.prevent="handleSubmit">
         <div class="input-group">
             <input
                 id="iddatepick"
@@ -37,12 +34,8 @@ const handleSubmit = () => {
                 class="form-control"
                 name="fecha"
                 type="date"
-            >
-            <m-submit
-                class="input-group-text"
-                color="btn-success"
-                icon="icon ion-md-search"
             />
+            <m-submit class="input-group-text" color="btn-success" icon="icon ion-md-search" />
         </div>
     </form>
 </template>

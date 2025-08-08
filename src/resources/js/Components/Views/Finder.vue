@@ -74,16 +74,8 @@ onUnmounted(() => {
 });
 </script>
 <template>
-    <form
-        class="d-flex mb-4"
-        @submit.prevent="search"
-    >
-        <input
-            v-model="name"
-            type="text"
-            :placeholder="placeholder"
-            class="form-control"
-        >
+    <form class="d-flex mb-4" @submit.prevent="search">
+        <input v-model="name" type="text" :placeholder="placeholder" class="form-control" />
         <div class="d-flex">
             <m-submit
                 :is-loading="isLoading"
@@ -92,10 +84,7 @@ onUnmounted(() => {
                 class="btn-icon"
                 icon="ion ion-ios-search"
             />
-            <div
-                v-show="showOptions"
-                class="dropdown"
-            >
+            <div v-show="showOptions" class="dropdown">
                 <m-button
                     id="searchEMenu"
                     color="btn-success"
@@ -104,26 +93,17 @@ onUnmounted(() => {
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                 />
-                <ul
-                    class="dropdown-menu"
-                    aria-labelledby="searchEMenu"
-                >
-                    <template
-                        v-for="item in store.branchesForFinder"
-                        :key="item.code"
-                    >
+                <ul class="dropdown-menu" aria-labelledby="searchEMenu">
+                    <template v-for="item in store.branchesForFinder" :key="item.code">
                         <li class="dropdown-item">
-                            <div
-                                class="form-check"
-                                @click.stop
-                            >
+                            <div class="form-check" @click.stop>
                                 <input
                                     v-model="branch_code"
                                     class="form-check-input"
                                     type="radio"
                                     name="branch_r"
                                     :value="item.code"
-                                >
+                                />
                                 <label
                                     class="form-check-label pointer user-select-none"
                                     @click="branch_code = item.code"
@@ -134,21 +114,15 @@ onUnmounted(() => {
                         </li>
                     </template>
                     <li class="dropdown-item">
-                        <div
-                            class="form-check"
-                            @click.stop
-                        >
+                        <div class="form-check" @click.stop>
                             <input
                                 id="onlyactive_i"
                                 v-model="only_reg"
                                 type="checkbox"
                                 class="form-check-input"
                                 aria-label="onlystudent"
-                            >
-                            <label
-                                class="pointer user-select-none"
-                                for="onlyactive_i"
-                            >
+                            />
+                            <label class="pointer user-select-none" for="onlyactive_i">
                                 Solo
                                 <div class="badge bg-success">Activos</div>
                             </label>
@@ -160,11 +134,7 @@ onUnmounted(() => {
     </form>
     <div>
         <ul class="list-group list-group-flush">
-            <li
-                v-for="item in values"
-                :key="item.dni"
-                class="list-group-item"
-            >
+            <li v-for="item in values" :key="item.dni" class="list-group-item">
                 <div class="form-check">
                     <input
                         :id="item.dni"
@@ -174,11 +144,8 @@ onUnmounted(() => {
                         class="form-check-input"
                         :value="item.person"
                         @change="handleItemChange(item.branch_code)"
-                    >
-                    <label
-                        class="form-check-label pointer user-select-none"
-                        :for="item.dni"
-                    >
+                    />
+                    <label class="form-check-label pointer user-select-none" :for="item.dni">
                         {{ item.person.name + " " + item.person.lastname }}
                         <small class="opacity-50 fst-italic"> ({{ item.dni }}) </small>
                     </label>

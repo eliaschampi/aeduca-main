@@ -3,7 +3,12 @@ import { computed, ref } from "vue";
 import Empty from "../../Components/Ui/Empty.vue";
 import { useEntityStore } from "../../composables/utility";
 import { downl } from "../../core/util";
-import { destroyProfileApi, printProfileInfoApi, storeProfileApi, updateProfileApi } from "../../http";
+import {
+    destroyProfileApi,
+    printProfileInfoApi,
+    storeProfileApi,
+    updateProfileApi,
+} from "../../http";
 import { useSnackbarStore } from "../../pinia/snackbar";
 import { useUserStore } from "../../pinia/user";
 const { fullyear } = useUserStore();
@@ -71,20 +76,13 @@ async function printInfo() {
 }
 </script>
 <template>
-    <card
-        title="Plataforma educativa"
-        :f="false"
-    >
+    <card title="Plataforma educativa" :f="false">
         <blockquote class="blockquote">
-            Las <b>contraseñas prestablecidas</b> son generadas por el sistema. Tenga en cuenta que el estudiante o
-            docente puede cambiarlo posteriormente.
+            Las <b>contraseñas prestablecidas</b> son generadas por el sistema. Tenga en cuenta que
+            el estudiante o docente puede cambiarlo posteriormente.
         </blockquote>
         <template #rb>
-            <div
-                v-if="person.profile"
-                v-can="'ANS'"
-                class="d-flex space"
-            >
+            <div v-if="person.profile" v-can="'ANS'" class="d-flex space">
                 <m-action
                     v-show="!isDifferentYear"
                     icon="icon ion-md-print"
@@ -114,13 +112,13 @@ async function printInfo() {
         <template v-if="person.profile">
             <m-plain label="Estado:">
                 <span class="space">
-                    <i class="icon ion-md-key icon-sm text-success" />
+                    <i class="icon ion-md-key icon-sm text-success"></i>
                     <span class="badge bg-success-subtle text-success-emphasis"> Habilitado </span>
                 </span>
             </m-plain>
             <m-plain label="Últ. vez en línea:">
                 <span class="space">
-                    <i class="icon ion-md-time icon-sm text-title" />
+                    <i class="icon ion-md-time icon-sm text-title"></i>
                     <i>{{ $ago(person.profile.last_logout) }}</i>
                 </span>
             </m-plain>
@@ -128,16 +126,15 @@ async function printInfo() {
                 <label class="fw-bold col-form-label col-sm-3"> Contraseña: </label>
                 <div class="col-sm-9 d-flex flex-wrap align-items-center">
                     <b>{{ showpass ? person.profile.original_password : "*********" }}</b>
-                    <span
-                        class="ms-2 text-success pointer"
-                        @click="showpass = !showpass"
-                    >
-                        <i :class="['icon icon-md', { 'ion-md-eye': !showpass, 'ion-md-eye-off': !!showpass }]" />
+                    <span class="ms-2 text-success pointer" @click="showpass = !showpass">
+                        <i
+                            :class="[
+                                'icon icon-md',
+                                { 'ion-md-eye': !showpass, 'ion-md-eye-off': !!showpass },
+                            ]"
+                        ></i>
                     </span>
-                    <u
-                        class="ms-2 text-primary pointer"
-                        @click="updatePassword"
-                    > restablecer </u>
+                    <u class="ms-2 text-primary pointer" @click="updatePassword"> restablecer </u>
                 </div>
             </div>
         </template>

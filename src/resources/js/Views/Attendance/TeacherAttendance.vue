@@ -31,15 +31,10 @@ async function fetchData() {
     <section id="teacherAtt">
         <card title="Asistencia diaria de docentes">
             <alert>
-                El horario de ingreso para los docentes es {{ configData.entry_time }} con una tolerancia de
-                {{ configData.tolerance }} minutos.
+                El horario de ingreso para los docentes es {{ configData.entry_time }} con una
+                tolerancia de {{ configData.tolerance }} minutos.
             </alert>
-            <m-table
-                v-model="sterm"
-                :columns="columns"
-                :data="filtered"
-                :fetch="fetchData"
-            >
+            <m-table v-model="sterm" :columns="columns" :data="filtered" :fetch="fetchData">
                 <Datepick @fetch="fetchData" />
                 <template #data="{ rows }">
                     <AttendanceRow
@@ -54,17 +49,16 @@ async function fetchData() {
                         @update="handleUpdate(item)"
                         @cancel="cancelEdit(item)"
                         @edit="handleEdit(item)"
-                        @show-jus-modal="jusRef.handleShowModal(item.code, item.state, item.justification)"
+                        @show-jus-modal="
+                            jusRef.handleShowModal(item.code, item.state, item.justification)
+                        "
                     >
-                        <td><i class="icon ion-md-folder icon-md text-secondary" /></td>
+                        <td><i class="icon ion-md-folder icon-md text-secondary"></i></td>
                         <td>
-                            <PersonLink
-                                :person="item.person"
-                                route="teacher_profile"
-                            />
+                            <PersonLink :person="item.person" route="teacher_profile" />
                         </td>
                         <td>
-                            <i class="icon ion-md-call icon-sm text-success" />
+                            <i class="icon ion-md-call icon-sm text-success"></i>
                             {{ item.person.phone }}
                         </td>
                     </AttendanceRow>
@@ -74,9 +68,6 @@ async function fetchData() {
                 <footext :title="`${attendances.length} asistencias registradas`" />
             </template>
         </card>
-        <Justification
-            ref="jusRef"
-            @done="fetchData"
-        />
+        <Justification ref="jusRef" @done="fetchData" />
     </section>
 </template>

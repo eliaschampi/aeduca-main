@@ -1,7 +1,7 @@
 import { ago, date, datetim } from "../core/date.js";
 import { currency } from "../core/util.js";
 
-export default function (app) {
+export default function(app) {
     const properties = {
         $date: date,
         $datetim: datetim,

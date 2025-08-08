@@ -69,11 +69,8 @@ const schema = {
             label="Ingresa tu Correo"
         />
         <template #foot>
-            <RouterLink
-                class="btn btn-success btn-sm text-dark"
-                :to="{ name: 'login' }"
-            >
-                <i class="icon ion-md-log-in" /> Volver a login
+            <RouterLink class="btn btn-success btn-sm text-dark" :to="{ name: 'login' }">
+                <i class="icon ion-md-log-in"></i> Volver a login
             </RouterLink>
         </template>
     </LoginForm>
