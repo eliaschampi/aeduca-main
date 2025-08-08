@@ -12,9 +12,7 @@
         "dev": "vite",
         "build": "vite build",
         "lint": "eslint resources/js --fix",
-        "lint:check": "eslint resources/js",
-        "format": "eslint resources/js --fix",
-        "format:check": "eslint resources/js"
+        "lint:check": "eslint resources/js"
     },
     "dependencies": {
         "@tiptap/extension-highlight": "^3.0.9",
