@@ -36,3 +36,4 @@ npm-debug.log
 yarn-error.log
 # Log files
 storage/logs/*.log
+config/core
