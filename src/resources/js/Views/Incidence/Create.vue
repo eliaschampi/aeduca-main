@@ -30,11 +30,11 @@ const attached = ref(null);
 const incidenceCode = useRoute().params.code;
 
 const descriptionLabel = computed(() => {
-    return `${1000 - incidence.description.length} caracteres restantes`;
+    return `${1500 - incidence.description.length} caracteres restantes`;
 });
 
 const agreementLabel = computed(() => {
-    return `(${300 - incidence.agreement.length} restantes)`;
+    return `(${500 - incidence.agreement.length} restantes)`;
 });
 
 function handleAddStudent({ name, lastname, dni }) {
