@@ -57,8 +57,8 @@ class IncidenceController extends Controller
             "type" => "required",
             "persons" => "",
             "title" => "required|max:100",
-            "description" => "required|min:10|max:1000",
-            "agreement" => "required|min:5|max:300",
+            "description" => "required|min:10|max:1500",
+            "agreement" => "required|min:5|max:500",
             "created_at" => "required",
             "extra" => "",
         ]);
@@ -91,8 +91,8 @@ class IncidenceController extends Controller
         $request->validate([
             "type" => "required",
             "title" => "required|max:100",
-            "description" => "required|min:10|max:1000",
-            "agreement" => "required|min:5|max:300",
+            "description" => "required|min:10|max:1500",
+            "agreement" => "required|min:5|max:500",
             "created_at" => "",
             "extra" => ""
         ]);
