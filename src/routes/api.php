@@ -40,21 +40,7 @@ Route::group(["prefix" => "auth"], function () {
 
 Route::group(["middleware" => ["withkey"]], function () {
 
-    //cedp p1
-    Route::get("/attendance/{entity_identifier}/{from}/{to}/{priority}", [AttendanceController::class, "fetchByEntity"]);
-    Route::get("/attendance_dw/{dni}/{from}/{to}/{priority}", [AttendanceController::class, "exportCV"]);
-    Route::get("/payment/{register_code}", [PaymentController::class, "fetchByRegister"]);
-    Route::get("/register_all/{dni}", [RegisterController::class, "fetchByStudent"]);
-    Route::get("/incidence_print/{code}", [IncidenceController::class, "print"]);
-    Route::get("/incidence_dw/{code}", [IncidenceController::class, "downloadAttached"]);
-    Route::get("/cedp/incidence/{dni}", [IncidenceController::class, "fetchByEntity"]);
 
-    // lesson
-    Route::get("/lc/excel/{lesson_code}/{section_code}", [RegisterController::class, "fetchWithLCRbySC"]);
-    Route::get("/lc/pdf/{lesson_code}/{register_code}", [RegisterController::class, "fetchWithLCRbyReg"]);
-    Route::get("/lc/res/{section_code}/{register_code}", [RegisterController::class, "fetchForScoreReport"]);
-    // config
-    Route::get("/config", [ConfigController::class, "fetchConfig"]);
 });
 
 //group
@@ -240,4 +226,16 @@ Route::group(["middleware" => ["jwt.auth"]], function () {
     Route::post("/incidence", [IncidenceController::class, "store"]);
     Route::put("/incidence/{code}", [IncidenceController::class, "update"]);
     Route::delete("/incidence/{code}", [IncidenceController::class, "destroy"]);
+
+    //new updated
+    Route::get("/attendance/{entity_identifier}/{from}/{to}/{priority}", [AttendanceController::class, "fetchByEntity"]);
+    Route::get("/attendance_dw/{dni}/{from}/{to}/{priority}", [AttendanceController::class, "exportCV"]);
+    Route::get("/payment/{register_code}", [PaymentController::class, "fetchByRegister"]);
+    Route::get("/register_all/{dni}", [RegisterController::class, "fetchByStudent"]);
+    Route::get("/incidence_print/{code}", [IncidenceController::class, "print"]);
+    Route::get("/incidence_dw/{code}", [IncidenceController::class, "downloadAttached"]);
+    Route::get("/cedp/incidence/{dni}", [IncidenceController::class, "fetchByEntity"]);
+    
+    // config
+    Route::get("/config", [ConfigController::class, "fetchConfig"]);
 });

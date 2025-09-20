@@ -1,11 +1,11 @@
 import cache from "../core/cache";
 import api from "./axios";
-import { cheader, ctForm, rblob } from "./common";
+import { ctForm, rblob } from "./common";
 
 // app
 export const fetchCompanyApi = () => api.get("/company");
 
-export const fetchConfigApi = () => api.get("/config", cheader);
+export const fetchConfigApi = () => api.get("/config");
 // main
 export const fetchCyclesApi = () => api.get("/ctypes");
 
@@ -37,7 +37,7 @@ export const fetchBySectionAttApi = ({ section_code, date, priority }) =>
     api.get(`/attendance/${section_code}/${date}/${priority}`);
 
 export const fetchByEntityAttApi = ({ entity_identifier, from, to, priority }) =>
-    api.get(`/attendance/${entity_identifier}/${from}/${to}/${priority}`, cheader);
+    api.get(`/attendance/${entity_identifier}/${from}/${to}/${priority}`);
 
 export const fetchForTeacherAttApi = (date) => api.get(`/attendance_t/${date}`);
 
@@ -53,7 +53,7 @@ export const updateAttApi = (data) => api.put(`/attendance/${data.code}`, data);
 export const autoAttApi = (data) => api.post("/attendance_auto", data);
 
 export const exportCVAttApi = (dni, from, to, priority) =>
-    api.get(`/attendance_dw/${dni}/${from}/${to}/${priority}`, { ...rblob, ...cheader });
+    api.get(`/attendance_dw/${dni}/${from}/${to}/${priority}`, rblob);
 
 export const exportToExcelAttApi = (section_code, date, priority) =>
     api.get(`/attendance_sw/${section_code}/${date}/${priority}`, rblob);
@@ -165,7 +165,7 @@ export const fetchStudentsFmApi = (family_dni) => api.get(`/family_st/${family_d
 // incidence
 export const fetchByMonthInApi = (month, page) => api.get(`/incidence/${month}?page=${page}`);
 
-export const fetchByEntityInApi = (dni) => api.get(`/cedp/incidence/${dni}`, cheader);
+export const fetchByEntityInApi = (dni) => api.get(`/cedp/incidence/${dni}`);
 
 export const storeInApi = (data) => api.post("/incidence", data, ctForm);
 
@@ -174,9 +174,9 @@ export const updateInApi = (data) => api.put(`/incidence/${data.code}`, data);
 export const delInApi = (code) => api.delete(`/incidence/${code}`);
 
 export const downloadAttachedInApi = (code) =>
-    api.get(`/incidence_dw/${code}`, { ...rblob, ...cheader });
+    api.get(`/incidence_dw/${code}`, rblob);
 
-export const printInApi = (code) => api.get(`/incidence_print/${code}`, { ...rblob, ...cheader });
+export const printInApi = (code) => api.get(`/incidence_print/${code}`, rblob);
 
 // income
 export const fetchByDateApi = ({ from, to }, user_code) =>
@@ -223,7 +223,7 @@ export const destroyOpApi = (code) => api.delete(`/op/${code}`);
 
 // payment
 export const fetchByRegisterPyApi = (register_code) =>
-    api.get(`/payment/${register_code}`, cheader);
+    api.get(`/payment/${register_code}`);
 
 export const fetchPaidsPyApi = (register_code) => api.get(`/paid/${register_code}`);
 
@@ -256,7 +256,7 @@ export const destroyProfileApi = (dni) => api.delete(`/profile/${dni}`);
 export const printProfileInfoApi = (dni) => api.get(`/profile_pdf/${dni}`, rblob);
 
 // register
-export const fetchRegistersApi = (dni) => api.get(`/register_all/${dni}`, cheader);
+export const fetchRegistersApi = (dni) => api.get(`/register_all/${dni}`);
 
 export const hasOnCacheRegApi = () => api.get("/register_has_cache");
 

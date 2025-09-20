@@ -154,15 +154,4 @@ class RegisterRepository extends BaseRepository
         }
         return Register::find($code)->delete();
     }
-
-    public function fetchWithLCRbySC(int $lesson_code, string $section_code)
-    {
-        return Register::where("section_code", $section_code)
-          ->leftjoin("score", function ($join) use ($lesson_code) {
-              $join->on("register.code", "score.register_code")
-                ->where("score.lesson_code", $lesson_code);
-          })
-          ->orderByRaw("score.score desc nulls last")
-          ->get();
-    }
 }
