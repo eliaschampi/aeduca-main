@@ -11,15 +11,7 @@ import { useDateStore } from "../../pinia/date";
 import { usePriorityStore } from "../../pinia/priority";
 import AttendanceRow from "./components/AttendanceRow.vue";
 import Justification from "./components/Justification.vue";
-const columns = [
-    "#",
-    "Estudiante",
-    "Grupo/Secc.",
-    "Celular",
-    "Ingreso Registrado",
-    "Estado",
-    "Aciones",
-];
+const columns = ["#", "Estudiante", "Grupo/Secc.", "Celular", "Ingreso Registrado", "Estado", "Aciones"];
 const attendances = ref([]);
 const sterm = ref("");
 const isLoading = ref(false);
@@ -29,76 +21,69 @@ const { cancelEdit, handleEdit, mod, states, handleUpdate } = useAttendanceToolk
 const current = computed(() => useCycleStore().current);
 
 const filtered = computed(() => {
-    return attendances.value.filter((item) => {
-        return new RegExp(sterm.value, "i").test([item.person.name, item.person.lastname].join());
-    });
+  return attendances.value.filter((item) => {
+    return new RegExp(sterm.value, "i").test([item.person.name, item.person.lastname].join());
+  });
 });
 
 async function fetchData() {
-    isLoading.value = true;
-    const { date } = useDateStore();
-    const { priority } = usePriorityStore();
-    const { data } = await absencesAttApi(current.value, date, priority);
-    attendances.value = data.values;
-    isLoading.value = false;
+  isLoading.value = true;
+  const { date } = useDateStore();
+  const { priority } = usePriorityStore();
+  const { data } = await absencesAttApi(current.value, date, priority);
+  attendances.value = data.values;
+  isLoading.value = false;
 }
 
 watch(current, fetchData);
 </script>
+
 <template>
-    <section id="absence-report">
-        <panel title="Ciclos activos">
-            <Cyclepick />
-        </panel>
-        <card title="Tardanzas e Inasistencias" class="mt-4">
-            <template #rb>
-                <Priority @updated="fetchData" />
-            </template>
-            <m-table
-                v-model="sterm"
-                :columns="columns"
-                :data="filtered"
-                :is-loading="isLoading"
-                @refresh="fetchData"
-            >
-                <div class="d-flex space mt-3 flex-wrap">
-                    <Datepick style="max-width: 13rem" @fetch="fetchData" />
-                </div>
-                <template #data="{ rows }">
-                    <AttendanceRow
-                        v-for="item in rows"
-                        :key="item.code"
-                        v-model:state="item.state"
-                        v-model:time="item.entry_time"
-                        :mod="mod"
-                        :code="item.code"
-                        :has-jus="!item.justification"
-                        :state-label="states[item.state]"
-                        @update="handleUpdate(item)"
-                        @cancel="cancelEdit(item)"
-                        @edit="handleEdit(item)"
-                        @show-jus-modal="
-                            jusRef.handleShowModal(item.code, item.state, item.justification)
-                        "
-                    >
-                        <td><i class="icon ion-md-folder icon-md text-secondary"></i></td>
-                        <td>
-                            <PersonLink :person="item.person" route="student_profile" />
-                        </td>
-                        <td>
-                            {{ item.section_code.substring(8) }}
-                        </td>
-                        <td>
-                            <i class="icon ion-md-call icon-sm text-success"></i>
-                            {{ item.person.phone }}
-                        </td>
-                    </AttendanceRow>
-                </template>
-            </m-table>
-            <template #foot>
-                <footext :title="`${attendances.length} estudiantes faltaron o llegaron tarde`" />
-            </template>
-            <Justification ref="jusRef" @done="fetchData" />
-        </card>
-    </section>
+  <section id="absence-report">
+    <Panel title="Ciclos activos">
+      <Cyclepick />
+    </Panel>
+    <Card title="Tardanzas e Inasistencias" class="mt-4">
+      <template #rb>
+        <Priority @updated="fetchData" />
+      </template>
+      <MTable v-model="sterm" :columns="columns" :data="filtered" :is-loading="isLoading" @refresh="fetchData">
+        <div class="d-flex space mt-3 flex-wrap">
+          <Datepick style="max-width: 13rem" @fetch="fetchData" />
+        </div>
+        <template #data="{ rows }">
+          <AttendanceRow
+            v-for="item in rows"
+            :key="item.code"
+            v-model:state="item.state"
+            v-model:time="item.entry_time"
+            :mod="mod"
+            :code="item.code"
+            :has-jus="!item.justification"
+            :state-label="states[item.state]"
+            @update="handleUpdate(item)"
+            @cancel="cancelEdit(item)"
+            @edit="handleEdit(item)"
+            @show-jus-modal="jusRef.handleShowModal(item.code, item.state, item.justification)"
+          >
+            <td><i class="icon ion-md-folder icon-md text-secondary"></i></td>
+            <td>
+              <PersonLink :person="item.person" route="student_profile" />
+            </td>
+            <td>
+              {{ item.section_code.substring(8) }}
+            </td>
+            <td>
+              <i class="icon ion-md-call icon-sm text-success"></i>
+              {{ item.person.phone }}
+            </td>
+          </AttendanceRow>
+        </template>
+      </MTable>
+      <template #foot>
+        <Footext :title="`${attendances.length} estudiantes faltaron o llegaron tarde`" />
+      </template>
+      <Justification ref="jusRef" @done="fetchData" />
+    </Card>
+  </section>
 </template>

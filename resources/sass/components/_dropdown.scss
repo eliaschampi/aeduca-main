@@ -1,47 +1,48 @@
-.dropdown, .dropstart {
-    .dropdown-menu {
-        @extend .dropdownAnimation;
-        border: none;
-        box-shadow: 0px 3px 21px 0px rgba($dark, 0.2);
-        background-color: var(--bs-card);
-        box-shadow: var(--shadow) !important;
-        .dropdown-item {
-            font-size: 0.9rem;
-            margin-bottom: 0;
-            padding: 0.5rem 1.5rem;
-            cursor: pointer;
+.dropdown,
+.dropstart {
+  .dropdown-menu {
+    @extend .dropdownAnimation;
+    border: none;
+    box-shadow: 0px 3px 21px 0px rgba($dark, 0.2);
+    background-color: var(--bs-card);
+    box-shadow: var(--shadow) !important;
+    .dropdown-item {
+      font-size: 0.9rem;
+      margin-bottom: 0;
+      padding: 0.5rem 1.5rem;
+      cursor: pointer;
 
-            .icon {
-                font-size: $base-size;
-                margin-right: 0.5rem;
-            }
+      .icon {
+        font-size: $base-size;
+        margin-right: 0.5rem;
+      }
 
-            &.active {
-                background-color: rgba($primary, 0.7);
-                .icon {
-                    color: $white !important;
-                }
-            }
+      &.active {
+        background-color: rgba($primary, 0.7);
+        .icon {
+          color: $white !important;
         }
-        .dropdown-divider {
-            margin: 0;
-        }
+      }
     }
-    .dropdown-toggle {
-        &:after {
-            border-top: 0;
-            border-right: 0;
-            border-left: 0;
-            border-bottom: 0;
-            font-family: "Ionicons";
-            content: "\f3d0";
-            width: auto;
-            height: auto;
-            vertical-align: middle;
-            line-height: 0.5rem;
-            font-size: $base-size;
-            margin-left: 5px;
-            margin-bottom: 3px;
-        }
+    .dropdown-divider {
+      margin: 0;
     }
+  }
+  .dropdown-toggle {
+    &:after {
+      border-top: 0;
+      border-right: 0;
+      border-left: 0;
+      border-bottom: 0;
+      font-family: "Ionicons";
+      content: "\f3d0";
+      width: auto;
+      height: auto;
+      vertical-align: middle;
+      line-height: 0.5rem;
+      font-size: $base-size;
+      margin-left: 5px;
+      margin-bottom: 3px;
+    }
+  }
 }

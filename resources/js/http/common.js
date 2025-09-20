@@ -1,7 +1,7 @@
 export const rblob = {
-    responseType: "blob",
+  responseType: "blob",
 };
 
 export const ctForm = {
-    "Content-Type": "multipart/form-data",
+  "Content-Type": "multipart/form-data",
 };

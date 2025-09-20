@@ -8,18 +8,19 @@ const sectionStore = useSectionStore();
 const emitDone = () => emit("done");
 
 watchEffect(async () => {
-    await sectionStore.fetchSections(degree_code.value);
-    emitDone();
+  await sectionStore.fetchSections(degree_code.value);
+  emitDone();
 });
 </script>
+
 <template>
-    <m-select
-        v-model="sectionStore.section_code"
-        name="mysection"
-        style="width: 10rem"
-        placeholder="Sección"
-        standalone
-        :options="sectionStore.sections"
-        @update:model-value="emitDone"
-    />
+  <MSelect
+    v-model="sectionStore.section_code"
+    name="mysection"
+    style="width: 10rem"
+    placeholder="Sección"
+    standalone
+    :options="sectionStore.sections"
+    @update:model-value="emitDone"
+  />
 </template>

@@ -1,24 +1,24 @@
 /* Cards */
 
 .card {
-    border: none;
-    box-shadow: var(--shadow);
-    .card-body {
-        padding: $card-padding-y $card-padding-x;
-        + .card-body {
-            padding-top: $base-size;
-        }
+  border: none;
+  box-shadow: var(--shadow);
+  .card-body {
+    padding: $card-padding-y $card-padding-x;
+    + .card-body {
+      padding-top: $base-size;
     }
-    .card-title {
-        margin-bottom: 0.6rem;
-        font-weight: 700;
-    }
+  }
+  .card-title {
+    margin-bottom: 0.6rem;
+    font-weight: 700;
+  }
 
-    &.left-panel {
-        border-left: 4px solid $info;
-    }
+  &.left-panel {
+    border-left: 4px solid $info;
+  }
 
-    &.head-panel {
-        border-top: 3px solid $info;
-    }
+  &.head-panel {
+    border-top: 3px solid $info;
+  }
 }

@@ -1,58 +1,60 @@
 $offset: 187;
 $duration: 1.4s;
 .spinner {
-    animation: circle-rotator $duration linear infinite;
+  animation: circle-rotator $duration linear infinite;
 
-    * {
-        line-height: 0;
-        box-sizing: border-box;
-    }
+  * {
+    line-height: 0;
+    box-sizing: border-box;
+  }
 }
 
 @keyframes circle-rotator {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(270deg);
-    }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(270deg);
+  }
 }
 
 .path {
-    stroke-dasharray: $offset;
-    stroke-dashoffset: 0;
-    transform-origin: center;
-    animation: circle-dash $duration ease-in-out infinite, circle-colors ($duration * 4) ease-in-out infinite;
+  stroke-dasharray: $offset;
+  stroke-dashoffset: 0;
+  transform-origin: center;
+  animation:
+    circle-dash $duration ease-in-out infinite,
+    circle-colors ($duration * 4) ease-in-out infinite;
 }
 
 @keyframes circle-colors {
-    0% {
-        stroke: $primary;
-    }
-    25% {
-        stroke: $secondary;
-    }
-    50% {
-        stroke: $success;
-    }
-    75% {
-        stroke: $danger;
-    }
-    100% {
-        stroke: $info;
-    }
+  0% {
+    stroke: $primary;
+  }
+  25% {
+    stroke: $secondary;
+  }
+  50% {
+    stroke: $success;
+  }
+  75% {
+    stroke: $danger;
+  }
+  100% {
+    stroke: $info;
+  }
 }
 
 @keyframes circle-dash {
-    0% {
-        stroke-dashoffset: $offset;
-    }
-    50% {
-        stroke-dashoffset: calc($offset / 4);
-        transform: rotate(135deg);
-    }
-    100% {
-        stroke-dashoffset: $offset;
-        transform: rotate(450deg);
-    }
+  0% {
+    stroke-dashoffset: $offset;
+  }
+  50% {
+    stroke-dashoffset: calc($offset / 4);
+    transform: rotate(135deg);
+  }
+  100% {
+    stroke-dashoffset: $offset;
+    transform: rotate(450deg);
+  }
 }

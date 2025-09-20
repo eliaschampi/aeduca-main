@@ -16,21 +16,21 @@ import Switch from "../Components/Ui/Switch.vue";
 import Table from "../Components/Ui/Table.vue";
 import Textarea from "../Components/Ui/Textarea.vue";
 
-export default function(app) {
-    app.component("Card", Card);
-    app.component("Panel", Panel);
-    app.component("Alert", Alert);
-    app.component("MTable", Table);
-    app.component("Footext", Footext);
-    app.component("MButton", Button);
-    app.component("MSubmit", Submit);
-    app.component("MAction", Action);
-    app.component("MCheck", Check);
-    app.component("MSwitch", Switch);
-    app.component("MInput", Input);
-    app.component("MSelect", Select);
-    app.component("MTextarea", Textarea);
-    app.component("MPlain", Plain);
-    app.component("MRouter", Router);
-    app.component("MForm", Form);
+export default function (app) {
+  app.component("Card", Card);
+  app.component("Panel", Panel);
+  app.component("Alert", Alert);
+  app.component("MTable", Table);
+  app.component("Footext", Footext);
+  app.component("MButton", Button);
+  app.component("MSubmit", Submit);
+  app.component("MAction", Action);
+  app.component("MCheck", Check);
+  app.component("MSwitch", Switch);
+  app.component("MInput", Input);
+  app.component("MSelect", Select);
+  app.component("MTextarea", Textarea);
+  app.component("MPlain", Plain);
+  app.component("MRouter", Router);
+  app.component("MForm", Form);
 }

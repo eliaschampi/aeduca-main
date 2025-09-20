@@ -1,64 +1,64 @@
 .form-control {
-    font-weight: 400;
+  font-weight: 400;
 }
 
 .form-floating > .form-control:focus {
-    &::placeholder {
-        color: $input-placeholder-color !important;
-    }
+  &::placeholder {
+    color: $input-placeholder-color !important;
+  }
 }
 
 .switch {
-    &.withmargin {
-        margin: 8px;
-    }
+  &.withmargin {
+    margin: 8px;
+  }
 
-    input[type="checkbox"] {
-        height: 0;
-        width: 0;
-        visibility: hidden;
-    }
+  input[type="checkbox"] {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+  }
 
-    label {
-        cursor: pointer;
-        text-indent: -9999px;
-        width: 3rem;
-        height: 1.4rem;
-        background: grey;
-        border-radius: 100px;
-        position: relative;
-    }
+  label {
+    cursor: pointer;
+    text-indent: -9999px;
+    width: 3rem;
+    height: 1.4rem;
+    background: grey;
+    border-radius: 100px;
+    position: relative;
+  }
 
-    label:after {
-        content: "";
-        position: absolute;
-        top: 1px;
-        left: 2px;
-        width: 1.3rem;
-        height: 1.3rem;
-        background: var(--bs-card);
-        border-radius: 50%;
-        transition: 0.3s;
-    }
+  label:after {
+    content: "";
+    position: absolute;
+    top: 1px;
+    left: 2px;
+    width: 1.3rem;
+    height: 1.3rem;
+    background: var(--bs-card);
+    border-radius: 50%;
+    transition: 0.3s;
+  }
 
-    input:checked + label.primary {
-        background: $primary;
-    }
+  input:checked + label.primary {
+    background: $primary;
+  }
 
-    input:checked + label.accent {
-        background: $secondary;
-    }
+  input:checked + label.accent {
+    background: $secondary;
+  }
 
-    input:checked + label.success {
-        background: $success;
-    }
+  input:checked + label.success {
+    background: $success;
+  }
 
-    input:checked + label:after {
-        left: calc(100% - 2px);
-        transform: translateX(-100%);
-    }
+  input:checked + label:after {
+    left: calc(100% - 2px);
+    transform: translateX(-100%);
+  }
 
-    label:active:after {
-        width: 2.7rem;
-    }
+  label:active:after {
+    width: 2.7rem;
+  }
 }

@@ -3,45 +3,45 @@ import { ref } from "vue";
 import cache from "../core/cache";
 
 export const useThemeStore = defineStore("theme", () => {
-    const theme = ref(cache.getItem("theme") || "light");
+  const theme = ref(cache.getItem("theme") || "light");
 
-    function storeTheme(value) {
-        theme.value = value;
-        cache.setItem("theme", value);
+  function storeTheme(value) {
+    theme.value = value;
+    cache.setItem("theme", value);
+  }
+
+  function systemTheme() {
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+
+  function preferredTheme() {
+    if (theme.value) {
+      return theme.value;
     }
+    return systemTheme();
+  }
 
-    function systemTheme() {
-        return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-    }
+  function setTheme(value) {
+    document.documentElement.setAttribute("data-bs-theme", value);
+  }
 
-    function preferredTheme() {
-        if (theme.value) {
-            return theme.value;
-        }
-        return systemTheme();
-    }
+  function changeTheme(value) {
+    setTheme(value);
+    storeTheme(value);
+  }
 
-    function setTheme(value) {
-        document.documentElement.setAttribute("data-bs-theme", value);
-    }
+  function systemThemeListener() {
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+      const sTheme = systemTheme();
+      changeTheme(sTheme);
+    });
+  }
 
-    function changeTheme(value) {
-        setTheme(value);
-        storeTheme(value);
-    }
+  setTheme(preferredTheme());
+  systemThemeListener();
 
-    function systemThemeListener() {
-        window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
-            const sTheme = systemTheme();
-            changeTheme(sTheme);
-        });
-    }
-
-    setTheme(preferredTheme());
-    systemThemeListener();
-
-    return {
-        change: changeTheme,
-        theme,
-    };
+  return {
+    change: changeTheme,
+    theme,
+  };
 });

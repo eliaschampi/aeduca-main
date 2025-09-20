@@ -11,119 +11,105 @@ const customers = ref([]);
 const columns = ["Código", "Nombre o Razon Social", "N° telf.", "Acciones"];
 
 const customer = reactive({
-    name: "",
-    contact_number: "",
+  name: "",
+  contact_number: "",
 });
 
 const { resetForm, handleSubmit } = useForm({
-    validationSchema: {
-        name: {
-            required: true,
-        },
-        contact_number: {
-            max: 30,
-        },
+  validationSchema: {
+    name: {
+      required: true,
     },
+    contact_number: {
+      max: 30,
+    },
+  },
 });
 
 async function fetchData() {
-    const { data } = await fetchAllCrApi();
-    customers.value = data.values;
+  const { data } = await fetchAllCrApi();
+  customers.value = data.values;
 }
 
 function handleShowModal(item) {
-    Object.assign(customer, item);
-    showModal("customerModal");
+  Object.assign(customer, item);
+  showModal("customerModal");
 }
 
 function handleDeleteClick(item) {
-    showSnack({
-        text: "¿Está seguro de eliminar el cliente?",
-        button: "Confirmar",
-        action: async () => {
-            const { data } = await delCrApi(item.code);
-            successSnack(data.message);
-            customers.value.splice(customers.value.indexOf(item), 1);
-        },
-    });
+  showSnack({
+    text: "¿Está seguro de eliminar el cliente?",
+    button: "Confirmar",
+    action: async () => {
+      const { data } = await delCrApi(item.code);
+      successSnack(data.message);
+      customers.value.splice(customers.value.indexOf(item), 1);
+    },
+  });
 }
 
 function handleCancel() {
-    resetForm({ errors: {} });
-    customer.code = undefined;
+  resetForm({ errors: {} });
+  customer.code = undefined;
 }
 
 function store() {
-    if (customer.code) {
-        return updateCrApi(customer);
-    }
-    return storeCrApi(customer);
+  if (customer.code) {
+    return updateCrApi(customer);
+  }
+  return storeCrApi(customer);
 }
 
 const onSubmit = handleSubmit(async () => {
-    const { data } = await store();
-    successSnack(data.message);
-    hideModal("customerModal");
-    fetchData();
+  const { data } = await store();
+  successSnack(data.message);
+  hideModal("customerModal");
+  fetchData();
 });
 
 onMounted(fetchData);
 </script>
+
 <template>
-    <section id="customer">
-        <card title="Registro de Clientes">
-            <template #rb>
-                <m-button
-                    data-bs-toggle="modal"
-                    data-bs-target="#customerModal"
-                    color="btn-inverse-info"
-                    class="btn-icon"
-                    icon="icon ion-md-add"
-                />
-            </template>
-            <m-table :columns="columns" :data="customers" :head="false" @refresh="fetchData">
-                <template #data="{ rows }">
-                    <tr v-for="item in rows" :key="item.code">
-                        <td>{{ item.code }}</td>
-                        <td>{{ item.name }}</td>
-                        <td>{{ item.contact_number }}</td>
-                        <td class="space">
-                            <m-action @action="handleShowModal(item)" />
-                            <m-action
-                                icon="trash"
-                                color="danger"
-                                tool="Eliminar"
-                                @action="handleDeleteClick(item)"
-                            />
-                        </td>
-                    </tr>
-                </template>
-            </m-table>
-            <template #foot>
-                <footext :title="`${customers.length} clientes`" />
-            </template>
-        </card>
-        <Dialog
-            id="customerModal"
-            btn-name="Guardar"
-            :title="customer.code ? 'Editar Cliente' : 'Nuevo Cliente'"
-            @ok="onSubmit"
-            @cancel="handleCancel"
-        >
-            <div class="row gx-2">
-                <m-input
-                    v-model="customer.name"
-                    name="name"
-                    class="col-md-6"
-                    label="Nombre o Razon Social"
-                />
-                <m-input
-                    v-model="customer.contact_number"
-                    name="contact_number"
-                    class="col-md-6"
-                    label="Telf de Contacto"
-                />
-            </div>
-        </Dialog>
-    </section>
+  <section id="customer">
+    <Card title="Registro de Clientes">
+      <template #rb>
+        <MButton
+          data-bs-toggle="modal"
+          data-bs-target="#customerModal"
+          color="btn-inverse-info"
+          class="btn-icon"
+          icon="icon ion-md-add"
+        />
+      </template>
+      <MTable :columns="columns" :data="customers" :head="false" @refresh="fetchData">
+        <template #data="{ rows }">
+          <tr v-for="item in rows" :key="item.code">
+            <td>{{ item.code }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.contact_number }}</td>
+            <td class="space">
+              <MAction @action="handleShowModal(item)" />
+              <MAction icon="trash" color="danger" tool="Eliminar" @action="handleDeleteClick(item)" />
+            </td>
+          </tr>
+        </template>
+      </MTable>
+      <template #foot>
+        <Footext :title="`${customers.length} clientes`" />
+      </template>
+    </Card>
+    <Dialog
+      id="customerModal"
+      btn-name="Guardar"
+      :title="customer.code ? 'Editar Cliente' : 'Nuevo Cliente'"
+      @ok="onSubmit"
+      @cancel="handleCancel"
+    >
+      <div class="row gx-2">
+        <MInput v-model="customer.name" name="name" class="col-md-6" label="Nombre o Razon Social" />
+        <MInput v-model="customer.contact_number" name="contact_number" class="col-md-6" label="Telf de Contacto" />
+      </div>
+    </Dialog>
+  </section>
 </template>

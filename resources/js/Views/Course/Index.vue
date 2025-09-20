@@ -11,111 +11,102 @@ const { showModal, hideModal } = useModalStore();
 const columns = ["Código", "Curso", "Acciones"];
 
 const course = reactive({
-    name: "",
+  name: "",
 });
 
 const schema = {
-    name: {
-        required: true,
-        min: 2,
-        max: 50,
-    },
+  name: {
+    required: true,
+    min: 2,
+    max: 50,
+  },
 };
 
 const { handleSubmit, resetForm } = useForm({
-    validationSchema: schema,
+  validationSchema: schema,
 });
 
 async function fetchData() {
-    const { data } = await fetchAllCourses();
-    courses.value = data.values;
+  const { data } = await fetchAllCourses();
+  courses.value = data.values;
 }
 
 async function handleShowModal(item) {
-    Object.assign(course, item);
-    showModal("courseModal");
+  Object.assign(course, item);
+  showModal("courseModal");
 }
 
 function handleDeleteCourse(item) {
-    showSnack({
-        text: "¿Está seguro de eliminar el curso?",
-        button: "Confirmar",
-        action: async () => {
-            const { data } = await delCourse(item.code);
-            courses.value.splice(courses.value.indexOf(item), 1);
-            successSnack(data.message);
-        },
-    });
+  showSnack({
+    text: "¿Está seguro de eliminar el curso?",
+    button: "Confirmar",
+    action: async () => {
+      const { data } = await delCourse(item.code);
+      courses.value.splice(courses.value.indexOf(item), 1);
+      successSnack(data.message);
+    },
+  });
 }
 
 function store() {
-    if (course.code) {
-        return updateCourse(course);
-    }
-    return setCourse(course);
+  if (course.code) {
+    return updateCourse(course);
+  }
+  return setCourse(course);
 }
 
 const onSubmit = handleSubmit(async () => {
-    const { data } = await store();
-    successSnack(data.message);
-    hideModal("courseModal");
-    fetchData();
+  const { data } = await store();
+  successSnack(data.message);
+  hideModal("courseModal");
+  fetchData();
 });
 
 function handleCancel() {
-    resetForm({ errors: {} });
-    course.code = undefined;
+  resetForm({ errors: {} });
+  course.code = undefined;
 }
 </script>
-<template>
-    <section id="course">
-        <card title="Registro de Cursos">
-            <template #rb>
-                <m-button
-                    data-bs-toggle="modal"
-                    data-bs-target="#courseModal"
-                    color="btn-inverse-info"
-                    class="btn-icon"
-                    icon="icon ion-md-add"
-                />
-            </template>
-            <m-table :columns="columns" :data="courses" :fetch="fetchData" :head="false">
-                <template #data="{ rows }">
-                    <tr v-for="item in rows" :key="item.code">
-                        <td>{{ item.code }}</td>
-                        <td>{{ item.name }}</td>
-                        <td class="space">
-                            <m-action @action="handleShowModal(item)" />
-                            <m-action
-                                icon="trash"
-                                color="danger"
-                                tool="Eliminar"
-                                @action="handleDeleteCourse(item)"
-                            />
-                        </td>
-                    </tr>
-                </template>
-            </m-table>
 
-            <template #foot>
-                <footext :title="`${courses.length} cursos`" />
-            </template>
-        </card>
-        <Dialog
-            id="courseModal"
-            btn-name="Guardar"
-            :title="course.code ? 'Editar curso' : 'Nuevo curso'"
-            @ok="onSubmit"
-            @cancel="handleCancel"
-        >
-            <div class="row gx-2">
-                <m-input
-                    v-model="course.name"
-                    class="col-md-12"
-                    name="name"
-                    label="Nombre del Curso"
-                />
-            </div>
-        </Dialog>
-    </section>
+<template>
+  <section id="course">
+    <Card title="Registro de Cursos">
+      <template #rb>
+        <MButton
+          data-bs-toggle="modal"
+          data-bs-target="#courseModal"
+          color="btn-inverse-info"
+          class="btn-icon"
+          icon="icon ion-md-add"
+        />
+      </template>
+      <MTable :columns="columns" :data="courses" :fetch="fetchData" :head="false">
+        <template #data="{ rows }">
+          <tr v-for="item in rows" :key="item.code">
+            <td>{{ item.code }}</td>
+            <td>{{ item.name }}</td>
+            <td class="space">
+              <MAction @action="handleShowModal(item)" />
+              <MAction icon="trash" color="danger" tool="Eliminar" @action="handleDeleteCourse(item)" />
+            </td>
+          </tr>
+        </template>
+      </MTable>
+
+      <template #foot>
+        <Footext :title="`${courses.length} cursos`" />
+      </template>
+    </Card>
+    <Dialog
+      id="courseModal"
+      btn-name="Guardar"
+      :title="course.code ? 'Editar curso' : 'Nuevo curso'"
+      @ok="onSubmit"
+      @cancel="handleCancel"
+    >
+      <div class="row gx-2">
+        <MInput v-model="course.name" class="col-md-12" name="name" label="Nombre del Curso" />
+      </div>
+    </Dialog>
+  </section>
 </template>

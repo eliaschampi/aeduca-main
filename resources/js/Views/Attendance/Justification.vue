@@ -11,58 +11,52 @@ const columns = ["Nro", "Enviado el:", "Para fecha:", "Justificación", "Estado 
 const formatedDate = (date) => dformat(date, "dddd DD");
 
 async function fetchData(dni) {
-    isLoading.value = true;
-    const { data } = await fetchByEntityJsApi(dni);
-    justifications.value = data.values;
-    isLoading.value = false;
+  isLoading.value = true;
+  const { data } = await fetchByEntityJsApi(dni);
+  justifications.value = data.values;
+  isLoading.value = false;
 }
 
 watchEffect(() => {
-    const { dni } = useStudentStore();
-    fetchData(dni);
+  const { dni } = useStudentStore();
+  fetchData(dni);
 });
 </script>
-<template>
-    <section id="JustificationID">
-        <alert class="mb-4">
-            Los permisos y las justificaciónes son enviados desde la plataforma por el usuario,
-            aunque también pueden ser generados por los administradores. Revisa y gestiona las
-            justificaciones aqui
-        </alert>
-        <m-table :columns="columns" :is-loading="isLoading" :head="false" :data="justifications">
-            <template #data="{ rows }">
-                <tr v-for="item in rows" :key="item.code">
-                    <td>{{ item.attendance_code }}</td>
-                    <td>{{ formatedDate(item.created_at) }}</td>
-                    <td>{{ formatedDate(item.attendance.created_at) }}</td>
-                    <td>
-                        <span class="text-dotted text-secondary">
-                            {{ item.description }}
-                        </span>
-                    </td>
-                    <td>
-                        <b>
-                            {{ item.attendance.state }}
-                        </b>
-                    </td>
-                    <td>
-                        <m-action
-                            color="info"
-                            icon="eye"
-                            tool="Ver Detalles"
-                            @action="
-                                jusRef.handleShowModal(
-                                    item.attendance_code,
-                                    item.attendance.state,
-                                    item,
-                                )
-                            "
-                        />
-                    </td>
-                </tr>
-            </template>
-        </m-table>
 
-        <Justification ref="jusRef" @done="fetchData" />
-    </section>
+<template>
+  <section id="JustificationID">
+    <Alert class="mb-4">
+      Los permisos y las justificaciónes son enviados desde la plataforma por el usuario, aunque también pueden ser
+      generados por los administradores. Revisa y gestiona las justificaciones aqui
+    </Alert>
+    <MTable :columns="columns" :is-loading="isLoading" :head="false" :data="justifications">
+      <template #data="{ rows }">
+        <tr v-for="item in rows" :key="item.code">
+          <td>{{ item.attendance_code }}</td>
+          <td>{{ formatedDate(item.created_at) }}</td>
+          <td>{{ formatedDate(item.attendance.created_at) }}</td>
+          <td>
+            <span class="text-dotted text-secondary">
+              {{ item.description }}
+            </span>
+          </td>
+          <td>
+            <b>
+              {{ item.attendance.state }}
+            </b>
+          </td>
+          <td>
+            <MAction
+              color="info"
+              icon="eye"
+              tool="Ver Detalles"
+              @action="jusRef.handleShowModal(item.attendance_code, item.attendance.state, item)"
+            />
+          </td>
+        </tr>
+      </template>
+    </MTable>
+
+    <Justification ref="jusRef" @done="fetchData" />
+  </section>
 </template>

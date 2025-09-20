@@ -1,11 +1,11 @@
 @function multiple_box_shadow($n) {
-    $value: "#{random(2000)}px #{random(2000)}px #FFF";
+  $value: "#{random(2000)}px #{random(2000)}px #FFF";
 
-    @for $i from 2 through $n {
-        $value: "#{$value} , #{random(2000)}px #{random(2000)}px #FFF";
-    }
+  @for $i from 2 through $n {
+    $value: "#{$value} , #{random(2000)}px #{random(2000)}px #FFF";
+  }
 
-    @return unquote($value);
+  @return unquote($value);
 }
 
 $shadows-small: multiple_box_shadow(700);
@@ -13,82 +13,81 @@ $shadows-medium: multiple_box_shadow(200);
 $shadows-big: multiple_box_shadow(100);
 
 .bg-login {
-    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
 
-    .card {
-        background-color: rgba($color: $white, $alpha: 0.5);
-        backdrop-filter: brightness(150%) saturate(150%) blur($base-size);
-        .form-control,
-        .form-control:focus {
-            background-color: rgba($white, 0.7);
-        }
-        a {
-            color: $primary;
-        }
+  .card {
+    background-color: rgba($color: $white, $alpha: 0.5);
+    backdrop-filter: brightness(150%) saturate(150%) blur($base-size);
+    .form-control,
+    .form-control:focus {
+      background-color: rgba($white, 0.7);
+    }
+    a {
+      color: $primary;
+    }
+  }
+
+  #stars {
+    width: 1px;
+    height: 1px;
+    background: transparent;
+    box-shadow: $shadows-small;
+    animation: animStar 50s linear infinite;
+
+    &:after {
+      content: " ";
+      position: absolute;
+      top: 2000px;
+      width: 1px;
+      height: 1px;
+      background: transparent;
+      box-shadow: $shadows-small;
+    }
+  }
+
+  #stars2 {
+    width: 2px;
+    height: 2px;
+    background: transparent;
+    box-shadow: $shadows-medium;
+    animation: animStar 100s linear infinite;
+
+    &:after {
+      content: " ";
+      position: absolute;
+      top: 2000px;
+      width: 2px;
+      height: 2px;
+      background: transparent;
+      box-shadow: $shadows-medium;
+    }
+  }
+
+  #stars3 {
+    width: 3px;
+    height: 3px;
+    background: transparent;
+    box-shadow: $shadows-big;
+    animation: animStar 150s linear infinite;
+
+    &:after {
+      content: " ";
+      position: absolute;
+      top: 2000px;
+      width: 3px;
+      height: 3px;
+      background: transparent;
+      box-shadow: $shadows-big;
+    }
+  }
+
+  @keyframes animStar {
+    from {
+      transform: translateY(0px);
     }
 
-    #stars {
-        width: 1px;
-        height: 1px;
-        background: transparent;
-        box-shadow: $shadows-small;
-        animation: animStar 50s linear infinite;
-
-        &:after {
-            content: " ";
-            position: absolute;
-            top: 2000px;
-            width: 1px;
-            height: 1px;
-            background: transparent;
-            box-shadow: $shadows-small;
-        }
+    to {
+      transform: translateY(-2000px);
     }
-
-    #stars2 {
-        width: 2px;
-        height: 2px;
-        background: transparent;
-        box-shadow: $shadows-medium;
-        animation: animStar 100s linear infinite;
-
-        &:after {
-            content: " ";
-            position: absolute;
-            top: 2000px;
-            width: 2px;
-            height: 2px;
-            background: transparent;
-            box-shadow: $shadows-medium;
-        }
-    }
-
-    #stars3 {
-        width: 3px;
-        height: 3px;
-        background: transparent;
-        box-shadow: $shadows-big;
-        animation: animStar 150s linear infinite;
-
-        &:after {
-            content: " ";
-            position: absolute;
-            top: 2000px;
-            width: 3px;
-            height: 3px;
-            background: transparent;
-            box-shadow: $shadows-big;
-        }
-    }
-
-    @keyframes animStar {
-        from {
-            transform: translateY(0px);
-        }
-
-        to {
-            transform: translateY(-2000px);
-        }
-    }
-
+  }
 }

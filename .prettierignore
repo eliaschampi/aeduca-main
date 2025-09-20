@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+vendor/
+
+# Build outputs
+dist/
+build/
+.nuxt/
+.output/
+
+# Cache
+.cache/
+.temp/
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# Laravel
+public/hot
+public/storage
+storage/*.key

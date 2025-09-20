@@ -17,66 +17,63 @@ const jusRef = ref(null);
 const { states, handleUpdate, cancelEdit, handleEdit, mod } = useAttendanceToolkit();
 
 function getEssentialProperties() {
-    const { priority } = usePriorityStore();
-    const { range } = useDateStore();
-    return { priority, range };
+  const { priority } = usePriorityStore();
+  const { range } = useDateStore();
+  return { priority, range };
 }
 
 async function fetchData() {
-    const { priority, range } = getEssentialProperties();
-    const { data } = await fetchByEntityAttApi({
-        ...range,
-        entity_identifier: storedDni.value,
-        priority,
-    });
-    attendances.value = data.values;
+  const { priority, range } = getEssentialProperties();
+  const { data } = await fetchByEntityAttApi({
+    ...range,
+    entity_identifier: storedDni.value,
+    priority,
+  });
+  attendances.value = data.values;
 }
 
 async function exportCV() {
-    const { priority, range } = getEssentialProperties();
-    const { fullname } = useStudentStore();
-    const { data } = await exportCVAttApi(storedDni.value, range.from, range.to, priority);
-    const name = `Asistencia ${fullname} ${range.from} Hasta ${range.to}`;
-    downl(data, name, ".pdf");
+  const { priority, range } = getEssentialProperties();
+  const { fullname } = useStudentStore();
+  const { data } = await exportCVAttApi(storedDni.value, range.from, range.to, priority);
+  const name = `Asistencia ${fullname} ${range.from} Hasta ${range.to}`;
+  downl(data, name, ".pdf");
 }
 
 watch(storedDni, fetchData);
 </script>
+
 <template>
-    <section>
-        <m-table :columns="columns" :data="attendances" :fetch="fetchData">
-            <Range @fetch="fetchData">
-                <Priority :is-sm="false" @updated="fetchData" />
-            </Range>
-            <template #data="{ rows }">
-                <AttendanceRow
-                    v-for="item in rows"
-                    :key="item.code"
-                    v-model:state="item.state"
-                    v-model:time="item.entry_time"
-                    :mod="mod"
-                    :code="item.code"
-                    :has-jus="!item.justification"
-                    :state-label="states[item.state]"
-                    @update="handleUpdate(item)"
-                    @cancel="cancelEdit(item)"
-                    @edit="handleEdit(item)"
-                    @show-jus-modal="
-                        jusRef.handleShowModal(item.code, item.state, item.justification)
-                    "
-                >
-                    <td>{{ $date(item.created_at) }}</td>
-                </AttendanceRow>
-            </template>
-            <template #foot>
-                <footext>
-                    <m-button color="btn-inverse-primary" size="btn-sm" @ok="exportCV">
-                        Constancia
-                    </m-button>
-                </footext>
-            </template>
-        </m-table>
-        <footext :title="`${attendances.length} asistencias registradas`" />
-        <Justification ref="jusRef" @done="fetchData" />
-    </section>
+  <section>
+    <MTable :columns="columns" :data="attendances" :fetch="fetchData">
+      <Range @fetch="fetchData">
+        <Priority :is-sm="false" @updated="fetchData" />
+      </Range>
+      <template #data="{ rows }">
+        <AttendanceRow
+          v-for="item in rows"
+          :key="item.code"
+          v-model:state="item.state"
+          v-model:time="item.entry_time"
+          :mod="mod"
+          :code="item.code"
+          :has-jus="!item.justification"
+          :state-label="states[item.state]"
+          @update="handleUpdate(item)"
+          @cancel="cancelEdit(item)"
+          @edit="handleEdit(item)"
+          @show-jus-modal="jusRef.handleShowModal(item.code, item.state, item.justification)"
+        >
+          <td>{{ $date(item.created_at) }}</td>
+        </AttendanceRow>
+      </template>
+      <template #foot>
+        <Footext>
+          <MButton color="btn-inverse-primary" size="btn-sm" @ok="exportCV"> Constancia </MButton>
+        </Footext>
+      </template>
+    </MTable>
+    <Footext :title="`${attendances.length} asistencias registradas`" />
+    <Justification ref="jusRef" @done="fetchData" />
+  </section>
 </template>

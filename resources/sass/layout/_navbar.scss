@@ -1,123 +1,124 @@
 .navbar {
-    font-weight: 400;
-    height: $navbar-full-height;
-    width: auto;
-    background-size: cover;
+  font-weight: 400;
+  height: $navbar-full-height;
+  width: auto;
+  background-size: cover;
+  .navbar-menu-wrapper {
+    transition: width $action-transition-duration $action-transition-timing-function;
+    color: $navbar-menu-color;
+    width: 100%;
+    height: $navbar-height;
+    .navbar-brand-wrapper {
+      .navbar-brand {
+        margin-right: 0.5rem;
+        &.brand-logo {
+          img {
+            width: calc($base-size * 2.1);
+            height: calc($base-size * 2.1);
+          }
+        }
+      }
+    }
+
+    .toggler {
+      display: block;
+      @include media-breakpoint-up(lg) {
+        display: none;
+      }
+    }
+
+    .navbar-nav {
+      .nav-item {
+        .nav-link {
+          color: inherit;
+          padding: 0;
+          text-align: center;
+          img {
+            width: calc($base-size * 2.1);
+            height: calc($base-size * 2.1);
+            border: 3px solid lighten($color: $success, $amount: 15%);
+          }
+          i {
+            font-size: 1.5rem;
+            margin-right: 0;
+            vertical-align: middle;
+          }
+          &:after {
+            display: none;
+          }
+        }
+
+        &.dropdown {
+          .dropdown-menu {
+            position: absolute;
+            margin-top: 0;
+            right: 0;
+            left: auto;
+            top: calc($navbar-height - $base-size);
+          }
+
+          @include media-breakpoint-down(md) {
+            position: static;
+            .dropdown-menu {
+              left: 20px;
+              right: 20px;
+              top: calc($navbar-height);
+              width: calc(100% - 40px);
+            }
+          }
+        }
+      }
+
+      &.navbar-nav-end {
+        @include media-breakpoint-up(lg) {
+          margin-left: auto;
+        }
+      }
+    }
+
+    &.toolbar-pane {
+      color: var(--bs-body-color);
+      background: var(--bs-card);
+      height: $navbar-height;
+      border-radius: $base-size;
+    }
+  }
+
+  &.navbar-mini {
+    height: $navbar-height;
+    @extend .p-0;
+
+    &.fixed-top {
+      left: $sidebar-width-lg;
+      transition:
+        left $action-transition-duration $action-transition-timing-function,
+        width $action-transition-duration $action-transition-timing-function;
+
+      @include media-breakpoint-down(lg) {
+        left: 0;
+      }
+    }
     .navbar-menu-wrapper {
-        transition: width $action-transition-duration $action-transition-timing-function;
-        color: $navbar-menu-color;
-        width: 100%;
-        height: $navbar-height;
-        .navbar-brand-wrapper {
-            .navbar-brand {
-                margin-right: 0.5rem;
-                &.brand-logo {
-                    img {
-                        width: calc($base-size * 2.1);
-                        height: calc($base-size * 2.1);
-                    }
-                }
-            }
-        }
-
-        .toggler {
-            display: block;
-            @include media-breakpoint-up(lg) {
-                display: none;
-            }
-        }
-
-        .navbar-nav {
-            .nav-item {
-                .nav-link {
-                    color: inherit;
-                    padding: 0;
-                    text-align: center;
-                    img {
-                        width: calc($base-size * 2.1);
-                        height: calc($base-size * 2.1);
-                        border: 3px solid lighten($color: $success, $amount: 15%);
-                    }
-                    i {
-                        font-size: 1.5rem;
-                        margin-right: 0;
-                        vertical-align: middle;
-                    }
-                    &:after {
-                        display: none;
-                    }
-                }
-
-                &.dropdown {
-                    .dropdown-menu {
-                        position: absolute;
-                        margin-top: 0;
-                        right: 0;
-                        left: auto;
-                        top: calc($navbar-height - $base-size);
-                    }
-
-                    @include media-breakpoint-down(md) {
-                        position: static;
-                        .dropdown-menu {
-                            left: 20px;
-                            right: 20px;
-                            top: calc($navbar-height);
-                            width: calc(100% - 40px);
-                        }
-                    }
-                }
-            }
-
-            &.navbar-nav-end {
-                @include media-breakpoint-up(lg) {
-                    margin-left: auto;
-                }
-            }
-        }
-
-        &.toolbar-pane {
-            color: var(--bs-body-color);
-            background: var(--bs-card);
-            height: $navbar-height;
-            border-radius: $base-size;
-        }
+      &.blurred {
+        backdrop-filter: saturate(150%) blur(20px);
+      }
+      &.toolbar-pane {
+        @extend .d-none;
+      }
     }
-
-    &.navbar-mini {
-        height: $navbar-height;
-        @extend .p-0;
-
-        &.fixed-top {
-            left: $sidebar-width-lg;
-            transition: left $action-transition-duration $action-transition-timing-function,
-                width $action-transition-duration $action-transition-timing-function;
-
-            @include media-breakpoint-down(lg) {
-                left: 0;
-            }
-        }
-        .navbar-menu-wrapper {
-            &.blurred {
-                backdrop-filter: saturate(150%) blur(20px);
-            }
-            &.toolbar-pane {
-                @extend .d-none;
-            }
-        }
-    }
+  }
 }
 
 @include media-breakpoint-down(lg) {
-    .navbar {
-        height: auto;
-        .navbar-menu-wrapper {
-            &.blurred {
-                background-color: rgba($color: $dark, $alpha: 0.4);
-            }
-            .navbar-nav-end {
-                margin-left: auto;
-            }
-        }
+  .navbar {
+    height: auto;
+    .navbar-menu-wrapper {
+      &.blurred {
+        background-color: rgba($color: $dark, $alpha: 0.4);
+      }
+      .navbar-nav-end {
+        margin-left: auto;
+      }
     }
+  }
 }

@@ -53,7 +53,9 @@ $form-valid-border-color-dark: $form-valid-color-dark;
 $form-invalid-color-dark: rgba($danger, 0.6);
 $form-invalid-border-color-dark: $form-invalid-color-dark;
 $pagination-border-radius: $base-size;
-$progress-box-shadow: 0 10px 15px -3px rgba($success, 0.2), 0 4px 6px -2px rgba($success, 0.07);
+$progress-box-shadow:
+  0 10px 15px -3px rgba($success, 0.2),
+  0 4px 6px -2px rgba($success, 0.07);
 $input-border-color: var(--bs-success-border-subtle);
 $alert-border-radius: $base-size !important;
 $action-transition-duration: 0.25s;

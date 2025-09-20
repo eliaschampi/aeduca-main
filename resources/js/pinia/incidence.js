@@ -1,23 +1,23 @@
 import { defineStore } from "pinia";
 
 const defaultIncidence = {
-    title: "",
-    type: "in",
-    description: "",
-    agreement: "",
-    extra: "",
-    state: true,
-    persons: [],
-    created_at: new Date(),
+  title: "",
+  type: "in",
+  description: "",
+  agreement: "",
+  extra: "",
+  state: true,
+  persons: [],
+  created_at: new Date(),
 };
 
 export const useIncidenceStore = defineStore("incidence", {
-    state: () => ({
-        incidence: { ...defaultIncidence },
-    }),
-    actions: {
-        setIncidence(incidence = defaultIncidence) {
-            Object.assign(this.incidence, incidence);
-        },
+  state: () => ({
+    incidence: { ...defaultIncidence },
+  }),
+  actions: {
+    setIncidence(incidence = defaultIncidence) {
+      Object.assign(this.incidence, incidence);
     },
+  },
 });

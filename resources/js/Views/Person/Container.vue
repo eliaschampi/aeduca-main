@@ -20,104 +20,105 @@ const { getStore } = useEntityStore();
 const storedDni = computed(() => getStore(ptype.value).dni);
 
 function setPerson(value) {
-    getStore(ptype.value).setPerson(value);
+  getStore(ptype.value).setPerson(value);
 }
 
 const redirectToRoute = (name, dni) => router.push({ name, params: { dni } });
 
 function afterSelect(person) {
-    setPerson(person);
-    if (routeDni.value !== storedDni.value) {
-        redirectToRoute(route.value, storedDni.value);
-    }
-    hideModal("finderModal");
+  setPerson(person);
+  if (routeDni.value !== storedDni.value) {
+    redirectToRoute(route.value, storedDni.value);
+  }
+  hideModal("finderModal");
 }
 
 async function fetchData(dni = storedDni.value) {
-    isLoading.value = true;
-    try {
-        const { data } = await fetchPersonApi(ptype.value, dni);
-        setPerson(data.value);
-    } catch {
-        setPerson(null);
-        router.push({ name: profileRoute.value });
-    } finally {
-        isLoading.value = false;
-    }
+  isLoading.value = true;
+  try {
+    const { data } = await fetchPersonApi(ptype.value, dni);
+    setPerson(data.value);
+  } catch {
+    setPerson(null);
+    router.push({ name: profileRoute.value });
+  } finally {
+    isLoading.value = false;
+  }
 }
 
 function refreshData(dni) {
-    if (!isMain.value) {
-        redirectToRoute(profileRoute.value, dni);
-    } else {
-        fetchData(dni);
-    }
+  if (!isMain.value) {
+    redirectToRoute(profileRoute.value, dni);
+  } else {
+    fetchData(dni);
+  }
 }
 
 watch(routeDni, (val) => {
-    if (val) {
-        fetchData(val);
-    }
+  if (val) {
+    fetchData(val);
+  }
 });
 
 onMounted(() => {
-    emitter.on("afterSelectPerson", afterSelect);
+  emitter.on("afterSelectPerson", afterSelect);
 
-    if (!routeDni.value) {
-        return;
-    }
+  if (!routeDni.value) {
+    return;
+  }
 
-    const isValid = (dni) => /^[0-9]{8}$/.test(dni);
+  const isValid = (dni) => /^[0-9]{8}$/.test(dni);
 
-    if (!isValid(routeDni.value)) {
-        router.push({ name: profileRoute.value });
-        return;
-    }
+  if (!isValid(routeDni.value)) {
+    router.push({ name: profileRoute.value });
+    return;
+  }
 
-    if (routeDni.value !== storedDni.value) {
-        fetchData(routeDni.value);
-    }
+  if (routeDni.value !== storedDni.value) {
+    fetchData(routeDni.value);
+  }
 });
 
 onUnmounted(() => {
-    emitter.off("afterSelectPerson", afterSelect);
+  emitter.off("afterSelectPerson", afterSelect);
 });
 </script>
+
 <template>
-    <div id="person_container">
-        <panel class="mb-5" :title="route.meta.title">
-            <div class="d-flex flex-wrap align-items-center">
-                <InputFinder :who="ptype" :only-current-reg="ptype !== 'student'" :mode="2" />
-                <m-button
-                    class="mt-2 ms-md-2 mt-md-0"
-                    color="btn-inverse-success"
-                    :disabled="!storedDni || isLoading"
-                    @ok="refreshData()"
-                >
-                    <template v-if="isLoading">
-                        <i class="icon ion-ios-hourglass infinite-spin"></i>
-                    </template>
-                    <template v-else>
-                        {{ isMain ? "Actualizar" : "Ir a Perfil" }}
-                    </template>
-                </m-button>
-            </div>
-        </panel>
-        <section v-if="storedDni" id="info-container">
-            <RouterView v-slot="{ Component }">
-                <Transition name="fade" mode="out-in">
-                    <component :is="Component" />
-                </Transition>
-            </RouterView>
-        </section>
-        <BlobsLoader v-else-if="isLoading" />
-        <footext
-            v-else
-            :title="`No ha sido seleccionado ningún ${
-                ptype === 'student' ? 'estudiante' : ptype === 'teacher' ? 'docente' : 'apoderado'
-            }`"
+  <div id="person_container">
+    <Panel class="mb-5" :title="route.meta.title">
+      <div class="d-flex flex-wrap align-items-center">
+        <InputFinder :who="ptype" :only-current-reg="ptype !== 'student'" :mode="2" />
+        <MButton
+          class="mt-2 ms-md-2 mt-md-0"
+          color="btn-inverse-success"
+          :disabled="!storedDni || isLoading"
+          @ok="refreshData()"
         >
-            <m-router v-can="'AS'" :to="{ name: `new_${ptype}` }"> Registrar ahora </m-router>
-        </footext>
-    </div>
+          <template v-if="isLoading">
+            <i class="icon ion-ios-hourglass infinite-spin"></i>
+          </template>
+          <template v-else>
+            {{ isMain ? "Actualizar" : "Ir a Perfil" }}
+          </template>
+        </MButton>
+      </div>
+    </Panel>
+    <section v-if="storedDni" id="info-container">
+      <RouterView v-slot="{ Component }">
+        <Transition name="fade" mode="out-in">
+          <component :is="Component" />
+        </Transition>
+      </RouterView>
+    </section>
+    <BlobsLoader v-else-if="isLoading" />
+    <Footext
+      v-else
+      :title="`No ha sido seleccionado ningún ${
+        ptype === 'student' ? 'estudiante' : ptype === 'teacher' ? 'docente' : 'apoderado'
+      }`"
+    >
+      <MRouter v-can="'AS'" :to="{ name: `new_${ptype}` }"> Registrar ahora </MRouter>
+    </Footext>
+  </div>
 </template>

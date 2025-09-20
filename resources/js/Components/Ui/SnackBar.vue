@@ -13,39 +13,40 @@ const action = computed(() => snackbar.action);
 const icon = "icon ion-ios-notifications icon-md";
 
 const closeSnackbar = () => {
-    snackbar.closeSnack();
+  snackbar.closeSnack();
 };
 
 const buttonClick = async () => {
-    if (typeof action.value === "function") {
-        await action.value();
-    }
+  if (typeof action.value === "function") {
+    await action.value();
+  }
 };
 
 const styles = computed(() => {
-    const clases = ["snackbar", "space-1", "snackbar-" + theme.value];
-    const activeClass = active.value ? "active" : "";
-    return clases.concat(activeClass);
+  const clases = ["snackbar", "space-1", `snackbar-${theme.value}`];
+  const activeClass = active.value ? "active" : "";
+  return clases.concat(activeClass);
 });
 </script>
+
 <template>
-    <div id="snackbar" :class="styles.join(' ')">
-        <div class="snackbar_icon pointer" :mytooltip="text">
-            <span :class="icon"></span>
-        </div>
-        <div class="snackbar__text">
-            {{ text }}
-        </div>
-        <template v-if="button">
-            <div
-                class="badge bg-warning-subtle text-warning-emphasis border border-warning border-1 pointer"
-                @click.prevent="buttonClick"
-            >
-                {{ button }}
-            </div>
-        </template>
-        <div class="times pointer" @click="closeSnackbar">
-            <span class="icon ion-md-close icon-md"></span>
-        </div>
+  <div id="snackbar" :class="styles.join(' ')">
+    <div class="snackbar_icon pointer" :mytooltip="text">
+      <span :class="icon"></span>
     </div>
+    <div class="snackbar__text">
+      {{ text }}
+    </div>
+    <template v-if="button">
+      <div
+        class="badge bg-warning-subtle text-warning-emphasis border border-warning border-1 pointer"
+        @click.prevent="buttonClick"
+      >
+        {{ button }}
+      </div>
+    </template>
+    <div class="times pointer" @click="closeSnackbar">
+      <span class="icon ion-md-close icon-md"></span>
+    </div>
+  </div>
 </template>

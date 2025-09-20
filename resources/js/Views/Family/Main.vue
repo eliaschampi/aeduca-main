@@ -10,30 +10,31 @@ const family_dni = computed(() => useFamilyStore().dni);
 const self = ref({});
 
 async function fetchData(dni) {
-    const { data } = await fetchFmApi(dni);
-    self.value = data.value;
+  const { data } = await fetchFmApi(dni);
+  self.value = data.value;
 }
 
 onMounted(() => {
-    fetchData(family_dni.value);
+  fetchData(family_dni.value);
 });
 watch(family_dni, (val) => fetchData(val));
 </script>
+
 <template>
-    <MainWrapper ptype="family">
-        <template #profile-info>
-            <span class="badge bg-secondary">Apoderado</span>
-        </template>
-        <template #room>
-            <StudentList />
-        </template>
-        <panel title="Información del apoderado">
-            <Info who="family">
-                <m-plain label="Teléfono:" :value="self.telephone" />
-                <m-plain label="Profesión:" :value="self.profession" />
-                <m-plain label="Nivel de estudios:" :value="self.degree" />
-                <m-plain label="Colegio:" :value="self.institute" />
-            </Info>
-        </panel>
-    </MainWrapper>
+  <MainWrapper ptype="family">
+    <template #profile-info>
+      <span class="badge bg-secondary">Apoderado</span>
+    </template>
+    <template #room>
+      <StudentList />
+    </template>
+    <Panel title="Información del apoderado">
+      <Info who="family">
+        <MPlain label="Teléfono:" :value="self.telephone" />
+        <MPlain label="Profesión:" :value="self.profession" />
+        <MPlain label="Nivel de estudios:" :value="self.degree" />
+        <MPlain label="Colegio:" :value="self.institute" />
+      </Info>
+    </Panel>
+  </MainWrapper>
 </template>

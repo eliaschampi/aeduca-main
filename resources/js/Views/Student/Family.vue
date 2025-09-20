@@ -12,66 +12,46 @@ const families = ref([]);
 const columns = ["Apoderado", "Parentesco", "¿Encargado Principal?", "Celular", "Acciones"];
 
 function handleDeleteFamily(item) {
-    showSnack({
-        text: "Eliminando apoderado",
-        button: "Confirmar",
-        action: async () => {
-            const { data } = await removeStudentFmApi(item.dni, storedDni.value);
-            families.value.splice(families.value.indexOf(item), 1);
-            successSnack(data.message);
-        },
-    });
+  showSnack({
+    text: "Eliminando apoderado",
+    button: "Confirmar",
+    action: async () => {
+      const { data } = await removeStudentFmApi(item.dni, storedDni.value);
+      families.value.splice(families.value.indexOf(item), 1);
+      successSnack(data.message);
+    },
+  });
 }
 
 async function fetchData(dni = storedDni.value) {
-    const { data } = await fetchByStudentFmApi(dni);
-    families.value = data.values;
+  const { data } = await fetchByStudentFmApi(dni);
+  families.value = data.values;
 }
 
 onMounted(() => {
-    fetchData(storedDni.value);
+  fetchData(storedDni.value);
 });
 watch(storedDni, (val) => fetchData(val));
 </script>
+
 <template>
-    <m-button
-        data-bs-toggle="modal"
-        data-bs-target="#addRelation"
-        color="btn-inverse-success"
-        size="btn-sm"
-    >
-        Agregar
-    </m-button>
-    <m-table
-        emptytext="Estudiante aún no poseé apoderados."
-        :columns="columns"
-        :data="families"
-        :head="false"
-    >
-        <template #data="{ rows }">
-            <tr v-for="item in rows" :key="item.dni">
-                <td>
-                    <PersonLink route="family_profile" :person="item.person" />
-                </td>
-                <td>{{ relation_types[item.pivot.relation_type].name }}</td>
-                <td>{{ item.pivot.is_main ? "Si" : "No" }}</td>
-                <td>{{ item.person.phone }}</td>
-                <td>
-                    <m-action
-                        icon="remove-circle"
-                        color="danger"
-                        tool="Excluir"
-                        @action="handleDeleteFamily(item)"
-                    />
-                </td>
-            </tr>
-        </template>
-    </m-table>
-    <RelationModal
-        title="apoderado"
-        who="family"
-        who-r="new_family"
-        :dni="storedDni"
-        @added="fetchData()"
-    />
+  <MButton data-bs-toggle="modal" data-bs-target="#addRelation" color="btn-inverse-success" size="btn-sm">
+    Agregar
+  </MButton>
+  <MTable emptytext="Estudiante aún no poseé apoderados." :columns="columns" :data="families" :head="false">
+    <template #data="{ rows }">
+      <tr v-for="item in rows" :key="item.dni">
+        <td>
+          <PersonLink route="family_profile" :person="item.person" />
+        </td>
+        <td>{{ relation_types[item.pivot.relation_type].name }}</td>
+        <td>{{ item.pivot.is_main ? "Si" : "No" }}</td>
+        <td>{{ item.person.phone }}</td>
+        <td>
+          <MAction icon="remove-circle" color="danger" tool="Excluir" @action="handleDeleteFamily(item)" />
+        </td>
+      </tr>
+    </template>
+  </MTable>
+  <RelationModal title="apoderado" who="family" who-r="new_family" :dni="storedDni" @added="fetchData()" />
 </template>

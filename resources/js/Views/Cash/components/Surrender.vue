@@ -8,84 +8,63 @@ import { useSnackbarStore } from "../../../pinia/snackbar";
 const { successSnack } = useSnackbarStore();
 const { hideModal } = useModalStore();
 
-const types = [
-    "Deposito Caja Cusco",
-    "Deposito Bancario",
-    "Entrega en efectivo",
-    "Giro/Transferencia",
-    "Otro",
-];
+const types = ["Deposito Caja Cusco", "Deposito Bancario", "Entrega en efectivo", "Giro/Transferencia", "Otro"];
 
 const customers = ref([]);
 
 const props = defineProps({
-    cash: Object,
-    fetchData: Function,
+  cash: Object,
+  fetchData: Function,
 });
 
 const surrender = reactive({
-    amount: 0,
-    recipient: "",
-    reason: "Deposito Caja Cusco",
+  amount: 0,
+  recipient: "",
+  reason: "Deposito Caja Cusco",
 });
 
 const schema = computed(() => {
-    return {
-        amount: {
-            required: true,
-            numeric: true,
-            natural_min: 0,
-            natural_max: props.cash ? props.cash.cash : 0,
-        },
-        recipient: {
-            required: true,
-        },
-    };
+  return {
+    amount: {
+      required: true,
+      numeric: true,
+      natural_min: 0,
+      natural_max: props.cash ? props.cash.cash : 0,
+    },
+    recipient: {
+      required: true,
+    },
+  };
 });
 
 const { handleSubmit } = useForm({
-    validationSchema: schema,
+  validationSchema: schema,
 });
 
 const onSurrenderSubmit = handleSubmit(async (payload) => {
-    const { data } = await surrenderCashApi(payload, props.cash.code);
-    successSnack(data.message);
-    hideModal("surrenderM");
-    props.fetchData();
+  const { data } = await surrenderCashApi(payload, props.cash.code);
+  successSnack(data.message);
+  hideModal("surrenderM");
+  props.fetchData();
 });
 async function fetchCrs() {
-    const { data } = await fetchAllCrApi();
-    customers.value = data.values;
+  const { data } = await fetchAllCrApi();
+  customers.value = data.values;
 }
 </script>
+
 <template>
-    <Dialog
-        id="surrenderM"
-        :title="'Rendir Caja: ' + cash.cash"
-        @ok="onSurrenderSubmit"
-        @open="fetchCrs"
-    >
-        <div class="space-b-1">
-            <m-input
-                v-model="surrender.amount"
-                name="amount"
-                type="number"
-                label="Monto"
-                step="0.01"
-            />
-            <m-select
-                v-model="surrender.recipient"
-                name="recipient"
-                label="Responsable de recepción"
-                opt-value="name"
-                :options="customers"
-            />
-            <m-select
-                v-model="surrender.reason"
-                name="reason"
-                label="Medio de entrega"
-                :options="types"
-            />
-        </div>
-    </Dialog>
+  <Dialog id="surrenderM" :title="'Rendir Caja: ' + cash.cash" @ok="onSurrenderSubmit" @open="fetchCrs">
+    <div class="space-b-1">
+      <MInput v-model="surrender.amount" name="amount" type="number" label="Monto" step="0.01" />
+      <MSelect
+        v-model="surrender.recipient"
+        name="recipient"
+        label="Responsable de recepción"
+        opt-value="name"
+        :options="customers"
+      />
+      <MSelect v-model="surrender.reason" name="reason" label="Medio de entrega" :options="types" />
+    </div>
+  </Dialog>
 </template>

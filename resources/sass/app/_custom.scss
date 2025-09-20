@@ -1,273 +1,273 @@
 .text-dotted {
-    max-width: 10rem;
-    @extend .text-truncate;
+  max-width: 10rem;
+  @extend .text-truncate;
 }
 
 .fw-medium {
-    font-weight: 600 !important;
+  font-weight: 600 !important;
 }
 
 .fs-medium {
-    font-size: 0.9rem;
+  font-size: 0.9rem;
 }
 
 .text-title {
-    color: var(--bs-title) !important;;
+  color: var(--bs-title) !important;
 }
 
 thead th {
-    color: var(--bs-title) !important;
+  color: var(--bs-title) !important;
 }
 
 .text-small {
-    font-size: 0.9rem;
+  font-size: 0.9rem;
 }
 
 .mygrid {
-    display: grid;
-    grid-row-gap: 2rem;
-    grid-column-gap: 2rem;
-    grid-auto-rows: max-content;
-    &.g18 {
-        grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
-    }
+  display: grid;
+  grid-row-gap: 2rem;
+  grid-column-gap: 2rem;
+  grid-auto-rows: max-content;
+  &.g18 {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+  }
 
-    &.g10 {
-        grid-template-columns: repeat(auto-fill, minmax(min(100%, 10rem), 1fr));
-    }
+  &.g10 {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 10rem), 1fr));
+  }
 
-    &.gcard {
-        grid-row-gap: $base-size;
-        grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr));
-    }
+  &.gcard {
+    grid-row-gap: $base-size;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr));
+  }
 }
 
 .space {
-    > *:not(:last-child) {
-        margin-right: 0.5rem;
-    }
+  > *:not(:last-child) {
+    margin-right: 0.5rem;
+  }
 }
 
 .space-1 {
-    > *:not(:last-child) {
-        margin-right: 0.75rem;
-    }
+  > *:not(:last-child) {
+    margin-right: 0.75rem;
+  }
 }
 
 .space-b {
-    > *:not(:last-child) {
-        margin-bottom: 0.75rem;
-    }
+  > *:not(:last-child) {
+    margin-bottom: 0.75rem;
+  }
 }
 
 .space-b-1 {
-    > *:not(:last-child) {
-        margin-bottom: 1.2rem;
-    }
+  > *:not(:last-child) {
+    margin-bottom: 1.2rem;
+  }
 }
 
 .myvh100 {
-    height: 100vh;
-    max-height: -webkit-fill-available;
+  height: 100vh;
+  max-height: -webkit-fill-available;
 }
 
 .vl {
-    @include media-breakpoint-up(md) {
-        border-right: 1px solid rgba($info, 0.5);
-    }
+  @include media-breakpoint-up(md) {
+    border-right: 1px solid rgba($info, 0.5);
+  }
 }
 
 .pointer {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .profile-card {
+  img {
+    border-top-left-radius: $card-border-radius;
+    border-top-right-radius: $card-border-radius;
+    max-height: 150px;
+  }
+
+  .avatar {
+    width: 7.5rem;
+    height: 7.5rem;
+    border-radius: 100%;
+    overflow: hidden;
+    margin-top: -4rem;
+    position: relative;
+
     img {
-        border-top-left-radius: $card-border-radius;
-        border-top-right-radius: $card-border-radius;
-        max-height: 150px;
+      width: 100%;
+      height: 100%;
+      background-color: $white;
     }
 
-    .avatar {
-        width: 7.5rem;
-        height: 7.5rem;
-        border-radius: 100%;
-        overflow: hidden;
-        margin-top: -4rem;
-        position: relative;
-
-        img {
-            width: 100%;
-            height: 100%;
-            background-color: $white;
-        }
-
-        button {
-            position: absolute;
-            right: 15%;
-            bottom: 0;
-        }
+    button {
+      position: absolute;
+      right: 15%;
+      bottom: 0;
     }
+  }
 
-    &.user-card {
-        max-width: 20rem;
-    }
+  &.user-card {
+    max-width: 20rem;
+  }
 }
 
 .myround {
-    border-radius: $card-border-radius;
+  border-radius: $card-border-radius;
 }
 
 .border-rounded {
-    border-radius: 1.5rem;
-    border: 3px dotted $warning;
-    max-width: 17rem;
-    background-color: var(--bs-body-bg);
+  border-radius: 1.5rem;
+  border: 3px dotted $warning;
+  max-width: 17rem;
+  background-color: var(--bs-body-bg);
 
-    .title {
-        margin-top: -1.8rem;
-        padding-right: 0.3rem;
-        padding-left: 0.3rem;
-        margin-right: auto;
-        margin-left: auto;
-        background-color: var(--bs-body-bg);
-        width: max-content;
-        height: 2rem;
-    }
+  .title {
+    margin-top: -1.8rem;
+    padding-right: 0.3rem;
+    padding-left: 0.3rem;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: var(--bs-body-bg);
+    width: max-content;
+    height: 2rem;
+  }
 }
 
 .icon-lg {
-    font-size: 2.5rem;
+  font-size: 2.5rem;
 }
 
 .icon-md {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 .icon-sm {
-    font-size: $base-size;
+  font-size: $base-size;
 }
 
 .boli {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
 }
 
 .resmar {
-    border-top: 0.5rem solid var(--bs-card);
+  border-top: 0.5rem solid var(--bs-card);
 }
 
 .gcard {
-    > div {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: var(--bs-card);
-        h2 {
-            color: $info;
-        }
-
-        > i {
-            font-size: 4rem;
-        }
+  > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--bs-card);
+    h2 {
+      color: $info;
     }
+
+    > i {
+      font-size: 4rem;
+    }
+  }
 }
 
 .qr-wrapper {
-    max-width: 30rem;
-    max-height: 30rem;
-    height: 100%;
-    width: 100%;
-    position: relative;
-    border: 0.2rem dotted var(--bs-sidebar-color);
-    background-color: var(--bs-body-bg);
+  max-width: 30rem;
+  max-height: 30rem;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  border: 0.2rem dotted var(--bs-sidebar-color);
+  background-color: var(--bs-body-bg);
+  border-radius: $base-size;
+  overflow: hidden;
+  .scan-region-highlight {
     border-radius: $base-size;
-    overflow: hidden;
-    .scan-region-highlight {
-        border-radius: $base-size;
-        outline: rgba($dark, 0.3) solid 50vmax;
-    }
-    video {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+    outline: rgba($dark, 0.3) solid 50vmax;
+  }
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
 .canvas-container {
-    overflow: hidden;
-    position: relative;
-    height: 15rem;
-    width: 20rem;
-    border: 2px solid $success;
-    border-radius: $base-size;
-    background-color: var(--bs-body-bg);
+  overflow: hidden;
+  position: relative;
+  height: 15rem;
+  width: 20rem;
+  border: 2px solid $success;
+  border-radius: $base-size;
+  background-color: var(--bs-body-bg);
 }
 .crop-overlay {
-    position: absolute;
-    border: 2px dotted $warning;
-    border-radius: $base-size;
-    background-color: rgba($dark, 0.4);
-    top: 0;
-    left: 0;
+  position: absolute;
+  border: 2px dotted $warning;
+  border-radius: $base-size;
+  background-color: rgba($dark, 0.4);
+  top: 0;
+  left: 0;
 }
 
 .sum {
-    cursor: pointer;
-    u {
-        font-weight: 700;
-    }
-    i {
-        display: inline-block;
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-    }
-    &:hover {
-        transform: scale(1.1);
-        transition: 0.25s ease-out;
-    }
+  cursor: pointer;
+  u {
+    font-weight: 700;
+  }
+  i {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+  &:hover {
+    transform: scale(1.1);
+    transition: 0.25s ease-out;
+  }
 }
 
 .card .card-up {
-    height: 6rem;
-    overflow: hidden;
-    border-top-left-radius: $base-size;
-    border-top-right-radius: $base-size;
+  height: 6rem;
+  overflow: hidden;
+  border-top-left-radius: $base-size;
+  border-top-right-radius: $base-size;
 }
 
 .aqua-gradient {
-    background: linear-gradient(180deg, $primary, rgba($info, 40%));
+  background: linear-gradient(180deg, $primary, rgba($info, 40%));
 }
 
 [mytooltip] {
-    position: relative;
-    &:hover::after {
-        content: attr(mytooltip);
-        position: absolute;
-        top: -2.5rem;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 0.9rem;
-        background-color: $primary;
-        color: $white;
-        padding: 0.5rem;
-        border-radius: $base-size;
-        border-bottom: 2px solid $warning;
-        white-space: nowrap;
-        max-width: 20rem;
-        z-index: 9999;
-        @extend .text-truncate;
-    }
+  position: relative;
+  &:hover::after {
+    content: attr(mytooltip);
+    position: absolute;
+    top: -2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.9rem;
+    background-color: $primary;
+    color: $white;
+    padding: 0.5rem;
+    border-radius: $base-size;
+    border-bottom: 2px solid $warning;
+    white-space: nowrap;
+    max-width: 20rem;
+    z-index: 9999;
+    @extend .text-truncate;
+  }
 }
 
 .fade-enter-active,
 .fade-leave-active {
-    transition: opacity 0.5s ease;
+  transition: opacity 0.5s ease;
 }
 
 .fade-enter-from,
 .fade-leave-to {
-    opacity: 0;
+  opacity: 0;
 }
