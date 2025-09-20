@@ -1,8 +1,4 @@
 *.http
-# Environment files (never commit real .env files)
-# Docker environment (only .env-example should be committed)
-.env.docker
-
 # IDE and editor files
 .vscode/
 .idea/
@@ -19,26 +15,24 @@ ehthumbs.db
 Thumbs.db
 
 # Laravel specific
-src/vendor/
-src/node_modules/
-src/database/init
-src/public/hot
-src/public/default
-src/public/build
-src/storage/framework/views/*.php
-src/storage/*.key
-src/storage/framework/cache/data
-src/storage/framework/sessions
-src/storage/app/public
-src/bootstrap/cache/*.php
-src/.env
-src/.env.backup
-src/.phpunit.result.cache
-src/Homestead.json
-src/Homestead.yaml
-src/npm-debug.log
-src/yarn-error.log
-
-
+vendor/
+node_modules/
+database/init
+public/hot
+public/default
+public/build
+storage/framework/views/*.php
+storage/*.key
+storage/framework/cache/data
+storage/framework/sessions
+storage/app/public
+bootstrap/cache/*.php
+.env
+.env.backup
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
 # Log files
-src/storage/logs/*.log
+storage/logs/*.log

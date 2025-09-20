@@ -1,3 +1,7 @@
+networks:
+  aeduca-network:
+    driver: bridge
+
 services:
   app:
     build: .
@@ -6,11 +10,16 @@ services:
       - "9000:9000"
       - "5173:5173"
     volumes:
-      - ./src:/var/www/html
+      - .:/var/www/html
       - ./.env.docker:/var/www/html/.env
     depends_on:
       postgres:
         condition: service_healthy
+      redis:
+        condition: service_started
+    networks:
+      - aeduca-network
+    restart: unless-stopped
 
   nginx:
     image: nginx:alpine
@@ -19,29 +28,35 @@ services:
       - "80:80"
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
-      - ./src:/var/www/html:ro
+      - ./:/var/www/html:ro
     depends_on:
       - app
+    networks:
+      - aeduca-network
+    restart: unless-stopped
 
   postgres:
     image: postgres:16-alpine
     container_name: aeduca-postgres
     environment:
-      - POSTGRES_DB=aeduca
-      - POSTGRES_USER=elias
-      - POSTGRES_PASSWORD=7532
-      - POSTGRES_INITDB_ARGS=--encoding=UTF-8 --lc-collate=es_PE.utf8 --lc-ctype=es_PE.utf8
+      - POSTGRES_DB=${DB_DATABASE:-aeduca}
+      - POSTGRES_USER=${DB_USERNAME:-postgres}
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-secret}
+      - POSTGRES_INITDB_ARGS=--encoding=UTF-8
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./src/database/init:/docker-entrypoint-initdb.d:ro
+      - ./database/init:/docker-entrypoint-initdb.d:ro
     ports:
       - "5432:5432"
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U elias -d aeduca"]
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME:-postgres} -d ${DB_DATABASE:-aeduca}"]
       interval: 5s
       timeout: 3s
       retries: 5
       start_period: 10s
+    networks:
+      - aeduca-network
+    restart: unless-stopped
 
   redis:
     image: redis:alpine
@@ -50,6 +65,15 @@ services:
       - "6379:6379"
     volumes:
       - redis_data:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    networks:
+      - aeduca-network
+    restart: unless-stopped
 
 volumes:
   postgres_data:

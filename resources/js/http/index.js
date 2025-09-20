@@ -173,8 +173,7 @@ export const updateInApi = (data) => api.put(`/incidence/${data.code}`, data);
 
 export const delInApi = (code) => api.delete(`/incidence/${code}`);
 
-export const downloadAttachedInApi = (code) =>
-    api.get(`/incidence_dw/${code}`, rblob);
+export const downloadAttachedInApi = (code) => api.get(`/incidence_dw/${code}`, rblob);
 
 export const printInApi = (code) => api.get(`/incidence_print/${code}`, rblob);
 
@@ -222,8 +221,7 @@ export const updateOpApi = (code, data) => api.put(`/op/${code}`, data);
 export const destroyOpApi = (code) => api.delete(`/op/${code}`);
 
 // payment
-export const fetchByRegisterPyApi = (register_code) =>
-    api.get(`/payment/${register_code}`);
+export const fetchByRegisterPyApi = (register_code) => api.get(`/payment/${register_code}`);
 
 export const fetchPaidsPyApi = (register_code) => api.get(`/paid/${register_code}`);
 

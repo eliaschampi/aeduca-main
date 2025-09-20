@@ -141,12 +141,21 @@ const schema = {
 };
 </script>
 <template>
-    <m-form :is-loading="isLoading" :btn-name="incidenceCode ? 'Modificar' : 'Guardar'"
-        title="Formulario de atención e incidencias" :schema="schema" @ok="handleSave">
+    <m-form
+        :is-loading="isLoading"
+        :btn-name="incidenceCode ? 'Modificar' : 'Guardar'"
+        title="Formulario de atención e incidencias"
+        :schema="schema"
+        @ok="handleSave"
+    >
         <div class="row gx-2">
             <div class="col-md-6 space-b-1 mb-4 mb-md-0">
                 <m-input v-model="incidence.title" name="title" label="Motivo (100 Caracteres)" />
-                <SimpleEditor v-model="incidence.description" name="description" :label="descriptionLabel">
+                <SimpleEditor
+                    v-model="incidence.description"
+                    name="description"
+                    :label="descriptionLabel"
+                >
                     Desarrollo
                 </SimpleEditor>
                 <template v-if="incidence.type !== 'pe'">
@@ -156,9 +165,18 @@ const schema = {
                     </m-textarea>
                 </template>
                 <template v-else>
-                    <m-input v-model="incidence.agreement" name="agreement" label="Fecha de permiso" type="date" />
-                    <m-select v-model="incidence.extra" name="extra" label="¿Por cuantos dias se registra el permiso?"
-                        :disabled="!!incidenceCode">
+                    <m-input
+                        v-model="incidence.agreement"
+                        name="agreement"
+                        label="Fecha de permiso"
+                        type="date"
+                    />
+                    <m-select
+                        v-model="incidence.extra"
+                        name="extra"
+                        label="¿Por cuantos dias se registra el permiso?"
+                        :disabled="!!incidenceCode"
+                    >
                         <option :value="undefined" disabled selected hidden>Dias</option>
                         <option value="1">1 día</option>
                         <option value="2">2 días</option>
@@ -173,10 +191,18 @@ const schema = {
                 </template>
             </div>
             <div class="col-md-6 space-b-1">
-                <m-input v-model="incidence.created_at" name="created_at" type="datetime-local"
-                    label="Fecha de incidencia" />
-                <m-select v-model="incidence.type" name="type" label="Tipo de atención"
-                    @update:model-value="handleTypeChange">
+                <m-input
+                    v-model="incidence.created_at"
+                    name="created_at"
+                    type="datetime-local"
+                    label="Fecha de incidencia"
+                />
+                <m-select
+                    v-model="incidence.type"
+                    name="type"
+                    label="Tipo de atención"
+                    @update:model-value="handleTypeChange"
+                >
                     <option value="in">Incidencia médica</option>
                     <option value="co">Incidencia por conducta</option>
                     <option value="at">Atención</option>
@@ -188,19 +214,34 @@ const schema = {
                     <File v-model="attached" />
                     <hr />
                     <h6 class="fw-medium">Agregar Involucrados</h6>
-                    <m-button size="btn-sm" color="btn-inverse-info" @ok="handleShowModal('student')">
+                    <m-button
+                        size="btn-sm"
+                        color="btn-inverse-info"
+                        @ok="handleShowModal('student')"
+                    >
                         Estudiante
                     </m-button>
-                    <m-button size="btn-sm" color="btn-inverse-success" @ok="handleShowModal('family')">
+                    <m-button
+                        size="btn-sm"
+                        color="btn-inverse-success"
+                        @ok="handleShowModal('family')"
+                    >
                         Apoderado
                     </m-button>
-                    <m-button size="btn-sm" color="btn-inverse-success" @ok="handleShowModal('teacher')">
+                    <m-button
+                        size="btn-sm"
+                        color="btn-inverse-success"
+                        @ok="handleShowModal('teacher')"
+                    >
                         Docente
                     </m-button>
                 </template>
                 <div v-else>
-                    <p v-show="incidence.file_attached" class="text-secondary fw-bold pointer"
-                        @click="handleDownloadClick">
+                    <p
+                        v-show="incidence.file_attached"
+                        class="text-secondary fw-bold pointer"
+                        @click="handleDownloadClick"
+                    >
                         <i class="icon ion-md-cloud-download icon-sm text-primary"></i>
                         Hay un archivo adjunto aquí.
                     </p>
@@ -223,8 +264,11 @@ const schema = {
                                 </span>
                             </th>
                             <th>
-                                <select v-model="item.actor_type" style="max-width: 7rem"
-                                    class="form-select form-select-sm">
+                                <select
+                                    v-model="item.actor_type"
+                                    style="max-width: 7rem"
+                                    class="form-select form-select-sm"
+                                >
                                     <option value="involucrado">Involucrado</option>
                                     <option value="participante">Participante</option>
                                     <option value="testigo">Testigo</option>
@@ -234,7 +278,11 @@ const schema = {
                                 </select>
                             </th>
                             <th>
-                                <span v-if="!incidenceCode" class="text-danger pointer" @click="removeStudent(item)">
+                                <span
+                                    v-if="!incidenceCode"
+                                    class="text-danger pointer"
+                                    @click="removeStudent(item)"
+                                >
                                     <i class="icon ion-md-remove-circle icon-md"></i>
                                 </span>
                             </th>
