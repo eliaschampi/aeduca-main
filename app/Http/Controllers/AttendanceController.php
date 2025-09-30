@@ -170,7 +170,7 @@ class AttendanceController extends Controller
 
         $state = "presente";
         // set state according to the time and entry_time
-        $entry_time = CarbonImmutable::createFromFormat("H:i", $attconfig["entry_time"]);
+        $entry_time = CarbonImmutable::createFromFormat("H:i", $attconfig["entry_time"], config('app.timezone'));
 
         if (now()->greaterThanOrEqualTo($entry_time->addMinutes(intval($attconfig["tolerance"]) + 1))) {
             $state = "tarde";
