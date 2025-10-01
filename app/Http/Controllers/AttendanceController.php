@@ -93,97 +93,99 @@ class AttendanceController extends Controller
     {
         $dni = $request->input("dni");
         $type = $request->input("type");
-        $priority = $request->input("priority");
-
+        $priority = (int) $request->input("priority"); // CAST a INTEGER
+    
         if (!preg_match("/^[0-9]{8}$/", $dni)) {
             return response()->json([
                 "status" => false,
                 "message" => "Su dni es incorrecto",
             ], 422);
         }
-
+    
         $person = (new PersonRepository())->fetchSingle($dni);
-
+    
         if (!$person) {
             return response()->json([
-              "status" => false,
-              "message" => "Usuario no encontrado",
+                "status" => false,
+                "message" => "Usuario no encontrado",
             ], 422);
         }
-
-        $attconfig = [];
+    
+        $attconfig = null;
         $register = null;
-
+    
         if ($type === "s") {
-
             $register = (new RegisterRepository())->fetchCurrent($dni);
-
+    
             if (empty($register)) {
                 return response()->json([
-                  "status" => false,
-                  "message" => "Este año no está matrículado",
+                    "status" => false,
+                    "message" => "Este año no está matrículado",
                 ], 422);
             }
-
+    
             $cycle_code = substr($register->section_code, 0, 8);
-
             $cacheds = CycleCache::attendanceVariablesShouldBeCached($cycle_code);
-            $attconfig = array_first($cacheds, function ($query) use ($priority) {
-                return $query['order'] === $priority;
-            });
-
+            
+            // Buscar configuración por priority (ahora ambos son INT)
+            $attconfig = collect($cacheds)->firstWhere('order', $priority);
+    
             if (!$attconfig) {
                 return response()->json([
-                  "status" => false,
+                    "status" => false,
                   "message" => "Horario de ingreso no habilitado",
                 ], 422);
             }
-
-            if ($register->priority !== 0 && $attconfig["order"] !== $register->priority) {
+    
+            // Validar turno del estudiante
+            if ($register->priority !== 0 && $register->priority !== $priority) {
                 return response()->json([
-                  "status" => false,
+                    "status" => false,
                   "message" => "No pertenece a este turno",
                 ], 422);
             }
         } else {
             if (!(new TeacherRepository())->teacherIsActive($dni)) {
                 return response()->json([
-                  "status" => false,
-                  "message" => "Docente no habilitado",
+                    "status" => false,
+                    "message" => "Docente no habilitado",
                 ], 422);
             }
             $attconfig = ConfigCache::getCoreConfig();
         }
-
+    
         // check if today is already registered
         if ($this->instance->todayIsAlreadyRegistered($dni, $priority)) {
             return response()->json([
-              "status" => "yet.mp3",
-              "register" => $register,
-              "person" => $person,
-              "message" => "Su asistencia ya ha sido registrado",
+                "status" => "yet.mp3",
+                "register" => $register,
+                "person" => $person,
+                "message" => "Su asistencia ya ha sido registrado",
             ]);
         }
-
+    
         $message = "Registrado como ";
         $currentTime = now();
         $state = "presente";
-
-        $entry_time = today()->setTimeFromTimeString($attconfig["entry_time"]);
-
-        if ($currentTime->greaterThanOrEqualTo($entry_time->addMinutes(intval($attconfig["tolerance"]) + 1))) {
+        
+        // Convertir array a objeto para consistencia
+        $attconfig = is_array($attconfig) ? (object) $attconfig : $attconfig;
+        
+        $entry_time = today()->setTimeFromTimeString($attconfig->entry_time);
+    
+        if ($currentTime->greaterThanOrEqualTo($entry_time->addMinutes(intval($attconfig->tolerance) + 1))) {
             $state = "tarde";
         }
-
+    
         $this->instance->store($dni, $type, $state, date('H:i:s'), $priority);
-
+    
         $message .= $state;
-
+    
         return response()->json([
-          "status" => "ok.mp3",
-          "message" => $message,
-          "register" => $register,
-          "person" => $person,
+            "status" => "ok.mp3",
+            "message" => $message,
+            "register" => $register,
+            "person" => $person,
         ]);
     }
 
