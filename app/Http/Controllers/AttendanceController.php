@@ -9,7 +9,6 @@ use App\Repositories\AttendanceRepository;
 use App\Repositories\PersonRepository;
 use App\Repositories\RegisterRepository;
 use App\Repositories\TeacherRepository;
-use Carbon\CarbonImmutable;
 use Illuminate\Http\Request;
 
 class AttendanceController extends Controller
@@ -167,16 +166,15 @@ class AttendanceController extends Controller
         }
 
         $message = "Registrado como ";
-
+        $currentTime = now();
         $state = "presente";
-        // set state according to the time and entry_time
-        $entry_time = CarbonImmutable::createFromFormat("H:i", $attconfig["entry_time"], config('app.timezone'));
 
-        if (now()->greaterThanOrEqualTo($entry_time->addMinutes(intval($attconfig["tolerance"]) + 1))) {
+        $entry_time = today()->setTimeFromTimeString($attconfig["entry_time"]);
+
+        if ($currentTime->greaterThanOrEqualTo($entry_time->addMinutes(intval($attconfig["tolerance"]) + 1))) {
             $state = "tarde";
         }
 
-        // store attendance
         $this->instance->store($dni, $type, $state, date('H:i:s'), $priority);
 
         $message .= $state;
